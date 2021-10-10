@@ -6,7 +6,7 @@
     "dev": "parcel src/pages/*.hbs --no-cache",
     "build": "parcel build src/pages/*.hbs --no-cache",
     "serve": "node server.js",
-    "start": "npm run build && npm run serve"
+    "start": "node server.js"
   },
   "author": "a.anikin",
   "license": "ISC",
