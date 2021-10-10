@@ -1,0 +1,13 @@
+{{#extend "html"}}
+    {{#content "body"}}
+        <div id="root">
+            {{{extend "appbar"}}}
+            <div class="app">
+                {{{extend "sidebar"}}}
+                <main class="main{{#if mainEmpty}} main__empty{{/if}}">
+                    {{{block "main"}}}
+                </main>
+            </div>
+        </div>
+    {{/content}}
+{{/extend}}

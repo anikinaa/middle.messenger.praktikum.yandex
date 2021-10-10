@@ -1,0 +1,19 @@
+@import "../variables";
+@import "../main";
+@import "../_dark";
+@import "../link";
+
+.error-page{
+  color: var(--whiteColor);
+
+  &_code{
+    font-size: 120px;
+  }
+  &_text{
+    text-align: center;
+  }
+  &_back-link{
+    text-align: center;
+    margin-top: calc(2 * var(--space));
+  }
+}

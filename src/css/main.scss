@@ -1,0 +1,40 @@
+
+*{
+    margin: 0;
+    font-family: monospace;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#root{
+    flex: 1 1;
+}
+.app{
+    display: flex;
+}
+.main{
+    flex-grow: 1;
+    display: flex;
+    color: var(--whiteColor);
+    flex-direction: column;
+
+    &__empty{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

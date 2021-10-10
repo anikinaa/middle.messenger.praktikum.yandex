@@ -1,0 +1,11 @@
+.link {;
+    color: var(--primaryColorDark);
+
+    &_warn{
+        color: darkred;
+    }
+
+    &__light{
+        color: var(--whiteColor);
+    }
+}
