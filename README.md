@@ -26,7 +26,7 @@
 ## Автодеплой
 Проект выложен на Netlify, настроен автодеплой из ветки ``deploy``
 
-Адрес приложения [https://musing-pare-0e648b.netlify.app](https://musing-pare-0e648b.netlify.app)
+Адрес приложения [https://musing-pare-chat.netlify.app/](https://musing-pare-chat.netlify.app/)
 
 ## Макет приложения
 [figma](https://www.figma.com/file/ygSAtfKL50oDjm50mvXeXx/my-chat)
