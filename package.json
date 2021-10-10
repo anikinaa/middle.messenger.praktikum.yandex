@@ -4,7 +4,7 @@
   "description": "app chat",
   "scripts": {
     "dev": "parcel src/pages/*.hbs",
-    "build": "parcel build src/pages/*.hbs",
+    "build": "parcel build src/pages/*.hbs --no-minify",
     "serve": "node server.js",
     "start": "npm run build && npm run serve"
   },

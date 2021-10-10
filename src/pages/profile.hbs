@@ -1,6 +1,85 @@
 ---
 title: Профиль пользователя
+styles: ../css/pages/profile.scss
+fields:
+    -
+        id: email
+        label: Почта
+        type: email
+        name: email
+        value: my_email@ya.ru
+    -
+        id: login
+        label: Логин
+        type: text
+        name: login
+        value: login
+    -
+        id: first_name
+        label: Имя
+        type: text
+        name: first_name
+        value: andrey
+    -
+        id: second_name
+        label: Фамилия
+        type: text
+        name: second_name
+        value: anikin
+    -
+        id: display_name
+        label: Имя в чате
+        type: text
+        name: display_name
+        value: andrey anikin
+    -
+        id: phone
+        label: Телефон
+        type: text
+        name: phone
+        value: +7 (903) 123-45-67
+
+user:
+    src: ../static/images/avatar.jpg
+    name: Andrey
+
+submit:
+    href: ./index.hbs
+    text: Сохранить
+avatar:
+    id: avatar
+    name: avatar
+    className: upload-btn__for-avatar
 ---
 
 {{#extend "html"}}
+    {{#content "body"}}
+        <main>
+            {{#extend "card" title=user.name}}
+                {{#content "cardBody"}}
+                    <form>
+                        {{#extend "avatar"  user className="avatar__center"}}
+                            {{#content "avatarContent"}}
+                                {{> buttonUpload this.avatar}}
+                            {{/content}}
+                        {{/extend}}
+
+                        {{#each fields}}
+                            {{> inputGroup this}}
+                        {{/each}}
+
+                        <div class="form_submit">
+                            {{> buttonLink submit}}
+                        </div>
+                    </form>
+                    <div class="form_action">
+                        {{> link href='./password.hbs' text="Изменить пароль"}}
+                    </div>
+                    <div class="form_action">
+                        {{> link href='./login.hbs' text="Выйти" className="link_warn"}}
+                    </div>
+                {{/content}}
+            {{/extend}}
+        </main>
+    {{/content}}
 {{/extend}}
