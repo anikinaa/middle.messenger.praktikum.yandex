@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "app chat",
   "scripts": {
-    "dev": "parcel src/pages/*.hbs --no-cache",
-    "build": "parcel build src/pages/*.hbs --no-cache",
+    "dev": "parcel src/pages/*.hbs",
+    "build": "parcel build src/pages/*.hbs",
     "serve": "node server.js",
-    "start": "node server.js"
+    "start": "npm run build && npm run serve"
   },
   "author": "a.anikin",
   "license": "ISC",
