@@ -1,0 +1,17 @@
+<a
+{{#if this.active}}
+href="./index.hbs"
+{{else}}
+href="./active-chat.hbs"
+{{/if}}
+class="chat-item{{#if this.active}} chat-item__active{{/if}}">
+    {{> avatar src=this.avatar}}
+    <div class="chat-item_text">
+        <div class="chat-item_text_title">{{this.title}}</div>
+        <div class="chat-item_text_msg">{{this.last_message.content}}</div>
+    </div>
+    <div class="chat-item_info">
+        <div class="chat-item_info_date">{{this.last_message.time}}</div>
+        <div class="chat-item_info_count">{{this.unread_count}}</div>
+    </div>
+</a>

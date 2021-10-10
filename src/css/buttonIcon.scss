@@ -1,0 +1,42 @@
+.button-icon{
+  height: var(--heightComponent);
+  width: var(--heightComponent);
+  background-color: transparent;
+  border-radius: calc(0.5 * var(--heightComponent));
+  border: none;
+  cursor: pointer;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 60%;
+
+  &:hover{
+    background-color: var(--gray100);
+  }
+
+  &__primary{
+    background-color: var(--primaryColor);
+
+    &:hover{
+      background-color: var(--primaryColor100);
+    }
+    &:active{
+      background-color: var(--primaryColor200);
+    }
+  }
+
+  &__secondary{
+    background-color: var(--secondaryColor);
+    &:hover{
+      background-color: var(--secondaryColor100);
+    }
+    &:active{
+      background-color: var(--secondaryColor200);
+    }
+  }
+}
+.button-icon-wrap{
+  padding: 0 calc(3 * var(--space));
+  display: flex;
+  height: 100%;
+  align-items: center;
+}

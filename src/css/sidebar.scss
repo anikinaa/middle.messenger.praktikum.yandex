@@ -1,0 +1,19 @@
+.sidebar{
+  background-color: var(--whiteColor);
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  top: 0;
+  width: var(--widthAside);
+  height: calc(100vh - var(--headerHeight));
+  z-index: 200;
+  flex-grow: 0;
+
+  &_header{
+    display: flex;
+    height: var(--headerHeight);
+  }
+}
+
+

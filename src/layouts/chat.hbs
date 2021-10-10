@@ -1,0 +1,30 @@
+{{#extend "app"}}
+
+    {{#content "appbarLeft"}}
+        <a href="./profile.hbs" class="app-bar_user app-bar_user__link">
+            {{> avatar user}}
+            <span class="app-bar_user-name">{{user.name}}</span>
+        </a>
+        <a href="./login.hbs" class="app-bar_logout"></a>
+    {{/content}}
+
+    {{#content "appbarHeader"}}
+        <div class="chats_search">
+            {{> inputSearch placeholder='Поиск'}}
+        </div>
+        <div class="chats_add">
+            <div class="chats_add_icon">+</div>
+            <span class="chats_add_text">добавить<br>чат</span>
+        </div>
+    {{/content}}
+
+    {{#content "appbarBody"}}
+
+        <div class="chats_list">
+            {{#each chats}}
+                {{> chatItem this}}
+            {{/each}}
+        </div>
+    {{/content}}
+
+{{/extend}}

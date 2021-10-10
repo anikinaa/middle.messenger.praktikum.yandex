@@ -1,0 +1,10 @@
+.form{
+  &_submit{
+    margin-top: calc(6 * var(--space));
+  }
+
+  &_action{
+    margin-top: calc(2 * var(--space));
+    text-align: center;
+  }
+}

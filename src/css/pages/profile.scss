@@ -1,0 +1,14 @@
+@import "../../css/variables";
+@import "../../css/main";
+@import "../../css/_dark";
+@import "../../css/card";
+@import "../../css/avatar";
+@import "../../css/input";
+@import "../../css/upload-btn";
+@import "../../css/button";
+@import "../../css/form";
+@import "../../css/link";
+
+main{
+  padding: calc(4 * var(--space));
+}

@@ -1,0 +1,12 @@
+.send-block{
+  height: var(--headerHeight);
+  background-color: var(--whiteColor);
+  display: flex;
+  align-items: center;
+  padding: 0 calc(3 * var(--space));
+  gap: calc(3 * var(--space));
+
+  &_message{
+    flex-grow: 1;
+  }
+}
