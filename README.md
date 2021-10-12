@@ -32,4 +32,3 @@
 [figma](https://www.figma.com/file/ygSAtfKL50oDjm50mvXeXx/my-chat)
 
 ## Pull requests
-- [Sprint 1](https://github.com/anikinaa/middle.messenger.praktikum.yandex/pull/1)
