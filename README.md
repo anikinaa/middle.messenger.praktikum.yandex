@@ -9,6 +9,10 @@
 Приложение "Мессенджер". Разрабатывается в рамках первого модуля Яндекс.Практикума. Профессия "Мидл фронтенд-разработчик"
 В разработке используется только JavaScript, Typescript, CSS и API браузера (никаких библиотек и фреймворков)
 
+Для сбоки компонентов используется собственные шаблонизатор, который генерирует DOMElement. 
+
+Для навигации используется верхнее меню (временно)
+
 Сборщик - Parcel
 
 Шаблонизатор - handlebars
@@ -20,6 +24,9 @@
 ## Запуск приложения
 
 ```npn start``` - запускается сборка приложения с помощью Parcel, после чего статические файлы раздаются через express
+```npn build``` - сборка приложения
+```npn lint``` - проверка синтаксиса
+```npn fix``` - исправление ошибок синтаксиса
 
 Приложение доступно по адресу [http://localhost:3000/](http://localhost:3000/)
 
@@ -32,4 +39,4 @@
 [figma](https://www.figma.com/file/ygSAtfKL50oDjm50mvXeXx/my-chat)
 
 ## Pull requests
-- [Sprint 1](https://github.com/anikinaa/middle.messenger.praktikum.yandex/pull/1)
+- [Sprint 2](https://github.com/anikinaa/middle.messenger.praktikum.yandex/pull/3)
