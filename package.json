@@ -12,7 +12,9 @@
   },
   "author": "a.anikin",
   "license": "ISC",
-  "browserslist": ["> 0.25%, not dead"],
+  "browserslist": [
+    "> 0.25%, not dead"
+  ],
   "dependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@anikin/parcel-transformer-template-precompile": "^1.0.1",
@@ -32,5 +34,8 @@
   "staticFiles": {
     "staticPath": "static/files",
     "staticOutPath": "static"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "^2.0.0"
   }
 }
