@@ -32,5 +32,8 @@
   "staticFiles": {
     "staticPath": "static/files",
     "staticOutPath": "static"
+  },
+  "dependencies": {
+
   }
 }
