@@ -1,0 +1,9 @@
+@import "../../scss/variables";
+
+.image-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4 * $space;
+}

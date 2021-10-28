@@ -1,0 +1,99 @@
+@import "./variables";
+
+%action {
+  border: none;
+  outline: none;
+  min-height: $heightElement;
+  border-radius: 0.5 * $heightElement;
+  font-size: $fontSize;
+  padding: 0 2 * $space;
+
+  &__secondary {
+    @extend %secondary-action;
+  }
+
+  &__gray {
+    @extend %gray-action0;
+  }
+
+  &__primary {
+    @extend %primary-action;
+  }
+}
+
+%primary-action {
+  background-color: $colorPrimary;
+  color: $contrastFontColor;
+
+  &:hover {
+    background-color: $colorPrimary100;
+  }
+
+  &:focus {
+    background-color: $colorPrimary200;
+  }
+}
+
+%secondary-action {
+  background-color: $colorSecondary;
+
+  &:hover {
+    background-color: $colorSecondary100;
+  }
+
+  &:focus {
+    background-color: $colorSecondary200;
+  }
+}
+
+%gray-action0 {
+  background-color: $colorGray;
+
+  &:hover {
+    background-color: $colorGray100;
+  }
+
+  &:focus {
+    background-color: $colorGray200;
+  }
+}
+
+%gray-action {
+  background-color: $colorGray100;
+
+  &:hover {
+    background-color: $colorGray200;
+  }
+
+  &:focus {
+    background-color: $colorGray300;
+  }
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+%flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+%icon-background {
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+%header {
+  font-size: $fontSizeHeader;
+  font-weight: bold;
+}
+
+%title {
+  font-size: $fontSizeTitle;
+  font-weight: bold;
+  color: $fontColorTitle;
+}

@@ -1,0 +1,30 @@
+@import "../../scss/extend";
+
+.input {
+  width: 100%;
+
+  @extend %action;
+  @extend %secondary-action;
+
+  &__invalid,
+  &__invalid:active,
+  &__invalid:hover, {
+    box-shadow: 0 0 3px $colorDanger;
+    background-color: $colorDangerFill;
+  }
+
+  &__with-icon {
+    padding-left: 4 * $space;
+  }
+
+  &_field {
+    display: flex;
+    flex-direction: column;
+    padding: $space 0;
+  }
+
+  &__with-label {
+    margin-top: 0.5 * $space;
+    margin-bottom: 2 * $space;
+  }
+}

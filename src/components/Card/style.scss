@@ -1,0 +1,20 @@
+@import "../../scss/variables";
+
+.card {
+  padding: 4 * $space;
+  box-shadow: $boxShadow;
+  border-radius: $borderRadius;
+  background-color: $colorWhite;
+  font-weight: bold;
+  width: $widthCard;
+  margin: 4 * $space auto;
+
+  &_header {
+    text-align: center;
+    font-size: $fontSizeHeader;
+  }
+
+  &_body {
+    padding-top: 2 * $space;
+  }
+}

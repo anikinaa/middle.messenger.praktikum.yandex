@@ -1,0 +1,31 @@
+@import "../../scss/variables";
+
+.link {
+  color: $colorPrimaryDark;
+  font-weight: normal;
+
+  &:hover {
+    color: $colorPrimaryDark100;
+  }
+
+  &:active {
+    color: $colorPrimaryDark200;
+  }
+
+  &__block {
+    display: block;
+    margin-bottom: 2 * $space;
+  }
+
+  &__danger {
+    color: $colorDanger;
+
+    &:hover {
+      color: $colorDanger100;
+    }
+
+    &:active {
+      color: $colorDanger200;
+    }
+  }
+}

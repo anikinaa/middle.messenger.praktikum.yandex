@@ -1,19 +1,38 @@
 {
   "name": "chat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "app chat",
   "scripts": {
-    "dev": "parcel src/pages/*.hbs --no-cache",
-    "build": "parcel build src/pages/*.hbs --no-minify",
+    "dev": "parcel static/pages/*.hbs --no-cache",
+    "build": "parcel build static/pages/*.hbs",
     "serve": "node server.js",
-    "start": "npm run build && npm run serve"
+    "start": "npm run build && npm run serve",
+    "lint": "eslint src --ext .js,.ts && npx stylelint \"**/*.scss\"",
+    "fix": "eslint src --ext .js,.ts --fix && npx stylelint \"**/*.scss\" --fix"
   },
   "author": "a.anikin",
   "license": "ISC",
+  "browserslist": [
+    "> 0.25%, not IE11, not dead"
+  ],
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@anikin/parcel-transformer-template-precompile": "^1.0.1",
+    "@parcel/transformer-sass": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
     "express": "^4.17.1",
-    "parcel-bundler": "^1.4.1",
-    "parcel-plugin-handlebars": "^0.4.1",
-    "sass": "^1.42.1"
+    "parcel": "^2.0.0",
+    "parcel-reporter-static-files-copy": "^1.3.0",
+    "stylelint": "^14.0.1",
+    "stylelint-config-recommended-scss": "^5.0.0",
+    "typescript": "^4.4.4"
+  },
+  "staticFiles": {
+    "staticPath": "static/files",
+    "staticOutPath": "static"
   }
 }

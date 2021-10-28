@@ -1,5 +1,4 @@
 module.exports = {
-    layouts: 'src/layouts',
-    partials: 'src/partials',
-    helpers: 'src/helpers'
+    layouts: 'static/layouts',
+    partials: ['static/partials']
 };

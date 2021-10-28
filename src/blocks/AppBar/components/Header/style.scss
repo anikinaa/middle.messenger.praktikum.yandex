@@ -1,0 +1,11 @@
+@import "../../../../scss/extend";
+
+.chat-header {
+  @extend %flex-center;
+
+  &_name {
+    @extend %header;
+
+    margin-left: 2 * $space;
+  }
+}

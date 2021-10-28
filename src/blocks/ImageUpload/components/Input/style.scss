@@ -1,0 +1,22 @@
+@import "../../../../scss/extend";
+
+.image-upload {
+  &_button {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(50%) translateY(-50%);
+    width: $heightElement;
+    height: $heightElement;
+
+    @extend %action;
+    @extend %action__primary;
+    @extend %icon-background;
+
+    background-image: url("../../../../assets/icons/upload.svg");
+    cursor: pointer;
+  }
+
+  &_input {
+    display: none;
+  }
+}

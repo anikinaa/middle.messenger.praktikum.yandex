@@ -1,0 +1,23 @@
+@import "../../scss/variables";
+
+.avatar {
+  width: $avatarSize;
+  height: $avatarSize;
+  background-size: 100% auto;
+  border-radius: 0.5 * $avatarSize;
+  background-color: $colorSecondary;
+  background-image: url("../../assets/images/no-avatar.png");
+
+  &__small {
+    width: 5 * $space;
+    height: 5 * $space;
+  }
+
+  &__center {
+    margin: 0 auto;
+  }
+
+  &__with-content {
+    position: relative;
+  }
+}
