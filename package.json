@@ -12,9 +12,7 @@
   },
   "author": "a.anikin",
   "license": "ISC",
-  "browserslist": [
-    "> 0.25%, not IE11, not dead"
-  ],
+  "browserslist": ["> 0.25%, not dead"],
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@anikin/parcel-transformer-template-precompile": "^1.0.1",
