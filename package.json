@@ -4,7 +4,7 @@
   "description": "app chat",
   "scripts": {
     "dev": "parcel static/pages/*.hbs --no-cache",
-    "build": "parcel build static/pages/*.hbs",
+    "build": "parcel build static/pages/*.hbs --no-optimize",
     "serve": "node server.js",
     "start": "npm run build && npm run serve",
     "lint": "eslint src --ext .js,.ts && npx stylelint \"**/*.scss\"",
