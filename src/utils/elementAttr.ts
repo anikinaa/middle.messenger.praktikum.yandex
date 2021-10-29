@@ -1,5 +1,5 @@
 export function joinClassName(
-    attributes: Record<string, string>,
+    attributes: Record<string, string> = {},
     className: string,
 ): string {
     const instClass = attributes?.class

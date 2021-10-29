@@ -23,13 +23,17 @@ export class HTTPTransport<D extends object = object> {
         return this.request(url, { data, headers, method }, timeout)
     }
 
-    /* eslint-disable class-methods-use-this */
+    /* eslint-disable-next-line class-methods-use-this */
     private request(
         url: string,
         options: IFetchOptions<D>,
         timeout = 5000,
     ): Promise<XMLHttpRequest> {
-        const { method, data, headers = [] } = options
+        const {
+            method, data, headers = {
+                'Content-Type': 'application/json',
+            },
+        } = options
         let newUrl = url
         if (method === METHODS_FETCH.GET && data) {
             newUrl += queryStringify<D>(data)

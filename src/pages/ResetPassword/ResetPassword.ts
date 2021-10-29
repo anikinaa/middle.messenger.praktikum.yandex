@@ -18,7 +18,6 @@ const fields = [
             type: 'password',
             name: 'oldPassword',
             autocomplete: 'on',
-            class: 'input__with-label',
         },
     }),
     new InputForm({
@@ -27,10 +26,10 @@ const fields = [
             required: '',
             type: 'password',
             name: 'password',
-            pattern: REGEXP.EMAIL,
-            class: 'input__with-label',
+            pattern: REGEXP.PASSWORD.PATTERN,
             autocomplete: 'on',
         },
+        requirements: REGEXP.PASSWORD.TEXT,
     }),
     new InputForm({
         label: 'Повторите пароль',
@@ -38,10 +37,10 @@ const fields = [
             required: '',
             type: 'password',
             name: 'repeat_password',
-            pattern: REGEXP.EMAIL,
-            class: 'input__with-label',
+            pattern: REGEXP.PASSWORD.PATTERN,
             autocomplete: 'on',
         },
+        requirements: REGEXP.PASSWORD.TEXT,
     }),
 ]
 

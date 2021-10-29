@@ -15,7 +15,7 @@ export class InputWithIcon extends Block<IInputWithIconProps> {
                 input: new Input({
                     attributes: {
                         ...attributes,
-                        class: joinClassName(attributes!, 'input__with-icon'),
+                        class: joinClassName(attributes, 'input__with-icon'),
                     },
                 }),
                 icon,

@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable-next-line no-undef */
 type IFormData = Record<string, FormDataEntryValue | File>;
 
 function getFormData(el: HTMLFormElement): IFormData {
@@ -12,10 +12,10 @@ function getFormData(el: HTMLFormElement): IFormData {
 }
 
 export function consoleFormData(e: Event): void {
-    /* eslint-disable no-undef */
+    /* eslint-disable-next-line no-undef */
     const el = e.target as HTMLFormElement
     const data = getFormData(el)
-    /* eslint-disable  no-console */
+    /* eslint-disable-next-line  no-console */
     console.log(data)
     e.preventDefault()
 }

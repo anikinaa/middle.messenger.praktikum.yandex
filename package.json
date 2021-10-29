@@ -15,8 +15,6 @@
   "browserslist": [
     "> 0.25%, not dead"
   ],
-  "dependencies": {
-  },
   "staticFiles": {
     "staticPath": "static/files",
     "staticOutPath": "static"
@@ -24,6 +22,7 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@anikin/parcel-transformer-template-precompile": "^1.0.1",
+    "@parcel/config-default": "^2.0.0",
     "@parcel/transformer-sass": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
@@ -35,7 +34,6 @@
     "parcel-reporter-static-files-copy": "^1.3.0",
     "stylelint": "^14.0.1",
     "stylelint-config-recommended-scss": "^5.0.0",
-    "typescript": "^4.4.4",
-    "@parcel/config-default": "^2.0.0"
+    "typescript": "^4.4.4"
   }
 }

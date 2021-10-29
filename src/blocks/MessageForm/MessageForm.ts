@@ -4,6 +4,7 @@ import { Input, ButtonCircle } from '../../components'
 import { IMessageFormProps } from './types'
 import _template from './template.tpl'
 import iconSend from '../../assets/icons/send.svg'
+import { REGEXP } from '../../utils/REGEXP'
 
 const template = new Template<IMessageFormProps>(_template)
 
@@ -12,7 +13,7 @@ const message = new Input({
         required: '',
         placeholder: 'Сообщение...',
         name: 'message',
-        pattern: '^[^~#&*<>\\/\\\\{|}]{1,}$',
+        pattern: REGEXP.MESSAGE,
     },
 })
 

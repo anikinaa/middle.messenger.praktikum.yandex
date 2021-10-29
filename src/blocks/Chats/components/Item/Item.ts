@@ -16,7 +16,7 @@ export class ChatsItem extends Block<IChatsItemProps> {
             events,
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes!, 'chat-item'),
+                class: joinClassName(attributes, 'chat-item'),
             },
         })
     }

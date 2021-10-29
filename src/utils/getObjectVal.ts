@@ -6,9 +6,9 @@ export function getObjectVal(
     const keys = path.split('.')
 
     let result = obj
-    /* eslint-disable no-restricted-syntax */
+    /* eslint-disable-next-line no-restricted-syntax */
     for (const key of keys) {
-    // @ts-ignore
+        // @ts-ignore
         result = result[key]
 
         if (result === undefined) {

@@ -8,6 +8,9 @@
   &_label {
     color: $fontColorSecondary;
     padding-left: 0.5 * $heightElement;
-    padding-bottom: $space;
+
+    & ~ input {
+      margin-top: 0.5 * $space;
+    }
   }
 }

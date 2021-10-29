@@ -16,7 +16,6 @@ const fields = [
             required: '',
             type: 'text',
             name: 'login',
-            class: 'input__with-label',
         },
     }),
     new InputForm({
@@ -26,7 +25,6 @@ const fields = [
             type: 'password',
             name: 'password',
             autocomplete: 'on',
-            class: 'input__with-label',
         },
     }),
 ]

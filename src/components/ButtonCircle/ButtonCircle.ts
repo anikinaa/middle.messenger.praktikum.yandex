@@ -10,7 +10,7 @@ export class ButtonCircle extends Block<{}> {
             tagName: 'button',
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes!, 'button-circle'),
+                class: joinClassName(attributes, 'button-circle'),
                 type: getDefaultType(attributes!, 'button'),
                 style: `background-image: url(${icon})`,
             },

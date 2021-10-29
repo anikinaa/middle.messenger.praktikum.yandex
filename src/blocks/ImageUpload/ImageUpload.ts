@@ -23,7 +23,7 @@ export class ImageUpload extends Block<IImageUploadProps> {
                     events: {
                         change: (e) => {
                             const el = e.target as HTMLInputElement
-                            if (el.files && el.files[0]) {
+                            if (el.files?.[0]) {
                                 const reader = new FileReader()
                                 reader.onload = () => {
                                     const src = reader.result as string

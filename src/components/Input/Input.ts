@@ -8,7 +8,7 @@ export class Input extends Block<{}> {
             tagName: 'input',
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes!, 'input'),
+                class: joinClassName(attributes, 'input'),
                 type: getDefaultType(attributes!, 'text'),
             },
             events: {

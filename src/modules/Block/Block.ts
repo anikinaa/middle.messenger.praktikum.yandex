@@ -1,10 +1,6 @@
 import { EventBus } from '../EventBus'
 import { IBlock, EVENTS } from './type'
 
-// declare class BlockLiveCycle {
-// componentDidMount(): void
-// }
-
 export abstract class Block<T extends object> {
     static EVENTS = EVENTS;
 
@@ -77,97 +73,96 @@ export abstract class Block<T extends object> {
     }
 
     /* eslint-disable */
+    // @ts-ignore
     protected componentDidMount(oldProps: T | {}) {
 
     }
+    /* eslint-enable */
 
     private _componentDidUpdate(oldProps: T, newProps: T) {
-      const response = this.componentDidUpdate(oldProps, newProps);
-      if (response) {
-        this._removeEvents();
-        this._clearElement();
-        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
-      }
-      return response;
+        const response = this.componentDidUpdate(oldProps, newProps)
+        if (response) {
+            this._removeEvents()
+            this._clearElement()
+            this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
+        }
+        return response
     }
 
     /* eslint-disable */
+    // @ts-ignore
     protected componentDidUpdate(oldProps: T, newProps: T) {
         return true;
     }
-
-
+    /* eslint-enable */
 
     setProps = (nextProps: Partial<T>) => {
-      if (!nextProps) {
-        return;
-      }
-      Object.assign(this.props, nextProps);
+        if (!nextProps) {
+            return
+        }
+        Object.assign(this.props, nextProps)
     };
 
     get element() {
-      return this._element;
+        return this._element
     }
 
     _render() {
-      const block = this.render();
-      if (block) {
-            this._element!.appendChild(block);
-      }
-      this._addEvents();
-      this._addAttributes();
+        const block = this.render()
+        if (block) {
+            this._element!.appendChild(block)
+        }
+        this._addEvents()
+        this._addAttributes()
     }
 
     render(): DocumentFragment | null {
-      const { template } = this._meta;
-      return template ? template.compile(this.props) : null;
+        const { template } = this._meta
+        return template ? template.compile(this.props) : null
     }
 
     private _addEvents() {
-      const { events = {} } = this._meta;
-      Object.entries(events).forEach(([type, listener]) => {
-            this._element!.addEventListener(type, listener);
-      });
+        const { events = {} } = this._meta
+        Object.entries(events).forEach(([type, listener]) => {
+            this._element!.addEventListener(type, listener!)
+        })
     }
 
     private _removeEvents() {
-      const { events = {} } = this._meta;
+        const { events = {} } = this._meta
 
-      Object.entries(events).forEach(([type, listener]) => {
-            this._element!.removeEventListener(type, listener);
-      });
+        Object.entries(events).forEach(([type, listener]) => {
+            this._element!.removeEventListener(type, listener!)
+        })
     }
 
-    private _makePropsProxy = (props: T): T => {
-      const self: Block<T> = this;
-      return new Proxy(props, {
-        set(target, prop, val) {
-          const key = prop as keyof T;
-          const value = val as T[keyof T];
-          if (target[key] !== value) {
-            const oldProps = { ...target };
+    private _makePropsProxy = (props: T): T => new Proxy(props, {
+        set: (target, prop, val) => {
+            const key = prop as keyof T
+            const value = val as T[keyof T]
+            if (target[key] !== value) {
+                const oldProps = { ...target }
 
-            /* eslint-disable  no-param-reassign */
-            target[key] = value;
-            self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
-          }
-          return true;
+                /* eslint-disable-next-line  no-param-reassign */
+                target[key] = value
+                this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target)
+            }
+            return true
         },
         deleteProperty() {
-          throw new Error('нет доступа');
+            throw new Error('нет доступа')
         },
-      });
-    };
+    });
 
     toggleClass(className: string, add: boolean) {
-        this._element!.classList.toggle(className, add);
+        this._element!.classList.toggle(className, add)
     }
 
     show() {
-        this._element!.style.display = 'block';
+        this._element!.classList.add('hidden')
     }
 
     hide() {
-        this._element!.style.display = 'none';
+        this._element!.classList.remove('hidden')
     }
 }

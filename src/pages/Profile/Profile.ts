@@ -1,6 +1,7 @@
 import { Block, Template } from '../../modules'
-import { consoleFormData } from '../../utils/getFormData'
 import { Form, ImageUpload } from '../../blocks'
+import { consoleFormData } from '../../utils/getFormData'
+import { REGEXP } from '../../utils/REGEXP'
 import {
     Card, InputForm, Button, Link,
 } from '../../components'
@@ -20,10 +21,10 @@ const fields = [
             required: '',
             type: 'email',
             name: 'email',
-            pattern: '^[a-z0-9_\\-\\.]+@[a-z0-9_\\-]{2,}\\.[a-z0-9_\\-]{2,}$',
-            class: 'input__with-label',
+            pattern: REGEXP.EMAIL.PATTERN,
             value: 'my_email@ya.ru',
         },
+        requirements: REGEXP.EMAIL.TEXT,
     }),
     new InputForm({
         label: 'Логин',
@@ -31,10 +32,10 @@ const fields = [
             required: '',
             type: 'text',
             name: 'login',
-            pattern: '^[a-z]{1}[a-z0-9_-]{2,19}$',
-            class: 'input__with-label',
+            pattern: REGEXP.LOGIN.PATTERN,
             value: 'login',
         },
+        requirements: REGEXP.LOGIN.TEXT,
     }),
     new InputForm({
         label: 'Имя',
@@ -42,10 +43,10 @@ const fields = [
             required: '',
             type: 'text',
             name: 'first_name',
-            pattern: '^[A-ZА-Я]+[A-Za-zА-Яа-я\\-] * $',
-            class: 'input__with-label',
+            pattern: REGEXP.NAME.PATTERN,
             value: 'Andrey',
         },
+        requirements: REGEXP.NAME.TEXT,
     }),
     new InputForm({
         label: 'Фамилия',
@@ -53,19 +54,16 @@ const fields = [
             required: '',
             type: 'text',
             name: 'second_name',
-            pattern: '^[A-ZА-Я]+[A-Za-zА-Яа-я\\-] * $',
-            class: 'input__with-label',
+            pattern: REGEXP.NAME.PATTERN,
             value: 'Anikin',
         },
+        requirements: REGEXP.NAME.TEXT,
     }),
     new InputForm({
         label: 'Имя в чате',
         attributes: {
-            required: '',
             type: 'text',
             name: 'display_name',
-            pattern: '^[A-Za-zА-Яа-я0-9\\s\\-] * $',
-            class: 'input__with-label',
             value: 'A Anikin',
         },
     }),
@@ -75,10 +73,10 @@ const fields = [
             required: '',
             type: 'text',
             name: 'phone',
-            pattern: '^(\\+?\\d){10,15}$',
-            class: 'input__with-label',
+            pattern: REGEXP.PHONE.PATTERN,
             value: '+79037128326',
         },
+        requirements: REGEXP.PHONE.TEXT,
     }),
 ]
 

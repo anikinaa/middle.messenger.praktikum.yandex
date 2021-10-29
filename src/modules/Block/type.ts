@@ -11,7 +11,7 @@ type PartialRecord<K extends keyof any, T> = {
     [P in K]?: T;
 };
 
-/* eslint-disable no-undef */
+/* eslint-disable-next-line no-undef */
 type IEvents = PartialRecord<keyof HTMLElementEventMap, EventListener>;
 
 type IAttributes = Record<string, string>;

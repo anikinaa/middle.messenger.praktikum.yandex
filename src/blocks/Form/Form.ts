@@ -14,7 +14,7 @@ export class Form extends Block<IFormProps> {
             template,
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes!, 'form'),
+                class: joinClassName(attributes, 'form'),
             },
             events,
         })

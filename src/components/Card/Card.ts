@@ -16,7 +16,7 @@ export class Card extends Block<ICardProps> {
             tagName,
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes!, 'card'),
+                class: joinClassName(attributes, 'card'),
             },
             events,
             template,

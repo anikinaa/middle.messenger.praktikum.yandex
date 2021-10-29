@@ -18,7 +18,7 @@ export class Link extends Block<ILinkProps> {
             tagName: 'a',
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes!, 'link'),
+                class: joinClassName(attributes, 'link'),
                 href,
             },
             events,

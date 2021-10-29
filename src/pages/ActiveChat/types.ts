@@ -5,6 +5,6 @@ import {
 export type IActiveChatPage = {
     abbBar: AppBar;
     sideBar: SideBar;
-    dialog: Dialog;
+    dialog: Dialog[];
     messageForm: MessageForm;
 };

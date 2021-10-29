@@ -1,6 +1,6 @@
 {{{fields}}}
 <div class="form-submit">
-    <p class="form-error">{{error}}</p>
+    {{@if error}}<p class="form-error">{{error}}</p>{{/if}}
     {{{submit}}}
 </div>
 <div class="form-action">

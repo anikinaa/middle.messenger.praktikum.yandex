@@ -8,6 +8,8 @@ export class Template<T extends object> {
 
     TEMPLATE_REGEXP: RegExp = /{{(.*?)}}/gi;
 
+    TEMPLATE_REGEXP_IF: RegExp = /{{@if\s(.*?)}}(.*){{\/if}}/gi;
+
     constructor(template: string) {
         this._template = template
     }
@@ -38,8 +40,21 @@ export class Template<T extends object> {
     _compileTemplateText(ctx: IContext): string {
         let tmpl = this._template
         let key = null
+
+        const regExpIf = this.TEMPLATE_REGEXP_IF
+
+        /* eslint-disable-next-line no-cond-assign */
+        while ((key = regExpIf.exec(tmpl))) {
+            const [template, tmplValue, code] = key
+            const val = getObjectVal(ctx, tmplValue)
+            const replaceValue = val === undefined ? '' : code
+            tmpl = tmpl.replace(new RegExp(template, 'gi'), replaceValue)
+        }
+
         const regExp = this.TEMPLATE_REGEXP
-        /* eslint-disable no-cond-assign */
+        key = null
+
+        /* eslint-disable-next-line no-cond-assign */
         while ((key = regExp.exec(tmpl))) {
             if (key[1]) {
                 const tmplValue = key[1].trim()
@@ -52,7 +67,6 @@ export class Template<T extends object> {
         return tmpl
     }
 
-    /* eslint-disable no-underscore-dangle */
     private _createChildrenNodes(
         fragment: Node,
         element: Element,
@@ -69,7 +83,6 @@ export class Template<T extends object> {
         }
     }
 
-    /* eslint-disable no-underscore-dangle */
     private static _appendChild(fragment: Node, element: Element, ctx: IContext) {
         if (element.tagName === 'TEMPLATE') {
             const path = element.getAttribute('data-context') as string
