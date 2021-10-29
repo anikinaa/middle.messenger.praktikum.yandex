@@ -9,7 +9,7 @@ export class Input extends Block<{}> {
             attributes: {
                 ...attributes,
                 class: joinClassName(attributes, 'input'),
-                type: getDefaultType(attributes!, 'text'),
+                type: getDefaultType(attributes, 'text'),
             },
             events: {
                 focus: () => {

@@ -7,7 +7,7 @@ export function joinClassName(
 }
 
 export function getDefaultType(
-    attributes: Record<string, string>,
+    attributes: Record<string, string> = {},
     type: string,
 ): string {
     const instType = attributes?.type

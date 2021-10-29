@@ -15,7 +15,7 @@ export class Button extends Block<IButtonProps> {
             attributes: {
                 ...attributes,
                 class: joinClassName(attributes, 'button'),
-                type: getDefaultType(attributes!, 'button'),
+                type: getDefaultType(attributes, 'button'),
             },
             events,
             template,

@@ -11,7 +11,7 @@ export class ButtonCircle extends Block<{}> {
             attributes: {
                 ...attributes,
                 class: joinClassName(attributes, 'button-circle'),
-                type: getDefaultType(attributes!, 'button'),
+                type: getDefaultType(attributes, 'button'),
                 style: `background-image: url(${icon})`,
             },
             events,
