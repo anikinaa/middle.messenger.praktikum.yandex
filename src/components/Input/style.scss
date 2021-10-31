@@ -1,0 +1,36 @@
+@import "../../scss/extend";
+
+.input {
+  width: 100%;
+
+  @extend %action;
+  @extend %secondary-action;
+
+  &__with-icon {
+    padding-left: 4 * $space;
+  }
+
+  &_field {
+    display: flex;
+    flex-direction: column;
+    padding: $space 0;
+  }
+
+  &_requirements {
+    display: none;
+    color: $colorDanger;
+    font-size: $fontSizeSmall;
+    padding-top: 0.5 * $space;
+    padding-left: 2 * $space;
+  }
+
+  &__invalid:not(:placeholder-shown) {
+    box-shadow: 0 0 3px $colorDanger;
+    background-color: $colorDangerFill;
+
+    & ~ .input_requirements {
+      display: block;
+    }
+  }
+
+}

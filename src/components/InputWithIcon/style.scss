@@ -1,0 +1,20 @@
+@import "../../scss/extend";
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input__with-icon {
+  padding-left: 4 * $space;
+}
+
+.input-with-icon_icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $heightElement;
+  height: $heightElement;
+
+  @extend %icon-background;
+}

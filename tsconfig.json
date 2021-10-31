@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "noEmitOnError": true,
+    "pretty": true,
+    "removeComments": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": false,
+    "diagnostics": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noStrictGenericChecks": false,
+    "strictPropertyInitialization": true,
+    "target": "es5",
+    "lib": [
+      "es5",
+      "dom.iterable",
+      "dom"
+    ]
+  }
+}

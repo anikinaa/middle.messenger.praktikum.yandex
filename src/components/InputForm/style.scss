@@ -1,0 +1,16 @@
+@import "../../scss/variables";
+
+.input-form {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2 * $space;
+
+  &_label {
+    color: $fontColorSecondary;
+    padding-left: 0.5 * $heightElement;
+
+    & ~ input {
+      margin-top: 0.5 * $space;
+    }
+  }
+}

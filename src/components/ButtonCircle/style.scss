@@ -1,0 +1,21 @@
+@import "../../scss/extend";
+
+.button-circle {
+  @extend %action;
+  @extend %icon-background;
+
+  width: $heightElement;
+  cursor: pointer;
+
+  &__secondary {
+    @extend %secondary-action;
+  }
+
+  &__gray {
+    @extend %gray-action0;
+  }
+
+  &__primary {
+    @extend %primary-action;
+  }
+}

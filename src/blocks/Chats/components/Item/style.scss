@@ -1,0 +1,63 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/extend";
+
+.chat-item {
+  list-style: none;
+  flex-grow: 1;
+
+  &_link {
+    display: flex;
+    height: $itemHeader;
+    align-items: center;
+    padding: 0 4 * $space;
+    color: $fontColor;
+    text-decoration: none;
+
+    @extend %secondary-action;
+
+    background-color: transparent;
+  }
+
+  &_info {
+    padding-left: calc(2 * #{$space});
+    text-align: right;
+
+    &_count {
+      background-color: $colorPrimary;
+      color: $contrastFontColor;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: $space;
+      padding: 0.5 * $space $space;
+      border-radius: 2 * $space;
+    }
+  }
+
+  &__active {
+    .chat-item_link {
+      @extend %primary-action;
+    }
+
+    .chat-item_info_count {
+      background-color: $contrastFontColor;
+      color: $colorPrimary;
+    }
+  }
+
+  .avatar {
+    flex-shrink: 0;
+  }
+
+  &_text {
+    flex-grow: 1;
+    padding-left: 2 * $space;
+
+    &_title {
+      @extend %title;
+    }
+
+    &_msg {
+      font-size: $fontSizeSmall;
+    }
+  }
+}

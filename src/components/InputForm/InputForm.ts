@@ -1,0 +1,27 @@
+import { Block, Template } from '../../modules'
+import { Input } from '../Input'
+import { IInputForm, IInputFormProps } from './types'
+import _template from './template.tpl'
+
+const template = new Template<IInputFormProps>(_template)
+
+export class InputForm extends Block<IInputFormProps> {
+    constructor({ label, attributes, requirements }: IInputForm) {
+        super({
+            props: {
+                input: new Input({
+                    attributes: {
+                        ...attributes,
+                        placeholder: ' ',
+                    },
+                }),
+                label,
+                requirements,
+            },
+            template,
+            attributes: {
+                class: 'input-form',
+            },
+        })
+    }
+}

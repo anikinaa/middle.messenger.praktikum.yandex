@@ -1,0 +1,19 @@
+@import "../../scss/variables";
+
+.form {
+  &-submit {
+    text-align: center;
+    padding-top: 4 * $space;
+  }
+
+  &-error {
+    color: $colorDanger;
+    padding-bottom: 2 * $space;
+    font-weight: normal;
+  }
+
+  &-action {
+    padding-top: 4 * $space;
+    text-align: center;
+  }
+}

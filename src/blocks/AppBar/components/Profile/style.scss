@@ -1,0 +1,35 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/extend";
+
+.my-profile {
+  @extend %flex-center;
+
+  flex: 1;
+
+  &_user {
+    @extend %flex-start;
+    @extend %gray-action;
+
+    height: $heightHeader;
+    text-decoration: none;
+    flex-grow: 1;
+    padding-left: 4 * $space;
+  }
+
+  &_name {
+    @extend %title;
+
+    margin-left: 2 * $space;
+  }
+
+  &_logout {
+    @extend %gray-action;
+
+    width: $heightHeader;
+    height: $heightHeader;
+    background-image: url("../../../../assets/icons/logout.svg");
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+}
