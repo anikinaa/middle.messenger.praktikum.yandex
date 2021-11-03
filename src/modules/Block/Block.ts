@@ -1,7 +1,7 @@
 import { EventBus } from '../EventBus'
 import { IBlock, EVENTS } from './type'
 
-export abstract class Block<T extends object> {
+export abstract class Block<T extends object = {}> {
     static EVENTS = EVENTS;
 
     props: T;

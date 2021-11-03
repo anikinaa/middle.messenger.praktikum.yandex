@@ -1,13 +1,13 @@
 import { Router } from './modules/Router'
-import { LoginPage } from './pages/Login'
-import { RegistrationPage } from './pages/Registration'
+import { SignInPage } from './pages/SignIn'
+import { SignUpPage } from './pages/SignUp'
 
 
 const router = new Router("#root");
 
 router
-    .use('/', LoginPage)
-    .use('/sign-up', RegistrationPage)
+    .use('/', SignInPage)
+    .use('/sign-up', SignUpPage)
     .start();
 
 // setTimeout(() => {

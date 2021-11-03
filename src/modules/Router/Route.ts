@@ -1,20 +1,23 @@
-import { Block } from '../Block'
+import { Block, IBlockClass } from '../Block'
 import { renderDOM } from '../../utils/renderDOM'
 
-type BlockClass<T extends object> = { new(): Block<T>; }
 
-export class Route<T extends object>{
+export class Route{
     private _pathname: string;
-    private readonly _blockClass: BlockClass<T>;
-    private _block: any;
-    // @ts-ignore
-    private _props: any;
+    private readonly _blockClass: IBlockClass;
+    private _block: Block | null = null;
+    private _props: {
+        rootQuery: string
+    } | null = null;
 
-    constructor(pathname: string, view: BlockClass<T>, props: any) {
+    constructor(pathname: string, view: IBlockClass, props: any) {
         this._pathname = pathname;
         this._blockClass = view;
-        this._block = null;
         this._props = props;
+    }
+
+    get rootQuery() {
+        return this._props!.rootQuery
     }
 
     navigate(pathname: string) {
@@ -37,10 +40,17 @@ export class Route<T extends object>{
     render() {
         if (!this._block) {
             this._block = new this._blockClass();
-            renderDOM(this._block)
+            this.setTitle()
+            renderDOM(this._block, this.rootQuery)
             return;
         }
 
         this._block.show();
+        this.setTitle()
+    }
+
+    setTitle () {
+        // @ts-ignore
+        document.title = this._block!.title
     }
 }

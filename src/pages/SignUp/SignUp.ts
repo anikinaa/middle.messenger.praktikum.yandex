@@ -1,12 +1,13 @@
-import { Block, Template } from '../../modules'
+import { Template, Router, Block } from '../../modules'
 import { Form } from '../../blocks'
 import {
     Card, InputForm, Button, Link,
 } from '../../components'
 import { consoleFormData } from '../../utils/getFormData'
 import { REGEXP } from '../../utils/REGEXP'
-import { IRegistrationPage } from './type'
+import { ISignUpPageProps } from './type'
 import _template from './template.tpl'
+import { SignInPage } from '../SignIn'
 
 const template = new Template(_template)
 
@@ -97,25 +98,35 @@ const submit = new Button({
     },
 })
 
-const form = new Form({
-    props: {
-        fields,
-        submit,
-        error: 'error text!!!',
-        action: [
-            new Link({
-                text: 'Войти',
-                href: 'login.html',
-            }),
-        ],
-    },
-    events: {
-        submit: consoleFormData,
-    },
-})
+export class SignUpPage extends Block<ISignUpPageProps> {
+    static url: string = '/sign-up'
+    static title: string = 'Регистрация'
 
-export class RegistrationPage extends Block<IRegistrationPage> {
     constructor() {
+
+        const form = new Form({
+            props: {
+                fields,
+                submit,
+                error: 'error text!!!',
+                action: [
+                    new Link({
+                        text: 'Войти',
+                        href: SignInPage.url,
+                        events: {
+                            click: (e) => {
+                                SignInPage.open()
+                                e.preventDefault()
+                            }
+                        }
+                    }),
+                ],
+            },
+            events: {
+                submit: consoleFormData,
+            },
+        })
+
         super({
             props: {
                 card: new Card({
@@ -128,4 +139,9 @@ export class RegistrationPage extends Block<IRegistrationPage> {
             template,
         })
     }
+
+    static open() {
+        Router.__instance?.go(SignUpPage.url)
+    }
+
 }

@@ -1,5 +1,5 @@
 import { Card } from '../../components'
 
-export interface IRegistrationPage {
+export interface ISignUpPageProps {
     card: Card
 }

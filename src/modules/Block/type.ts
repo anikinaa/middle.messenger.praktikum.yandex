@@ -1,4 +1,5 @@
 import { Template } from '../Template'
+import { Block } from './Block'
 
 export enum EVENTS {
     INIT = 'init',
@@ -16,10 +17,12 @@ type IEvents = PartialRecord<keyof HTMLElementEventMap, EventListener>;
 
 type IAttributes = Record<string, string>;
 
-export type IBlock<T extends object> = {
+export type IBlock<T extends object = {}> = {
     props?: T;
     tagName?: string;
     attributes?: IAttributes;
     events?: IEvents;
     template?: Template<T>;
 };
+
+export type IBlockClass = { new(): Block<any>; }

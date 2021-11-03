@@ -48,25 +48,3 @@ body {
 .hidden {
   display: none !important;
 }
-
-#nav {
-  position: fixed;
-  top: 0;
-  width: 600px;
-  text-align: center;
-  left: calc(50% - 300px);
-  z-index: 100;
-  background-color: $colorSecondary200;
-  padding: $space 2 * $space;
-  border-radius: 0 0 2 * $space 2 * $space;
-  box-shadow: $boxShadow;
-
-  a {
-    color: $colorPrimaryDark200;
-    margin: 0 $space;
-
-    &:hover {
-      color: $colorPrimaryDark;
-    }
-  }
-}
