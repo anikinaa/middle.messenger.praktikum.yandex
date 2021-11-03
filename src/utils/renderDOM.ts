@@ -1,11 +1,9 @@
 import { Block } from '../modules'
+// const root = document.getElementById('root')
 
-export function renderDOM<T extends Block<any>>(PageBlock: {
-    new (): T;
-}): void {
-    const root = document.getElementById('root')
-    root!.innerHTML = ''
-    const item = new PageBlock()
-    const node = item.element as Node
-    root!.appendChild(node)
+export function renderDOM<T extends object>(block: Block<T>): void {
+    const node = block.element as Node
+    if (document.getElementById('root')) {
+        document.getElementById('root')!.appendChild(node)
+    }
 }

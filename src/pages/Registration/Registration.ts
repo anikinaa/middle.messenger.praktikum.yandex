@@ -10,6 +10,8 @@ import _template from './template.tpl'
 
 const template = new Template(_template)
 
+export const RegistrationUrl = '/sign-up'
+
 const fields = [
     new InputForm({
         label: 'Почта',

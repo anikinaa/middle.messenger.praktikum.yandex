@@ -6,6 +6,9 @@ import {
 } from '../../components'
 import { ILoginPage } from './type'
 import _template from './template.tpl'
+import { Router } from '../../modules/Router'
+// import { RegistrationUrl } from '../Registration'
+
 
 const template = new Template(_template)
 
@@ -37,6 +40,11 @@ const submit = new Button({
         type: 'submit',
         class: 'button__primary',
     },
+    events: {
+        click: () => {
+            Router.__instance?.go('/sign-up')
+        }
+    }
 })
 
 const form = new Form({
