@@ -48,7 +48,7 @@ export class Template<T extends object> {
             const [template, tmplValue, code] = key
             const val = getObjectVal(ctx, tmplValue)
             const replaceValue = val === undefined ? '' : code
-            tmpl = tmpl.replace(new RegExp(template, 'gi'), replaceValue)
+            tmpl = tmpl.replace(template, replaceValue)
         }
 
         const regExp = this.TEMPLATE_REGEXP

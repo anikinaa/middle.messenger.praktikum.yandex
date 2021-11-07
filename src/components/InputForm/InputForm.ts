@@ -6,10 +6,11 @@ import _template from './template.tpl'
 const template = new Template<IInputFormProps>(_template)
 
 export class InputForm extends Block<IInputFormProps> {
-    constructor({ label, attributes, requirements }: IInputForm) {
+    constructor({ value, label, attributes, requirements }: IInputForm) {
         super({
             props: {
                 input: new Input({
+                    value: value ? value : '',
                     attributes: {
                         ...attributes,
                         placeholder: ' ',
@@ -23,5 +24,9 @@ export class InputForm extends Block<IInputFormProps> {
                 class: 'input-form',
             },
         })
+    }
+
+    setValue(value: string) {
+        this.props.input.setValue(value ? value : '')
     }
 }

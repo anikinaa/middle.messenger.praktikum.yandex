@@ -34,6 +34,11 @@
   }
 }
 
+%loading {
+  opacity: 0.6;
+  cursor: progress !important;
+}
+
 %secondary-action {
   background-color: $colorSecondary;
 

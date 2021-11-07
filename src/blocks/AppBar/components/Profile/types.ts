@@ -1,8 +1,7 @@
 import { Avatar } from '../../../../components'
 
-export interface IAppBarProfile {
+export interface IAppBarProfileProps {
     avatar: Avatar;
     linkProfile: string;
-    linkLogout: string;
     name: string;
 }

@@ -7,6 +7,7 @@ const template = new Template<IFormProps>(_template)
 
 export class Form extends Block<IFormProps> {
     constructor(data: IForm) {
+
         const { attributes, props, events } = data
         super({
             props,

@@ -1,9 +1,9 @@
 import { Block, IBlock } from '../../modules'
-import { Button } from '../../components'
+import {Button, InputForm} from '../../components'
 
 export interface IFormProps {
-    fields: Block<any>[] | Block<any>;
-    error?: string;
+    fields: Block<any>[] | Block<any> | InputForm[];
+    error?: string | null;
     submit: Button;
     action?: Block<any>[] | Block<any>;
 }

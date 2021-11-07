@@ -3,7 +3,7 @@ import { joinClassName, getDefaultType } from '../../utils/elementAttr'
 import { IInput } from './types'
 
 export class Input extends Block<{}> {
-    constructor({ attributes }: IInput) {
+    constructor({ value, attributes }: IInput) {
         super({
             tagName: 'input',
             attributes: {
@@ -20,6 +20,14 @@ export class Input extends Block<{}> {
                 },
             },
         })
+
+        this.setValue(value)
+    }
+
+    setValue(value: string | null) {
+        if (value !== null) {
+            this.element.setAttribute('value',value)
+        }
     }
 
     get valid() {

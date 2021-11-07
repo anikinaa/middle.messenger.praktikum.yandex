@@ -1,3 +1,4 @@
-<div class="avatar {{className}} " style="background-image: url({{src}});">
+<div class="avatar {{className}}"
+     {{@if src}}style="background-image: url({{src}});"{{/if}}>
     {{{content}}}
 </div>

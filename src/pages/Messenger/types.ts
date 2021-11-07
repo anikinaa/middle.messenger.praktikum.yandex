@@ -2,7 +2,7 @@ import {
     AppBar, SideBar, Dialog, MessageForm,
 } from '../../blocks'
 
-export type IActiveChatPage = {
+export type IMessengerPageProps = {
     abbBar: AppBar;
     sideBar: SideBar;
     dialog: Dialog[];

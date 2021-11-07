@@ -24,12 +24,13 @@
 
   &_logout {
     @extend %gray-action;
-
+    cursor: pointer;
     width: $heightHeader;
     height: $heightHeader;
     background-image: url("../../../../assets/icons/logout.svg");
     background-size: 30px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    border: none;
   }
 }

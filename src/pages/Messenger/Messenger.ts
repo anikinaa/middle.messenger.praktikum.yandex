@@ -1,28 +1,33 @@
-import { Block, Template } from '../../modules'
+import {Block, Router, Template} from '../../modules'
 import {
     AppBar, SideBar, Dialog, MessageForm,
 } from '../../blocks'
 import { ButtonCircle } from '../../components'
 import { AppBarHeader } from '../../blocks/AppBar/components/Header'
-import { IActiveChatPage } from './types'
+import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
 import iconDots from '../../assets/icons/dots.svg'
 import { DialogMsgBlock } from '../../blocks/Dialog/components/MsgBlock'
 
-const template = new Template<IActiveChatPage>(_template)
+const template = new Template<IMessengerPageProps>(_template)
 
-const abbBar = new AppBar({
-    header: new AppBarHeader(),
-    action: new ButtonCircle({
-        attributes: {
-            class: 'button-circle__gray',
-        },
-        icon: iconDots,
-    }),
-})
+export class MessengerPage extends Block<IMessengerPageProps> {
+    static pathname: string = '/messenger'
+    static title: string = 'Мессенджер'
+    static privatePage: boolean = true
 
-export class ActiveChatPage extends Block<IActiveChatPage> {
     constructor() {
+
+        const abbBar = new AppBar({
+            header: new AppBarHeader(),
+            action: new ButtonCircle({
+                attributes: {
+                    class: 'button-circle__gray',
+                },
+                icon: iconDots,
+            }),
+        })
+
         const dataMessages = [
             {
                 user: {
@@ -75,4 +80,9 @@ export class ActiveChatPage extends Block<IActiveChatPage> {
             template,
         })
     }
+
+    static open() {
+        Router.go(MessengerPage.pathname)
+    }
+
 }

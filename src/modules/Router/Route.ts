@@ -8,12 +8,18 @@ export class Route{
     private _block: Block | null = null;
     private _props: {
         rootQuery: string
+        title: string
+        privatePage: boolean
     } | null = null;
 
     constructor(pathname: string, view: IBlockClass, props: any) {
         this._pathname = pathname;
         this._blockClass = view;
         this._props = props;
+    }
+
+    get privatePage() {
+        return this._props!.privatePage
     }
 
     get rootQuery() {
@@ -51,6 +57,6 @@ export class Route{
 
     setTitle () {
         // @ts-ignore
-        document.title = this._block!.title
+        document.title = this._props!.title
     }
 }

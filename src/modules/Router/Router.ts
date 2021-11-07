@@ -1,6 +1,12 @@
 import { IBlockClass } from '../Block'
 import {Route} from './Route'
 
+type IPageClass = IBlockClass & {
+    title: string
+    pathname: string
+    privatePage: boolean
+}
+
 export class Router{
     static __instance: Router | null = null
 
@@ -17,12 +23,22 @@ export class Router{
         Router.__instance = this;
     }
 
-    use(pathname: string, block: IBlockClass) {
+    use(block: IPageClass) {
+        const pathname: string = block.pathname;
+        const title: string = block.title;
+        const privatePage: boolean = block.privatePage;
         const route = new Route(pathname, block, {
-            rootQuery: this._rootQuery
+            rootQuery: this._rootQuery,
+            title,
+            privatePage
         });
         this.routes!.push(route);
         return this
+    }
+
+    get isAuth() {
+        const isAuth = localStorage.getItem('isAuth')
+        return  Boolean(isAuth && JSON.parse(isAuth))
     }
 
     start() {
@@ -34,19 +50,28 @@ export class Router{
     }
 
     _onRoute(pathname: string) {
-        const route = this.getRoute(pathname);
+        let route = this.getRoute(pathname);
 
         if (!route) {
             return
         }
 
-        if (this._currentRoute) {
-            this._currentRoute.leave();
+        if (route.privatePage && !this.isAuth) {
+            this.go('/')
+        } else if (!route.privatePage && this.isAuth) {
+            this.go('/messenger')
+        } else {
+            if (this._currentRoute) {
+                this._currentRoute.leave();
+            }
+            this._currentRoute = route;
+            route.render();
         }
-        this._currentRoute = route;
-        route.render();
     }
 
+    static go(pathname: string) {
+        Router.__instance?.go(pathname)
+    }
     go(pathname: string) {
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);

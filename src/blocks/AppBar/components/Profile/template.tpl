@@ -2,4 +2,4 @@
     {{{avatar}}}
     <span class="my-profile_name">{{name}}</span>
 </a>
-<a href="{{linkLogout}}" class="my-profile_logout"></a>
+<button type="button" class="my-profile_logout"></button>

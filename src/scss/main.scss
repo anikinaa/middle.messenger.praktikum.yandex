@@ -16,16 +16,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100%;
-}
-
-.body {
-  &__light {
-    background-image: $backgroundLight;
-  }
-
-  &__dark {
-    background-image: $backgroundDark;
-  }
+  background-image: $background;
 }
 
 #root {

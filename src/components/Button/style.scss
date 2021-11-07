@@ -11,6 +11,10 @@
   padding: 0 4 * $space;
   margin: 0 auto;
 
+  &__loading {
+    @extend %loading;
+  }
+
   &__secondary {
     @extend %secondary-action;
   }
