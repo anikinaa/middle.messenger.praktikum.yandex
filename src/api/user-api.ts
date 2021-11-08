@@ -21,6 +21,6 @@ export class UserApi extends BaseAPI {
 
     // @ts-ignore
     password(data: IUserPassword) {
-        return chatAPIInstance.put<IUserPassword>('/profile/password', {data})
+        return chatAPIInstance.put<IUserPassword>('/password', {data})
     }
 }

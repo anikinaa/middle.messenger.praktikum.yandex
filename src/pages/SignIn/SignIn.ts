@@ -7,6 +7,7 @@ import {SignInForm} from "./blocks";
 const template = new Template(_template)
 
 export class SignInPage extends Block<ISignInPageProps> {
+    static exact: boolean = true
     static pathname: string = '/'
     static title: string = 'Авторизация'
     static privatePage: boolean = false
@@ -23,11 +24,6 @@ export class SignInPage extends Block<ISignInPageProps> {
             },
             template,
         })
-    }
-
-    // @ts-ignore
-    protected componentDidMount(oldProps: {} | ISignInPageProps) {
-        document.body.classList.add('body__dark')
     }
 
     static open() {

@@ -5,13 +5,14 @@ type IPageClass = IBlockClass & {
     title: string
     pathname: string
     privatePage: boolean
+    exact: boolean
 }
 
 export class Router{
     static __instance: Router | null = null
 
     private routes: Route[] = []
-    private _currentRoute: Route | null = null
+    private _currentRoute: Route[] = []
     private history: History = window.history
     private readonly _rootQuery: string | null = null
 
@@ -27,10 +28,12 @@ export class Router{
         const pathname: string = block.pathname;
         const title: string = block.title;
         const privatePage: boolean = block.privatePage;
+        const exact: boolean = block.exact;
         const route = new Route(pathname, block, {
-            rootQuery: this._rootQuery,
+            rootQuery: this._rootQuery!,
             title,
-            privatePage
+            privatePage,
+            exact
         });
         this.routes!.push(route);
         return this
@@ -50,23 +53,27 @@ export class Router{
     }
 
     _onRoute(pathname: string) {
-        let route = this.getRoute(pathname);
+        let routes = this.getRoutes(pathname);
 
-        if (!route) {
+        if (routes.length === 0) {
             return
         }
 
-        if (route.privatePage && !this.isAuth) {
-            this.go('/')
-        } else if (!route.privatePage && this.isAuth) {
-            this.go('/messenger')
-        } else {
-            if (this._currentRoute) {
-                this._currentRoute.leave();
+        for (let route of routes) {
+            if (route.privatePage && !this.isAuth) {
+                this.go('/')
+                return
+            } else if (!route.privatePage && this.isAuth) {
+                this.go('/messenger')
+                return
             }
-            this._currentRoute = route;
-            route.render();
         }
+
+        this._currentRoute.forEach(route => route.leave() )
+        this._currentRoute = []
+
+        routes.forEach(route => route.render())
+        this._currentRoute = routes
     }
 
     static go(pathname: string) {
@@ -83,7 +90,16 @@ export class Router{
         this.history.forward()
     }
 
-    getRoute(pathname:string) {
-        return this.routes!.find(route => route.match(pathname));
+    getRoutes(pathname:string) {
+        let routes = []
+        for (let route of this.routes) {
+            if (route.exact && route.isExact(pathname)) {
+                return [route]
+            }
+            if (!route.exact && route.match(pathname)) {
+                routes.push(route)
+            }
+        }
+        return routes;
     }
 }

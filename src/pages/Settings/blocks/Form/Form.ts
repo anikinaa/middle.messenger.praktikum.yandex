@@ -3,10 +3,10 @@ import {Button, InputForm, Link} from "../../../../components";
 import {getFormData} from "../../../../utils/getFormData";
 import {REGEXP} from "../../../../utils/REGEXP";
 import {IAsyncStoreState, Store} from "../../../../modules";
-import {IAppBarProfileProps} from "../../../../blocks/AppBar/components/Profile";
 import {selectUser} from "../../../../modules/Store/selectors/user";
 import {UserController} from "../../../../controllers/user";
 import {IUserUpdate} from "../../../../models/user";
+import { SettingPassword } from '../Password'
 
 export class SettingForm extends Form {
     controller: UserController | undefined
@@ -98,10 +98,16 @@ export class SettingForm extends Form {
                 action: [
                     new Link({
                         text: 'Сменить пароль',
-                        href: 'reset-password.html',
+                        href: SettingPassword.pathname,
                         attributes: {
                             class: 'link__block',
                         },
+                        events: {
+                            click: (e) => {
+                                e.preventDefault()
+                                SettingPassword.open()
+                            }
+                        }
                     }),
                     new Link({
                         text: 'Выйти',

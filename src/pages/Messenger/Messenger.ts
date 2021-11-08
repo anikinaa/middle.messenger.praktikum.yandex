@@ -12,6 +12,7 @@ import { DialogMsgBlock } from '../../blocks/Dialog/components/MsgBlock'
 const template = new Template<IMessengerPageProps>(_template)
 
 export class MessengerPage extends Block<IMessengerPageProps> {
+    static exact: boolean = false
     static pathname: string = '/messenger'
     static title: string = 'Мессенджер'
     static privatePage: boolean = true

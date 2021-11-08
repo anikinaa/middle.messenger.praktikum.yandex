@@ -7,7 +7,7 @@ const template = new Template(_template)
 
 export class Button extends Block<IButtonProps> {
     constructor(data: IButton) {
-        const { attributes, events, props } = data
+        const { attributes, events, props}  = data
         const {isLoading = false} = props!
         const className = isLoading ? 'button button__loading' : 'button'
         super({

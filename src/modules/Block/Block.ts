@@ -165,4 +165,8 @@ export abstract class Block<T extends object = {}> {
     hide() {
         this._element!.classList.add('hidden')
     }
+
+    leave() {
+        this._element?.remove()
+    }
 }

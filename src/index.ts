@@ -3,6 +3,7 @@ import { SignInPage } from './pages/SignIn'
 import { SignUpPage } from './pages/SignUp'
 import { MessengerPage } from "./pages/Messenger";
 import { SettingsPage } from "./pages/Settings";
+import { SettingPassword } from './pages/Settings/blocks/Password'
 
 new Store()
 
@@ -13,4 +14,5 @@ router
     .use(SignUpPage)
     .use(MessengerPage)
     .use(SettingsPage)
+    .use(SettingPassword)
     .start();

@@ -100,23 +100,23 @@ export class SignUpForm extends Form{
             }
         })
 
+        const signIn = new Link({
+            text: 'Войти',
+            href: SignInPage.pathname,
+            events: {
+                click: (e) => {
+                    SignInPage.open()
+                    e.preventDefault()
+                }
+            }
+        })
+
         super({
             props: {
                 fields,
                 submit,
                 error,
-                action: [
-                    new Link({
-                        text: 'Войти',
-                        href: SignInPage.pathname,
-                        events: {
-                            click: (e) => {
-                                SignInPage.open()
-                                e.preventDefault()
-                            }
-                        }
-                    }),
-                ],
+                action: [signIn],
             },
             events: {
                 submit: async (e) => {

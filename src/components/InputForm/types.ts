@@ -8,7 +8,7 @@ export interface IInputFormProps {
 }
 
 export type IInputForm = Pick<IBlock<IInputFormProps>, 'attributes'> & {
-    value: string | undefined
+    value?: string | undefined
     label: string;
     requirements?: string;
 };

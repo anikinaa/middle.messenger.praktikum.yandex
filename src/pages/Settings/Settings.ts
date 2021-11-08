@@ -8,6 +8,7 @@ import {SettingAvatar} from "./blocks/Avatar";
 const template = new Template(_template)
 
 export class SettingsPage extends Block<ISettingsPageProps> {
+    static exact: boolean = false
     static pathname: string = '/settings'
     static title: string = 'Настройка пользователя'
     static privatePage: boolean = true
@@ -19,9 +20,7 @@ export class SettingsPage extends Block<ISettingsPageProps> {
                     props: {
                         header: 'Редактировать профиль',
                         body: [
-                            new SettingAvatar({
-                                value: ''
-                            }),
+                            new SettingAvatar(),
                             new SettingForm()
                         ],
                     },
