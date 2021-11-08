@@ -45,6 +45,7 @@ export class AuthController extends AsyncStore {
             Store.setState({
                 userId: id
             })
+            localStorage.setItem('isAuth', 'true')
             MessengerPage.open()
         } else {
             const {reason} = JSON.parse(response)
