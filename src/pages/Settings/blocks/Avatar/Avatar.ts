@@ -27,7 +27,7 @@ export class SettingAvatar extends ImageUpload{
         Store.addListenerForProps('user', () => {
             const {avatar} = selectUser(Store.getState())
             this.props.image.setProps({
-                src: `https://ya-praktikum.tech/api/v2/uploads${avatar}`
+                src: avatar
             })
         })
 
