@@ -2,7 +2,7 @@ import { Block } from '../../modules'
 import { joinClassName, getDefaultType } from '../../utils/elementAttr'
 import { IInput } from './types'
 
-export class Input extends Block<{}> {
+export class Input extends Block {
     constructor({ value, attributes }: IInput) {
         super({
             tagName: 'input',
@@ -12,8 +12,13 @@ export class Input extends Block<{}> {
                 type: getDefaultType(attributes, 'text'),
             },
             events: {
-                focus: () => {
-                    this._validate()
+                input: (e) => {
+                    this.validateValue(e)
+                },
+                focus: (e) => {
+                    if (this.valid) {
+                        this.validateValue(e)
+                    }
                 },
                 blur: () => {
                     this._validate()
@@ -24,8 +29,17 @@ export class Input extends Block<{}> {
         this.setValue(value)
     }
 
-    setValue(value: string | null) {
-        if (value !== null) {
+    validateValue(e: Event) {
+        const { value } = e.target as HTMLInputElement
+        if (value && value.length) {
+            this._validate()
+        } else {
+            this.toggleClass('input__invalid', false)
+        }
+    }
+
+    setValue(value?: string | null) {
+        if (value) {
             this.element.setAttribute('value',value)
         }
     }

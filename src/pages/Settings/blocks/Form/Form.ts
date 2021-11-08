@@ -154,9 +154,7 @@ export class SettingForm extends Form {
             this.props.submit.setProps({isLoading})
             this.setProps({error})
         })
-        controller!.response()?.then(() => {
-            console.log("xxx")
-        })
+        controller!.response()?.then()
         this.controller = controller
     }
 }

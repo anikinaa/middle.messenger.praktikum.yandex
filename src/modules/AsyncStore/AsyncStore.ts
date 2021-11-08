@@ -22,7 +22,7 @@ export abstract class AsyncStore {
         set: (target, prop, val) => {
             const key = prop as any
             target[key] = val
-            this.eventBus!.emit(AsyncStore.EVENT, target as IAsyncStoreState)
+            this.eventBus!.emitIsExist(AsyncStore.EVENT, target as IAsyncStoreState)
             return true
         },
         deleteProperty() {

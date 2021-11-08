@@ -24,9 +24,16 @@
     padding-left: 2 * $space;
   }
 
-  &__invalid:not(:placeholder-shown) {
+  &__invalid{
     box-shadow: 0 0 3px $colorDanger;
     background-color: $colorDangerFill;
+
+    &:hover{
+      background-color: $colorDangerFill100;
+    }
+    &:focus{
+      background-color: $colorDangerFill200;
+    }
 
     & ~ .input_requirements {
       display: block;
