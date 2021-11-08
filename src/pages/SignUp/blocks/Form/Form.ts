@@ -22,6 +22,7 @@ export class SignUpForm extends Form{
                     type: 'email',
                     name: 'email',
                     pattern: REGEXP.EMAIL.PATTERN,
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.EMAIL.TEXT,
             }),
@@ -32,6 +33,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'first_name',
                     pattern: REGEXP.NAME.PATTERN,
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.NAME.TEXT,
             }),
@@ -42,6 +44,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'second_name',
                     pattern: REGEXP.NAME.PATTERN,
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.NAME.TEXT,
             }),
@@ -52,6 +55,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'login',
                     pattern: REGEXP.LOGIN.PATTERN,
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.LOGIN.TEXT,
             }),
@@ -62,6 +66,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'phone',
                     pattern: REGEXP.PHONE.PATTERN,
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.PHONE.TEXT,
             }),
@@ -73,6 +78,7 @@ export class SignUpForm extends Form{
                     name: 'password',
                     pattern: REGEXP.PASSWORD.PATTERN,
                     autocomplete: 'on',
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.PASSWORD.TEXT,
             }),
@@ -84,6 +90,7 @@ export class SignUpForm extends Form{
                     name: 'repeat_password',
                     pattern: REGEXP.PASSWORD.PATTERN,
                     autocomplete: 'on',
+                    class: 'input-form__required'
                 },
                 requirements: REGEXP.PASSWORD.TEXT,
             }),

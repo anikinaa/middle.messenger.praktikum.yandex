@@ -13,4 +13,15 @@
       margin-top: 0.5 * $space;
     }
   }
+
+  &__required{
+    position: relative;
+    &:after{
+      content: '*';
+      position: absolute;
+      color: $colorDanger;
+      top: $space;
+      right: 0;
+    }
+  }
 }

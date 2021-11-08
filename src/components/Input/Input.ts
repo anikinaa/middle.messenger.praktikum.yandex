@@ -13,7 +13,9 @@ export class Input extends Block {
             },
             events: {
                 input: (e) => {
-                    this.validateValue(e)
+                    if (this.element.classList.contains('input__invalid')) {
+                        this.validateValue(e)
+                    }
                 },
                 focus: (e) => {
                     if (this.valid) {

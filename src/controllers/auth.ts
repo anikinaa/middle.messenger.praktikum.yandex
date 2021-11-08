@@ -45,7 +45,7 @@ export class AuthController extends AsyncStore {
             Store.setState({
                 userId: id
             })
-            SignInPage.open()
+            MessengerPage.open()
         } else {
             const {reason} = JSON.parse(response)
             this.setError(reason)

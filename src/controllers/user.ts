@@ -3,6 +3,7 @@ import {errorStateCatch, loading, Store} from "../modules";
 import {AuthController} from "./auth";
 import {AuthApi} from "../api/auth-api";
 import {IUserUpdate} from "../models/user";
+import { MessengerPage } from '../pages/Messenger'
 
 const authApi = new AuthApi();
 export const userApi = new UserApi();
@@ -34,6 +35,7 @@ export class UserController extends AuthController{
             Store.setState({
                 user: JSON.parse(response)
             })
+            MessengerPage.open()
         } else {
             const {reason} = JSON.parse(response)
             this.setError(reason)
