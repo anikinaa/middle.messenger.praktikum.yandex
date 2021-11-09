@@ -20,6 +20,19 @@ export class ChatsApi extends BaseAPI {
     }
 
     // @ts-ignore
+    users(data: {
+        id: number
+        offset?: number
+        limit?: number
+        name?: string
+        email?: string
+    }) {
+        const {id, ...query} = data
+        return chatAPIInstance.post(`/${id}/users`, {data: query})
+    }
+
+
+    // @ts-ignore
     addUser(data: {
         users: number[]
         chatId: number

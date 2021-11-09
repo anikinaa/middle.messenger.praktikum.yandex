@@ -5,13 +5,14 @@
   list-style: none;
   flex-grow: 1;
 
-  &_link {
+  &_btn {
     display: flex;
     height: $itemHeader;
     align-items: center;
     padding: 0 4 * $space;
     color: $fontColor;
     text-decoration: none;
+    cursor: pointer;
 
     @extend %secondary-action;
 
@@ -34,7 +35,7 @@
   }
 
   &__active {
-    .chat-item_link {
+    .chat-item_btn {
       @extend %primary-action;
     }
 

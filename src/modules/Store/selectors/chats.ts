@@ -20,3 +20,18 @@ export const selectChats = Store.makeSelector<IChat[]>(
         } : {}
     })) : []
 )
+
+export const selectActiveIdChat = Store.makeSelector<number | null>(
+    (state: IStore) => state.activeChat
+)
+
+export const selectActiveChat = Store.makeSelector<IChat | undefined>(
+    (state: IStore) => {
+        const activeId = state.activeChat
+        if (activeId === null) {
+            return undefined
+        }
+        const chat = state.chats!.find(({id}) => activeId === id)
+        return chat || undefined
+    }
+)

@@ -3,10 +3,18 @@ export type IUser = {
     login: string
     first_name: string
     second_name: string
-    display_name: string
+    display_name: string | null
     email: string
     phone: string
-    avatar: string
+    avatar: string | null
+}
+
+export enum UserRule {
+    admin = 'admin'
+}
+
+export type IUserChat = IUser & {
+    role: UserRule
 }
 
 export type IUserForm =  IUser & {

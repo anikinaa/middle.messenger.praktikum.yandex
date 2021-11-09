@@ -1,10 +1,10 @@
-import { IBlock } from '../../modules'
+import {Block, IBlock} from '../../modules'
 
-export interface ICardProps<T> {
+export interface ICardProps {
     header: string;
-    body: T
+    body: Block<any> | Block<any>[]
 }
 
-export type ICard<T> = Omit<IBlock<ICardProps<T>>, 'template'> & {
-    props: ICardProps<T>
+export type ICard = Omit<IBlock<ICardProps>, 'template'> & {
+    props: ICardProps
 };

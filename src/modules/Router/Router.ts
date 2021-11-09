@@ -69,10 +69,12 @@ export class Router{
             }
         }
 
-        this._currentRoute.forEach(route => route.leave() )
-        this._currentRoute = []
-
-        routes.forEach(route => route.render())
+        const leaveRoutes = this._currentRoute.filter(r => !routes.includes(r));
+        leaveRoutes.forEach(route => route.leave() )
+        this._currentRoute = leaveRoutes
+        routes.forEach(route => {
+            route.render()
+        })
         this._currentRoute = routes
     }
 

@@ -26,19 +26,19 @@ export class Chats extends Block<IChats> {
             const data = selectChats(Store.getState())
             const chats = data.map((chat) => new ChatsItem({
                 props: {
+                    id: chat.id,
                     avatar: new Avatar({
                         props: {
                             src: chat.avatar,
                         },
                     }),
-                    href: '#',
                     title: chat.title,
                     lastMessage: {
                         content: chat.last_message.content,
                         time: chat.last_message.time,
                     },
                     unreadCount: chat.unread_count,
-                },
+                }
             }))
             this.setProps({chats})
         })

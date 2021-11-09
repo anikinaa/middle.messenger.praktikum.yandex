@@ -1,20 +1,31 @@
-import { Block, Template } from "../../modules";
-import { Card, ICardProps } from '../../components'
+import {Block, Router, Template} from "../../modules";
+import {Card} from '../../components'
 import _template from './template.tpl'
-import { IModalProps } from './types'
+import {IModal, IModalProps} from "./types";
 
 const template = new Template(_template)
 
 export class Modal extends Block<IModalProps> {
-    constructor({header, body}: ICardProps) {
+    constructor({props, onClose = Router.__instance?.back}: IModal) {
+        const {header, body} = props
         super({
             props: {
                 card: new Card({
-                    props: { header, body }
+                    props: {
+                        header,
+                        body
+                    }
                 })
             },
             attributes: {
                 class: 'modal'
+            },
+            events: {
+                click: (e) => {
+                    if (e.target === this.element) {
+                        onClose && onClose()
+                    }
+                }
             },
             template
         });

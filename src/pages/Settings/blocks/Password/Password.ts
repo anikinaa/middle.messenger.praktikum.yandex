@@ -11,7 +11,7 @@ import { IUserPasswordForm } from '../../../../models/user'
 
 export class SettingPassword extends Modal{
     static exact: boolean = false
-    static pathname: string = '/settings/password'
+    static pathname: string = '/messenger/settings/password'
     static title: string = 'Смена пароля'
     static privatePage: boolean = true
 
@@ -102,8 +102,11 @@ export class SettingPassword extends Modal{
         })
 
         super({
-            header: 'Смена пароля',
-            body: form
+            props: {
+                header: 'Смена пароля',
+                body: form
+            },
+            onClose: SettingsPage.open
         });
 
         this.controller = new UserPasswordController()

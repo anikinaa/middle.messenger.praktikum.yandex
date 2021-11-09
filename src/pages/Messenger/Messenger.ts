@@ -2,11 +2,8 @@ import {Block, Router, Template} from '../../modules'
 import {
     AppBar, SideBar, Dialog, MessageForm,
 } from '../../blocks'
-import { ButtonCircle } from '../../components'
-// import { AppBarHeader } from '../../blocks/AppBar/components/Header'
 import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
-import iconDots from '../../assets/icons/dots.svg'
 import { DialogMsgBlock } from '../../blocks/Dialog/components/MsgBlock'
 
 const template = new Template<IMessengerPageProps>(_template)
@@ -18,18 +15,6 @@ export class MessengerPage extends Block<IMessengerPageProps> {
     static privatePage: boolean = true
 
     constructor() {
-
-        const abbBar = new AppBar({
-            // header: new AppBarHeader(),
-            action: new ButtonCircle({
-                props: {
-                    icon: iconDots
-                },
-                attributes: {
-                    class: 'button-circle__gray',
-                },
-            }),
-        })
 
         const dataMessages = [
             {
@@ -70,7 +55,7 @@ export class MessengerPage extends Block<IMessengerPageProps> {
 
         super({
             props: {
-                abbBar,
+                abbBar: new AppBar(),
                 sideBar: new SideBar(),
                 dialog: [
                     new Dialog({

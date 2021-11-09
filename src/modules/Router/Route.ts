@@ -47,7 +47,7 @@ export class Route{
     }
 
     match(pathname: string): boolean {
-        const match = pathname.match(this._pathname)
+        const match = pathname?.match(this._pathname)
         if (match) {
             return match.index === 0
         }

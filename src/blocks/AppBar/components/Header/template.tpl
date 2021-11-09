@@ -1,2 +1,2 @@
 {{{avatar}}}
-<span class="chat-header_name">{{name}}</span>
+<span class="chat-header_name">{{title}}</span>

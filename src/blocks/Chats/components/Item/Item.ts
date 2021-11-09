@@ -1,23 +1,43 @@
-import { Block, Template } from '../../../../modules'
+import {Block, Store, Template} from '../../../../modules'
 import { joinClassName } from '../../../../utils/elementAttr'
 import { IChatsItemProps, IChatsItem } from './types'
 import _template from './template.tpl'
+import {selectActiveIdChat} from "../../../../modules/Store/selectors/chats";
+import {ChatsController} from "../../../../controllers/chats";
 
 const template = new Template<IChatsItemProps>(_template)
 
 export class ChatsItem extends Block<IChatsItemProps> {
+    controller: ChatsController | undefined
+
     constructor(data: IChatsItem) {
-        const { props, events, attributes } = data
+        const { props, attributes } = data
+        const activeChat = selectActiveIdChat(Store.getState())
+        const {id} = props
+
+        const isActive = activeChat === id
+        const className = isActive ? 'chat-item chat-item__active' : 'chat-item'
 
         super({
             props,
             tagName: 'li',
             template,
-            events,
             attributes: {
                 ...attributes,
-                class: joinClassName(attributes, 'chat-item'),
+                class: joinClassName(attributes, className),
             },
+            events: {
+                click: () => {
+                    this.controller?.select(id)
+                }
+            }
         })
+
+        Store.addListenerForProps('activeChat', () => {
+            const activeChat = selectActiveIdChat(Store.getState())
+            this.element?.classList.toggle('chat-item__active', activeChat === this.props.id)
+        })
+
+        this.controller = new ChatsController()
     }
 }

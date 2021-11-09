@@ -34,4 +34,8 @@ export class ChatsController extends AsyncStore{
             this.setError(reason)
         }
     }
+
+    select(activeChat: number) {
+        Store.setState({activeChat})
+    }
 }

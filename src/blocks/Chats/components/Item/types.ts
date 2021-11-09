@@ -1,8 +1,8 @@
 import { Avatar } from '../../../../components'
 import { IBlock } from '../../../../modules'
 
-export interface IChatsItemProps {
-    href: string;
+export type IChatsItemProps = {
+    id: number
     avatar: Avatar;
     title: string;
     lastMessage?: {
@@ -12,4 +12,6 @@ export interface IChatsItemProps {
     unreadCount: number;
 }
 
-export type IChatsItem = Omit<IBlock<IChatsItemProps>, 'template' | 'tagName'>;
+export type IChatsItem = Omit<IBlock<IChatsItemProps>, 'template' | 'tagName' | 'events'> & {
+    props: IChatsItemProps
+}

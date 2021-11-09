@@ -6,7 +6,12 @@ import {IStore} from "./types";
 const _initialState: IStore = {
     userId: null,
     user: null,
-    chats: null
+    chats: [],
+    usersChat: {
+        data: [],
+        allLoad: false
+    },
+    activeChat: null
 }
 
 export class Store {
@@ -62,7 +67,10 @@ export class Store {
         return cloneDeep(Store.__instance?.state || {})
     }
 
-    static setState(state: unknown) {
+    static setState(state: SetState ) {
+        if (typeof state === 'function') {
+            state = state(Store.__instance!.state!)
+        }
         Object.assign(Store.__instance!.state, state)
     }
 
@@ -74,3 +82,5 @@ export class Store {
     }
 
 }
+
+type SetState = Partial<IStore> | ((state: IStore) => IStore)

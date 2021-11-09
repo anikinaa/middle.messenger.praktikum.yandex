@@ -1,30 +1,42 @@
-import { Block, Template } from '../../../../modules'
+import {Block, Store, Template} from '../../../../modules'
 import { Avatar } from '../../../../components'
-import { IAppBarHeader, IAppBarHeaderProps } from './types'
+import { IAppBarHeaderProps } from './types'
 import _template from './template.tpl'
+import {selectActiveChat} from "../../../../modules/Store/selectors/chats";
 
 const template = new Template<IAppBarHeaderProps>(_template)
 
 export class AppBarHeader extends Block<IAppBarHeaderProps> {
-    constructor({props: {avatar: src, name}}: IAppBarHeader) {
+    constructor() {
+        const user = selectActiveChat(Store.getState())
+        const src = user?.avatar
+        const title = user?.avatar
 
         const avatar = new Avatar({
-            props: {src},
+            props: {src },
         })
 
         super({
             props: {
                 avatar,
-                name,
+                title,
             },
             attributes: {
-                class: 'chat-header',
+                class: `chat-header ${title ? '' : 'hidden'}`,
             },
             template,
         })
-    }
 
-    setProps({ name }: Partial<IAppBarHeaderProps>) {
-        super.setProps({name});
+        Store.addListenerForProps('activeChat', () => {
+            const user = selectActiveChat(Store.getState())
+            const src = user?.avatar
+            const title = user?.title
+
+            title && this.setProps({title})
+            src && this.props.avatar.setProps({src})
+
+            this.element?.classList.toggle('hidden', !Boolean(title))
+        })
+
     }
 }
