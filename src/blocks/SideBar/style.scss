@@ -14,6 +14,11 @@
 
   &_header {
     display: flex;
-    height: $heightHeader;
+    min-height: $heightHeader;
+  }
+
+  &_body {
+    flex-grow: 1;
+    overflow-y: auto;
   }
 }

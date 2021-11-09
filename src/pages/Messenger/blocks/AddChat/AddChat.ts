@@ -66,7 +66,6 @@ export class MessengerAddChat extends Modal{
             events: {
                 submit: (e) => {
                     const data = getFormData(e) as unknown as IChatTitle
-                    console.log(data)
                     this.controller?.addChat(data)
                     e.preventDefault()
                 }
@@ -74,8 +73,11 @@ export class MessengerAddChat extends Modal{
         })
 
         super({
-            header: 'Добавление чата',
-            body: form
+            props: {
+                header: 'Добавление чата',
+                body: form
+            },
+            onClose: MessengerPage.open
         });
 
         this.controller = new ChatsController()

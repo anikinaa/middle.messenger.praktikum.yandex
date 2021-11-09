@@ -29,6 +29,7 @@ export class ChatsController extends AsyncStore{
         const {status, response} = await chatsApi.create(data)
         if (status === 200) {
             MessengerPage.open()
+            await this.fetchChats()
         } else {
             const {reason} = JSON.parse(response)
             this.setError(reason)
