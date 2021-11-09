@@ -39,6 +39,7 @@ export abstract class Block<T extends object = {}> {
             this._componentDidUpdate.bind(this),
         )
         this.eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
+        this.eventBus.on(Block.EVENTS.FLOW_CWU, this.componentWillUnmount.bind(this))
     }
 
     private _createResources() {
@@ -95,6 +96,10 @@ export abstract class Block<T extends object = {}> {
         return true;
     }
     /* eslint-enable */
+
+    componentWillUnmount() {
+
+    }
 
     setProps(nextProps: Partial<T>) {
         if (!nextProps) {
@@ -168,5 +173,6 @@ export abstract class Block<T extends object = {}> {
 
     leave() {
         this._element?.remove()
+        this.eventBus.emit(Block.EVENTS.FLOW_CWU)
     }
 }

@@ -23,7 +23,6 @@ export class Chats extends Block<IChats> {
         })
 
         Store.addListenerForProps('chats', () => {
-            console.log('chats')
             const data = selectChats(Store.getState())
             const chats = data.map((chat) => new ChatsItem({
                 props: {

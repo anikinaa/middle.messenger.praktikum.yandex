@@ -1,4 +1,4 @@
-import {Block, Router, Template} from '../../modules'
+import {Block, Router, Store, Template} from '../../modules'
 import {
     AppBar, SideBar, Dialog, MessageForm,
 } from '../../blocks'
@@ -73,4 +73,9 @@ export class MessengerPage extends Block<IMessengerPageProps> {
         Router.go(MessengerPage.pathname)
     }
 
+    componentWillUnmount() {
+        Store.setState({
+            activeChat: null
+        })
+    }
 }
