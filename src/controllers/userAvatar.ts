@@ -1,4 +1,4 @@
-import {UserApi} from "../api/user-api";
+import {UserApi} from "../api/user";
 import {AsyncStore, errorStateCatch, loading, Store} from "../modules";
 
 export const userApi = new UserApi();

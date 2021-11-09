@@ -1,4 +1,4 @@
-import {UserApi} from "../api/user-api";
+import {UserApi} from "../api/user";
 import {AsyncStore, errorStateCatch, loading} from "../modules";
 import { IUserPasswordForm } from '../models/user'
 import { SettingsPage } from '../pages/Settings'

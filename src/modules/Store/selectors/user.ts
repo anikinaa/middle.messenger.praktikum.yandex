@@ -1,11 +1,13 @@
 import {Store} from "../Store";
 import {IStore} from "../types";
-import {IUser} from "../../../models/user";
+import {IUserForm} from "../../../models/user";
+import { getUrlImage } from '../../../utils/urlImages'
 
-export const selectUser = Store.makeSelector<IUser>(
+
+export const selectUser = Store.makeSelector<IUserForm>(
     (state: IStore) => state.user,
-    (user: IUser | null) => user ? {
+    (user: IUserForm | null) => user ? {
         ...user,
-        avatar: user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : undefined
+        avatar: getUrlImage(user.avatar)
     } : {}
 )

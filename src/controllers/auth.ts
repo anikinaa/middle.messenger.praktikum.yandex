@@ -1,4 +1,4 @@
-import {AuthApi} from "../api/auth-api";
+import {Auth} from "../api/auth.ts";
 import {ISignInFormModel} from "../models/signIn";
 import {AsyncStore, loading, errorStateCatch, Store} from "../modules";
 import {ISignUpFormModel, ISignUpRequestModel} from "../models/signUp";
@@ -6,7 +6,7 @@ import {MessengerPage} from "../pages/Messenger";
 import {SignInPage} from "../pages/SignIn";
 import {errorCatch} from "../utils/errorCatch";
 
-const authApi = new AuthApi();
+const authApi = new Auth();
 
 export class AuthController extends AsyncStore {
 

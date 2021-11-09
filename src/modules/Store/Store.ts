@@ -5,7 +5,8 @@ import {IStore} from "./types";
 
 const _initialState: IStore = {
     userId: null,
-    user: null
+    user: null,
+    chats: null
 }
 
 export class Store {

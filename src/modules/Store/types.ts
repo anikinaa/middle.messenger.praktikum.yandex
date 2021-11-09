@@ -1,6 +1,8 @@
-import {IUser} from "../../models/user";
+import {IUserForm} from "../../models/user";
+import { IChat } from '../../models/chat'
 
 export type IStore = {
     userId: number | null
-    user: null | IUser
+    user: IUserForm | null
+    chats: IChat[] | null
 }

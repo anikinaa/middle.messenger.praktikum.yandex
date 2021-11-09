@@ -7,7 +7,7 @@ import { REGEXP } from '../../../../utils/REGEXP'
 import { UserPasswordController } from '../../../../controllers/userPassword'
 import { UserController } from '../../../../controllers/user'
 import { getFormData } from '../../../../utils/getFormData'
-import { IUserPassword } from '../../../../models/user'
+import { IUserPasswordForm } from '../../../../models/user'
 
 export class SettingPassword extends Modal{
     static exact: boolean = false
@@ -86,7 +86,7 @@ export class SettingPassword extends Modal{
             },
             events: {
                 submit: (e) => {
-                    const data = getFormData(e) as unknown as IUserPassword
+                    const data = getFormData(e) as unknown as IUserPasswordForm
                     this.controller?.changePassword(data)
                     e.preventDefault()
                 }

@@ -2,7 +2,7 @@ import {HTTPTransport} from "../modules";
 import {BaseAPI} from "../modules/BaseAPI";
 import {IUserPassword, IUserUpdate} from "../models/user";
 
-const chatAPIInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/user');
+const chatAPIInstance = new HTTPTransport('/user');
 
 export class UserApi extends BaseAPI {
     // @ts-ignore

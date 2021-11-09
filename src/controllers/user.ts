@@ -1,7 +1,7 @@
-import {UserApi} from "../api/user-api";
+import {UserApi} from "../api/user";
 import {errorStateCatch, loading, Store} from "../modules";
 import {AuthController} from "./auth";
-import {AuthApi} from "../api/auth-api";
+import {AuthApi} from "../api/auth";
 import {IUserUpdate} from "../models/user";
 import { MessengerPage } from '../pages/Messenger'
 

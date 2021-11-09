@@ -1,4 +1,4 @@
-import {AsyncStore} from "./AsyncStore";
+import {AsyncStore} from '../modules'
 
 // @ts-ignore
 export function errorStateCatch(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>): TypedPropertyDescriptor<any> {
@@ -28,4 +28,15 @@ export function loading(target: Object, propertyKey: string, descriptor: TypedPr
         })
     }
     return descriptor;
+}
+
+// @ts-ignore
+export function errorCatch(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
+    const originalMethod = descriptor.value;
+    descriptor.value = function () {
+        originalMethod.catch(() => {
+            throw new Error('Ошибка, попробуйте еще раз')
+        })
+    }
+    return descriptor
 }

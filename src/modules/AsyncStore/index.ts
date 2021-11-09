@@ -1,3 +1,3 @@
 export * from './AsyncStore'
-export * from './decorators'
+export * from '../../controllers/decorators'
 export * from './types'

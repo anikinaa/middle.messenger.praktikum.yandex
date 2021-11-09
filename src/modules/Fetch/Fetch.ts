@@ -2,10 +2,11 @@ import { queryStringify } from './utils'
 import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
 
 export class HTTPTransport {
+    api: string = 'https://ya-praktikum.tech/api/v2'
     baseApi: string
 
     constructor(baseApi: string) {
-        this.baseApi = baseApi
+        this.baseApi = `${this.api}${baseApi}`
     }
 
     get<T>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<XMLHttpRequest> {
