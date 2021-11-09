@@ -11,6 +11,7 @@ export class UserAvatarController extends AsyncStore{
     @errorStateCatch
     @loading
     async changeAvatar(file: File) {
+        this.resetError()
         const formData = new FormData()
         formData.append('avatar', file)
         const {status, response} = await userApi.avatar(formData)

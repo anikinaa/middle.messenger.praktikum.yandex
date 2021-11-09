@@ -11,7 +11,7 @@ import { IUserPasswordForm } from '../../../../models/user'
 
 export class SettingPassword extends Modal{
     static exact: boolean = false
-    static pathname: string = '/messenger/settings/password'
+    static pathname: string = `/settings/password`
     static title: string = 'Смена пароля'
     static privatePage: boolean = true
 

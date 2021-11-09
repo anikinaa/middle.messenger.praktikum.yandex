@@ -1,12 +1,11 @@
 import {Router} from '../../modules'
 import {SettingForm} from "./blocks/Form";
 import {SettingAvatar} from "./blocks/Avatar";
-import {Modal} from "../../blocks/Modal";
-import {MessengerPage} from "../Messenger";
+import {Card} from "../../components";
 
-export class SettingsPage extends Modal {
+export class SettingsPage extends Card {
     static exact: boolean = false
-    static pathname: string = '/messenger/settings'
+    static pathname: string = '/settings'
     static title: string = 'Настройка пользователя'
     static privatePage: boolean = true
 
@@ -18,8 +17,7 @@ export class SettingsPage extends Modal {
                     new SettingAvatar(),
                     new SettingForm()
                 ]
-            },
-            onClose: MessengerPage.open
+            }
         })
     }
 

@@ -33,10 +33,10 @@ export class AppBarProfile extends Block<IAppBarProfileProps> {
                     const el = e.target as HTMLElement;
                     if (el.classList.contains('my-profile_logout')) {
                         await this.controller!.logout()
-                    } else if (el.classList.contains('my-profile_user')) {
+                    } else {
                         SettingsPage.open()
-                        e.preventDefault()
                     }
+                    e.preventDefault()
                 }
             }
         })
