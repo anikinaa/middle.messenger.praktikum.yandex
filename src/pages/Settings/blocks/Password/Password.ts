@@ -33,7 +33,7 @@ export class SettingPassword extends Modal{
                 props: {
                     label: 'Текщий пароль',
                 },
-                attributesInput: {
+                attributes: {
                     required: '',
                     type: 'password',
                     name: 'oldPassword',
@@ -45,7 +45,7 @@ export class SettingPassword extends Modal{
                     label: 'Новый пароль',
                     requirements: REGEXP.PASSWORD.TEXT,
                 },
-                attributesInput: {
+                attributes: {
                     required: '',
                     type: 'password',
                     name: 'newPassword',
@@ -58,7 +58,7 @@ export class SettingPassword extends Modal{
                     label: 'Повторите новый пароль',
                     requirements: REGEXP.PASSWORD.TEXT,
                 },
-                attributesInput: {
+                attributes: {
                     required: '',
                     type: 'password',
                     name: 'repeat_newPassword',

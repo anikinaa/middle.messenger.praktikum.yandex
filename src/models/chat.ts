@@ -11,3 +11,5 @@ export type IChat = {
         content: string
     }
 }
+
+export type IChatTitle = Pick<IChat, 'title'>

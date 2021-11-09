@@ -43,8 +43,7 @@ export class Chats extends Block<IChats> {
             this.setProps({chats})
         })
 
-        const controller = new ChatsController()
-        controller.fetchChats().then()
-        this.controller = controller
+        this.controller = new ChatsController()
+        this.controller.fetchChats()?.then()
     }
 }

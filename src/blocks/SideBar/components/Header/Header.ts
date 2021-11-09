@@ -4,6 +4,7 @@ import { ISideBarHeaderProps } from './types'
 import _template from './template.tpl'
 import iconSearch from '../../../../assets/icons/search.svg'
 import iconPlus from '../../../../assets/icons/plus.svg'
+import { MessengerAddChat } from '../../../../pages/Messenger/blocks/AddChat'
 
 const template = new Template<ISideBarHeaderProps>(_template)
 
@@ -24,6 +25,9 @@ const btnAdd = new ButtonCircle({
     attributes: {
         class: 'button-circle__secondary',
     },
+    events: {
+        click: MessengerAddChat.open
+    }
 })
 
 export class SideBarHeader extends Block<ISideBarHeaderProps> {

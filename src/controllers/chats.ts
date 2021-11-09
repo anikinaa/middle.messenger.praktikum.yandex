@@ -1,9 +1,14 @@
 import {ChatsApi} from "../api/chats";
-import { errorCatch, Store } from "../modules";
+import { AsyncStore, errorCatch, errorStateCatch, loading, Store } from "../modules";
+import { MessengerPage } from '../pages/Messenger'
+import { IChatTitle } from '../models/chat'
 
 export const chatsApi = new ChatsApi();
 
-export class ChatsController{
+export class ChatsController extends AsyncStore{
+    constructor() {
+        super()
+    }
 
     @errorCatch
     async fetchChats() {
@@ -14,6 +19,19 @@ export class ChatsController{
             })
         } else {
             throw new Error('Ошибка, попробуйте еще раз')
+        }
+    }
+
+    @errorStateCatch
+    @loading
+    async addChat(data: IChatTitle) {
+        this.resetError()
+        const {status, response} = await chatsApi.create(data)
+        if (status === 200) {
+            MessengerPage.open()
+        } else {
+            const {reason} = JSON.parse(response)
+            this.setError(reason)
         }
     }
 }

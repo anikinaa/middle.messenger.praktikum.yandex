@@ -28,7 +28,7 @@ export class SignInForm extends Form{
                 props: {
                     label: 'Пароль',
                 },
-                attributes: {
+                attributesInput: {
                     required: '',
                     type: 'password',
                     name: 'password',

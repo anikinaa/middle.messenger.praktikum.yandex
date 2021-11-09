@@ -8,6 +8,7 @@ export const selectChats = Store.makeSelector<IChat[]>(
     (state: IStore) => state.chats,
     (chats: IChat[] | null) => chats ? chats.map(chat => ({
         ...chat,
+        unread_count: chat.unread_count || null,
         avatar: getUrlImage(chat.avatar),
         last_message: chat.last_message ? {
             time: getDateTime(chat.last_message.time),

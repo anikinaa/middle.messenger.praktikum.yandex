@@ -7,6 +7,6 @@
 
     <div class="chat-item_info">
         <div class="chat-item_info_date">{{last_message.time}}</div>
-        <div class="chat-item_info_count">{{unreadCount}}</div>
+        {{@if unreadCount}}<div class="chat-item_info_count">{{unreadCount}}</div>{{/if}}
     </div>
 </a>

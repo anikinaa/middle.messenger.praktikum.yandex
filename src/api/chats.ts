@@ -1,5 +1,6 @@
 import {HTTPTransport} from "../modules";
 import {BaseAPI} from "../modules/BaseAPI";
+import { IChatTitle } from '../models/chat'
 
 const chatAPIInstance = new HTTPTransport('/chats');
 
@@ -10,14 +11,12 @@ export class ChatsApi extends BaseAPI {
         limit?: string
         title?: string
     } = {}) {
-        return chatAPIInstance.get('/', {data})
+        return chatAPIInstance.get('', {data})
     }
 
     // @ts-ignore
-    create(data: {
-        title: string
-    }) {
-        return chatAPIInstance.post('/', {data})
+    create(data: IChatTitle) {
+        return chatAPIInstance.post('', {data})
     }
 
     // @ts-ignore
