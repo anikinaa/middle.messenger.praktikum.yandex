@@ -1,10 +1,13 @@
 import { IBlock } from '../../modules'
 
-export interface ILinkProps {
+export type ILinkProps = {
     text: string;
 }
 
-export type ILink = Pick<IBlock<ILinkProps>, 'attributes' | 'events'> & {
-    text: string;
+export type ILinkMainProps = ILinkProps & {
     href: string;
+}
+
+export type ILink = Pick<IBlock<ILinkProps>, 'attributes' | 'events'> & {
+    props: ILinkMainProps
 };

@@ -3,7 +3,7 @@ import {
     AppBar, SideBar, Dialog, MessageForm,
 } from '../../blocks'
 import { ButtonCircle } from '../../components'
-import { AppBarHeader } from '../../blocks/AppBar/components/Header'
+// import { AppBarHeader } from '../../blocks/AppBar/components/Header'
 import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
 import iconDots from '../../assets/icons/dots.svg'
@@ -20,12 +20,14 @@ export class MessengerPage extends Block<IMessengerPageProps> {
     constructor() {
 
         const abbBar = new AppBar({
-            header: new AppBarHeader(),
+            // header: new AppBarHeader(),
             action: new ButtonCircle({
+                props: {
+                    icon: iconDots
+                },
                 attributes: {
                     class: 'button-circle__gray',
                 },
-                icon: iconDots,
             }),
         })
 

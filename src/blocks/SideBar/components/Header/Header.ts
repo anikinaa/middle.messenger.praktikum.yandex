@@ -8,7 +8,9 @@ import iconPlus from '../../../../assets/icons/plus.svg'
 const template = new Template<ISideBarHeaderProps>(_template)
 
 const search = new InputWithIcon({
-    icon: iconSearch,
+    props: {
+        icon: iconSearch,
+    },
     attributes: {
         name: 'searchChat',
         placeholder: 'Поиск чата',
@@ -16,7 +18,9 @@ const search = new InputWithIcon({
 })
 
 const btnAdd = new ButtonCircle({
-    icon: iconPlus,
+    props: {
+        icon: iconPlus
+    },
     attributes: {
         class: 'button-circle__secondary',
     },

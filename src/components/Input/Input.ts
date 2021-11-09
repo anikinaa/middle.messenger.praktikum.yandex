@@ -1,15 +1,17 @@
 import { Block } from '../../modules'
 import { joinClassName, getDefaultType } from '../../utils/elementAttr'
-import { IInput } from './types'
+import { IInput, IInputProps } from './types'
 
-export class Input extends Block {
-    constructor({ value, attributes }: IInput) {
+export class Input extends Block<IInputProps> {
+    constructor({ props, attributes }: IInput) {
         super({
+            props,
             tagName: 'input',
             attributes: {
                 ...attributes,
                 class: joinClassName(attributes, 'input'),
                 type: getDefaultType(attributes, 'text'),
+                value: props?.value || ''
             },
             events: {
                 input: (e) => {
@@ -28,7 +30,11 @@ export class Input extends Block {
             },
         })
 
-        this.setValue(value)
+    }
+
+    setProps({value, ...props}: Partial<IInputProps>) {
+        super.setProps(props);
+        this.element.setAttribute('value',value || '')
     }
 
     validateValue(e: Event) {
@@ -37,12 +43,6 @@ export class Input extends Block {
             this._validate()
         } else {
             this.toggleClass('input__invalid', false)
-        }
-    }
-
-    setValue(value?: string | null) {
-        if (value) {
-            this.element.setAttribute('value',value)
         }
     }
 

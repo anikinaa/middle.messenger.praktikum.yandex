@@ -16,67 +16,79 @@ export class SettingForm extends Form {
 
         const fields: InputForm[] = [
             new InputForm({
-                value: email,
-                label: 'Почта',
-                attributes: {
+                props: {
+                    value: email,
+                    label: 'Почта',
+                    requirements: REGEXP.EMAIL.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'email',
                     name: 'email',
                     pattern: REGEXP.EMAIL.PATTERN,
                 },
-                requirements: REGEXP.EMAIL.TEXT,
             }),
             new InputForm({
-                value: login,
-                label: 'Логин',
-                attributes: {
+                props: {
+                    value: login,
+                    label: 'Логин',
+                    requirements: REGEXP.LOGIN.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'login',
                     pattern: REGEXP.LOGIN.PATTERN,
                 },
-                requirements: REGEXP.LOGIN.TEXT,
             }),
             new InputForm({
-                value: first_name,
-                label: 'Имя',
-                attributes: {
+                props: {
+                    value: first_name,
+                    label: 'Имя',
+                    requirements: REGEXP.NAME.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'first_name',
                     pattern: REGEXP.NAME.PATTERN,
                 },
-                requirements: REGEXP.NAME.TEXT,
             }),
             new InputForm({
-                value: second_name,
-                label: 'Фамилия',
-                attributes: {
+                props: {
+                    value: second_name,
+                    label: 'Фамилия',
+                    requirements: REGEXP.NAME.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'second_name',
                     pattern: REGEXP.NAME.PATTERN,
                 },
-                requirements: REGEXP.NAME.TEXT,
             }),
             new InputForm({
-                value: display_name,
-                label: 'Имя в чате',
-                attributes: {
+                props: {
+                    value: display_name,
+                    label: 'Имя в чате',
+                },
+                attributesInput: {
                     type: 'text',
                     name: 'display_name',
                 },
             }),
             new InputForm({
-                value: phone,
-                label: 'Телефон',
-                attributes: {
+                props: {
+                    value: phone,
+                    label: 'Телефон',
+                    requirements: REGEXP.PHONE.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'phone',
                     pattern: REGEXP.PHONE.PATTERN,
                 },
-                requirements: REGEXP.PHONE.TEXT,
             }),
         ]
 
@@ -97,8 +109,10 @@ export class SettingForm extends Form {
                 error: null,
                 action: [
                     new Link({
-                        text: 'Сменить пароль',
-                        href: SettingPassword.pathname,
+                        props: {
+                            text: 'Сменить пароль',
+                            href: SettingPassword.pathname,
+                        },
                         attributes: {
                             class: 'link__block',
                         },
@@ -110,8 +124,10 @@ export class SettingForm extends Form {
                         }
                     }),
                     new Link({
-                        text: 'Выйти',
-                        href: '/',
+                        props: {
+                            text: 'Выйти',
+                            href: '/',
+                        },
                         attributes: {
                             class: 'link__block link__danger',
                         },
@@ -141,12 +157,24 @@ export class SettingForm extends Form {
             } = selectUser(Store.getState())
 
             const fields = this.props.fields as InputForm[]
-            fields[0].setValue(email)
-            fields[1].setValue(login)
-            fields[2].setValue(first_name)
-            fields[3].setValue(second_name)
-            fields[4].setValue(display_name)
-            fields[5].setValue(phone)
+            fields[0].setProps({
+                value: email
+            })
+            fields[1].setProps({
+                value:login
+            })
+            fields[2].setProps({
+                value:first_name
+            })
+            fields[3].setProps({
+                value:second_name
+            })
+            fields[4].setProps({
+                value:display_name
+            })
+            fields[5].setProps({
+                value:phone
+            })
         })
 
         const controller = new UserController()

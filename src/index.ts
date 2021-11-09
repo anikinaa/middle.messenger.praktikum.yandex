@@ -4,6 +4,7 @@ import { SignUpPage } from './pages/SignUp'
 import { MessengerPage } from "./pages/Messenger";
 import { SettingsPage } from "./pages/Settings";
 import { SettingPassword } from './pages/Settings/blocks/Password'
+import './scss/main.scss'
 
 new Store()
 

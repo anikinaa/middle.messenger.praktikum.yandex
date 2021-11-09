@@ -18,11 +18,13 @@ const message = new Input({
 })
 
 const submit = new ButtonCircle({
+    props: {
+        icon: iconSend
+    },
     attributes: {
         type: 'submit',
         class: 'button-circle__primary message-form_send',
     },
-    icon: iconSend,
 })
 
 export class MessageForm extends Block<IMessageFormProps> {

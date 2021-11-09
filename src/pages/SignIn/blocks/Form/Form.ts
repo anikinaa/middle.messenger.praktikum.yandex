@@ -1,10 +1,10 @@
-import {Form} from "../../../blocks";
-import {IAsyncStoreState} from "../../../modules";
-import {Button, InputForm, Link} from "../../../components";
-import {SignUpPage} from "../../SignUp";
-import {getFormData} from "../../../utils/getFormData";
-import {AuthController} from "../../../controllers/auth";
-import {ISignInFormModel} from "../../../models/signIn";
+import {Form} from "../../../../blocks";
+import {IAsyncStoreState} from "../../../../modules";
+import {Button, InputForm, Link} from "../../../../components";
+import {SignUpPage} from "../../../SignUp";
+import {getFormData} from "../../../../utils/getFormData";
+import {AuthController} from "../../../../controllers/auth";
+import {ISignInFormModel} from "../../../../models/signIn";
 
 export class SignInForm extends Form{
     controller: AuthController
@@ -15,17 +15,19 @@ export class SignInForm extends Form{
 
         const fields = [
             new InputForm({
-                label: 'Логин',
-                attributes: {
+                props: {
+                    label: 'Логин',
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'login',
-                    // pattern: REGEXP.SANITIZER.PATTERN
                 },
-                // requirements: REGEXP.SANITIZER.TEXT
             }),
             new InputForm({
-                label: 'Пароль',
+                props: {
+                    label: 'Пароль',
+                },
                 attributes: {
                     required: '',
                     type: 'password',
@@ -53,10 +55,12 @@ export class SignInForm extends Form{
                 error,
                 action: [
                     new Link({
-                        href: SignUpPage.pathname,
-                        text: 'Зарегистрироваться',
+                        props: {
+                            href: SignUpPage.pathname,
+                            text: 'Зарегистрироваться',
+                        },
                         events: {
-                            click: (e) => {
+                            click: (e: Event) => {
                                 SignUpPage.open()
                                 e.preventDefault()
                             }

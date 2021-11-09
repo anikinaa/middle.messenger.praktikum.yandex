@@ -16,63 +16,76 @@ export class SignUpForm extends Form{
 
         const fields = [
             new InputForm({
-                label: 'Почта',
-                attributes: {
+                props: {
+                    label: 'Почта',
+                    requirements: REGEXP.EMAIL.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'email',
                     name: 'email',
                     pattern: REGEXP.EMAIL.PATTERN,
                     class: 'input-form__required'
-                },
-                requirements: REGEXP.EMAIL.TEXT,
+                }
             }),
             new InputForm({
-                label: 'Имя',
-                attributes: {
+                props: {
+                    label: 'Имя',
+                    requirements: REGEXP.NAME.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'first_name',
                     pattern: REGEXP.NAME.PATTERN,
                     class: 'input-form__required'
                 },
-                requirements: REGEXP.NAME.TEXT,
             }),
             new InputForm({
-                label: 'Фамилия',
-                attributes: {
+                props: {
+                    label: 'Фамилия',
+                    requirements: REGEXP.NAME.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'second_name',
                     pattern: REGEXP.NAME.PATTERN,
                     class: 'input-form__required'
                 },
-                requirements: REGEXP.NAME.TEXT,
             }),
             new InputForm({
-                label: 'Логин',
-                attributes: {
+                props: {
+                    requirements: REGEXP.LOGIN.TEXT,
+                    label: 'Логин',
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'login',
                     pattern: REGEXP.LOGIN.PATTERN,
                     class: 'input-form__required'
                 },
-                requirements: REGEXP.LOGIN.TEXT,
             }),
             new InputForm({
-                label: 'Телефон',
-                attributes: {
+                props: {
+                    requirements: REGEXP.PHONE.TEXT,
+                    label: 'Телефон',
+                },
+                attributesInput: {
                     required: '',
                     type: 'text',
                     name: 'phone',
                     pattern: REGEXP.PHONE.PATTERN,
                     class: 'input-form__required'
                 },
-                requirements: REGEXP.PHONE.TEXT,
             }),
             new InputForm({
-                label: 'Пароль',
-                attributes: {
+                props: {
+                    label: 'Пароль',
+                    requirements: REGEXP.PASSWORD.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'password',
                     name: 'password',
@@ -80,11 +93,13 @@ export class SignUpForm extends Form{
                     autocomplete: 'on',
                     class: 'input-form__required'
                 },
-                requirements: REGEXP.PASSWORD.TEXT,
             }),
             new InputForm({
-                label: 'Повторите пароль',
-                attributes: {
+                props: {
+                    label: 'Повторите пароль',
+                    requirements: REGEXP.PASSWORD.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'password',
                     name: 'repeat_password',
@@ -92,7 +107,6 @@ export class SignUpForm extends Form{
                     autocomplete: 'on',
                     class: 'input-form__required'
                 },
-                requirements: REGEXP.PASSWORD.TEXT,
             }),
         ]
 
@@ -108,8 +122,10 @@ export class SignUpForm extends Form{
         })
 
         const signIn = new Link({
-            text: 'Войти',
-            href: SignInPage.pathname,
+            props: {
+                text: 'Войти',
+                href: SignInPage.pathname,
+            },
             events: {
                 click: (e) => {
                     SignInPage.open()

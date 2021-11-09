@@ -1,10 +1,10 @@
 import {Block, Store, Template} from '../../../../modules'
+import {selectUser} from "../../../../modules/Store/selectors/user";
 import {Avatar} from '../../../../components'
 import {IAppBarProfileProps} from './types'
 import _template from './template.tpl'
 import { UserController } from '../../../../controllers/user'
 import {SettingsPage} from "../../../../pages/Settings";
-import {selectUser} from "../../../../modules/Store/selectors/user";
 
 const template = new Template(_template)
 

@@ -8,8 +8,7 @@ const template = new Template(_template)
 export class Button extends Block<IButtonProps> {
     constructor(data: IButton) {
         const { attributes, events, props}  = data
-        const {isLoading = false} = props!
-        const className = isLoading ? 'button button__loading' : 'button'
+        const className = props.isLoading ? 'button button__loading' : 'button'
         super({
             props,
             tagName: 'button',
@@ -22,11 +21,8 @@ export class Button extends Block<IButtonProps> {
             template,
         })
 
-    }
-
-    // @ts-ignore
-    componentDidUpdate(oldProps: IButtonProps, newProps: IButtonProps){
-        const {isLoading} = newProps
-        this.element?.classList.toggle('button__loading', isLoading)
+        this.setProps = ({isLoading}) => {
+            this.element?.classList.toggle('button__loading', isLoading)
+        }
     }
 }

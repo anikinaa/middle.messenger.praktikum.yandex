@@ -96,7 +96,7 @@ export abstract class Block<T extends object = {}> {
     }
     /* eslint-enable */
 
-    setProps = (nextProps: Partial<T>) => {
+    setProps(nextProps: Partial<T>) {
         if (!nextProps) {
             return
         }

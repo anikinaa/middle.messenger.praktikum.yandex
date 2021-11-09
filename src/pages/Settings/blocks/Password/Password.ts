@@ -30,8 +30,10 @@ export class SettingPassword extends Modal{
 
         const fields = [
             new InputForm({
-                label: 'Текщий пароль',
-                attributes: {
+                props: {
+                    label: 'Текщий пароль',
+                },
+                attributesInput: {
                     required: '',
                     type: 'password',
                     name: 'oldPassword',
@@ -39,33 +41,39 @@ export class SettingPassword extends Modal{
                 },
             }),
             new InputForm({
-                label: 'Новый пароль',
-                attributes: {
+                props: {
+                    label: 'Новый пароль',
+                    requirements: REGEXP.PASSWORD.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'password',
                     name: 'newPassword',
                     pattern: REGEXP.PASSWORD.PATTERN,
                     autocomplete: 'on',
                 },
-                requirements: REGEXP.PASSWORD.TEXT,
             }),
             new InputForm({
-                label: 'Повторите новый пароль',
-                attributes: {
+                props: {
+                    label: 'Повторите новый пароль',
+                    requirements: REGEXP.PASSWORD.TEXT,
+                },
+                attributesInput: {
                     required: '',
                     type: 'password',
                     name: 'repeat_newPassword',
                     pattern: REGEXP.PASSWORD.PATTERN,
                     autocomplete: 'on',
                 },
-                requirements: REGEXP.PASSWORD.TEXT,
             }),
 
         ]
 
         const cancel = new Link({
-            text: 'Отменить',
-            href: SettingsPage.pathname,
+            props: {
+                text: 'Отменить',
+                href: SettingsPage.pathname,
+            },
             attributes: {
                 class: 'link__block',
             },

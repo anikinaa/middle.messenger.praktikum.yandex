@@ -1,6 +1,10 @@
 import { IBlock } from '../../modules'
 
-export type IButtonCircle = Pick<IBlock<{}>, 'attributes' | 'events'> & {
-    icon: string;
-    type?: string;
+export type ButtonCircleProps = {
+    icon: string
+}
+
+export type IButtonCircle = Omit<IBlock<ButtonCircleProps>, 'tagName' | 'template'> & {
+    props: ButtonCircleProps
 };
+

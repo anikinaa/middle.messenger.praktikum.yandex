@@ -1,12 +1,8 @@
-import { Template, Router, Block } from '../../modules'
+import { Router } from '../../modules'
 import {Card} from '../../components'
-import { ISignUpPageProps } from './type'
-import _template from './template.tpl'
 import {SignUpForm} from "./blocks/Form";
 
-const template = new Template(_template)
-
-export class SignUpPage extends Block<ISignUpPageProps> {
+export class SignUpPage extends Card<SignUpForm> {
     static exact: boolean = true
     static pathname: string = '/sign-up'
     static title: string = 'Регистрация'
@@ -15,14 +11,9 @@ export class SignUpPage extends Block<ISignUpPageProps> {
     constructor() {
         super({
             props: {
-                card: new Card({
-                    props: {
-                        header: 'Регистрация',
-                        body: [new SignUpForm()],
-                    },
-                }),
+                header: 'Регистрация',
+                body: new SignUpForm(),
             },
-            template,
         })
     }
 

@@ -1,5 +1,7 @@
 import { IBlock } from '../../modules'
 
-export type IInput = Pick<IBlock<{}>, 'attributes'> & {
-    value: string | null | undefined
-};
+export type IInputProps = {
+    value?: string | null
+}
+
+export type IInput = Pick<IBlock<IInputProps>, 'attributes' | 'props'>;

@@ -1,9 +1,9 @@
-import { IBlock, Block } from '../../modules'
+import { IBlock } from '../../modules'
 
 export interface IAvatarProps {
-    src?: string;
-    className?: string;
-    content?: Block<any>;
+    src: string | null;
 }
 
-export type IAvatar = Omit<IBlock<IAvatarProps>, 'template' | 'tagName'>;
+export type IAvatar = Omit<IBlock<IAvatarProps>, 'template' | 'tagName'> & {
+    props: IAvatarProps
+};

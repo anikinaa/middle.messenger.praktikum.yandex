@@ -1,13 +1,9 @@
-import {Block, Router, Template} from '../../modules'
+import {Router} from '../../modules'
 import {Card} from '../../components'
-import { ISettingsPageProps } from './type'
-import _template from './template.tpl'
 import {SettingForm} from "./blocks/Form";
 import {SettingAvatar} from "./blocks/Avatar";
 
-const template = new Template(_template)
-
-export class SettingsPage extends Block<ISettingsPageProps> {
+export class SettingsPage extends Card<[SettingAvatar, SettingForm]> {
     static exact: boolean = false
     static pathname: string = '/settings'
     static title: string = 'Настройка пользователя'
@@ -16,17 +12,12 @@ export class SettingsPage extends Block<ISettingsPageProps> {
     constructor() {
         super({
             props: {
-                card: new Card({
-                    props: {
-                        header: 'Редактировать профиль',
-                        body: [
-                            new SettingAvatar(),
-                            new SettingForm()
-                        ],
-                    },
-                }),
+                header: 'Редактировать профиль',
+                body: [
+                    new SettingAvatar(),
+                    new SettingForm()
+                ],
             },
-            template,
         })
     }
 

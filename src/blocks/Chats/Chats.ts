@@ -1,31 +1,12 @@
 import { Block, Store, Template } from '../../modules'
-import { Avatar, InputForm } from '../../components'
+import { Avatar } from '../../components'
 import { ChatsItem } from './components/Item'
 import { IChats } from './types'
 import _template from './template.tpl'
 import { ChatsController } from '../../controllers/chats'
-import { UserController } from '../../controllers/user'
-import { selectUser } from '../../modules/Store/selectors/user'
 import { selectChats } from '../../modules/Store/selectors/chats'
 
 const template = new Template<IChats>(_template)
-
-const item = new ChatsItem({
-    props: {
-        avatar: new Avatar({
-            props: {
-                src: '/static/images/avatar.jpg',
-            },
-        }),
-        href: './active.html',
-        title: 'title',
-        lastMessage: {
-            content: 'canplay',
-            time: '14:50',
-        },
-        unreadCount: 50,
-    },
-})
 
 export class Chats extends Block<IChats> {
     controller: ChatsController | undefined

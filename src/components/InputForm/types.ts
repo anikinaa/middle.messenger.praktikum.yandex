@@ -1,14 +1,15 @@
 import { IBlock } from '../../modules'
-import { Input } from '../Input'
+import { IInputProps, Input } from '../Input'
 
-export interface IInputFormProps {
+export type IInputFormProps = {
     input: Input;
     label: string;
     requirements?: string;
 }
 
+export type IInputFormMainProps = Omit<IInputFormProps, 'input'> & IInputProps
+
 export type IInputForm = Pick<IBlock<IInputFormProps>, 'attributes'> & {
-    value?: string | undefined
-    label: string;
-    requirements?: string;
+    props: IInputFormMainProps;
+    attributesInput?: Record<string, string>
 };

@@ -1,4 +1,4 @@
-import { Input } from '../Input'
+import { IInputProps, Input } from '../Input'
 import { IBlock } from '../../modules'
 
 export interface IInputWithIconProps {
@@ -6,6 +6,9 @@ export interface IInputWithIconProps {
     icon: string;
 }
 
+export type IInputWithIconMainProps = Omit<IInputWithIconProps, 'input'> & IInputProps
+
 export type IInputWithIcon = Pick<IBlock<IInputWithIconProps>, 'attributes'> & {
-    icon: string;
+    props: IInputWithIconMainProps
+    attributesInput?: Record<string, string>
 };

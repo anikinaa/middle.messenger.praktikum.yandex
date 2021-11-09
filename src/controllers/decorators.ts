@@ -34,7 +34,7 @@ export function loading(target: Object, propertyKey: string, descriptor: TypedPr
 export function errorCatch(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
     const originalMethod = descriptor.value;
     descriptor.value = function () {
-        originalMethod.catch(() => {
+        originalMethod.apply(this, arguments).catch(() => {
             throw new Error('Ошибка, попробуйте еще раз')
         })
     }
