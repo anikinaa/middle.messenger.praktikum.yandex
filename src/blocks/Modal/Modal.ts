@@ -2,11 +2,12 @@ import {Block, Router, Template} from "../../modules";
 import {Card} from '../../components'
 import _template from './template.tpl'
 import {IModal, IModalProps} from "./types";
+import { joinClassName } from '../../utils/elementAttr'
 
 const template = new Template(_template)
 
 export class Modal extends Block<IModalProps> {
-    constructor({props, onClose = Router.__instance?.back}: IModal) {
+    constructor({props, attributes, onClose = Router.__instance?.back}: IModal) {
         const {header, body} = props
         super({
             props: {
@@ -18,7 +19,7 @@ export class Modal extends Block<IModalProps> {
                 })
             },
             attributes: {
-                class: 'modal'
+                class: joinClassName(attributes, 'modal')
             },
             events: {
                 click: (e) => {

@@ -7,6 +7,7 @@ import {MessengerChatSetting} from "./pages/Messenger/blocks/ChatSetting";
 import { SettingsPage } from "./pages/Settings";
 import { SettingPassword } from './pages/Settings/blocks/Password'
 import './scss/main.scss'
+import { MessengerChatAddUser } from './pages/Messenger/blocks/ChatSetting/components/AddUser'
 
 new Store()
 
@@ -18,6 +19,7 @@ router
     .use(MessengerPage)
     .use(MessengerAddChat)
     .use(MessengerChatSetting)
+    .use(MessengerChatAddUser)
     .use(SettingsPage)
     .use(SettingPassword)
     .start();

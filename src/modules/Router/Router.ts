@@ -1,12 +1,5 @@
-import { IBlockClass } from '../Block'
 import {Route} from './Route'
-
-type IPageClass = IBlockClass & {
-    title: string
-    pathname: string
-    privatePage: boolean
-    exact: boolean
-}
+import {IPageClass} from './types'
 
 export class Router{
     static __instance: Router | null = null
@@ -29,11 +22,13 @@ export class Router{
         const title: string = block.title;
         const privatePage: boolean = block.privatePage;
         const exact: boolean = block.exact;
+        const redirect: string | undefined = block.redirect;
         const route = new Route(pathname, block, {
             rootQuery: this._rootQuery!,
             title,
             privatePage,
-            exact
+            exact,
+            redirect
         });
         this.routes!.push(route);
         return this
@@ -45,6 +40,17 @@ export class Router{
     }
 
     start() {
+        const pages = this.getRoutes(window.location.pathname)
+        if (pages.length === 0) {
+            window.location.pathname = '/404'
+        } else {
+            pages.forEach((page) => {
+                if (page.redirect) {
+                    window.location.pathname = page.redirect
+                }
+            })
+        }
+        console.log(window.location.pathname)
         window.onpopstate = (event: PopStateEvent) => {
             // @ts-ignore
             this._onRoute(event.currentTarget.location.pathname);

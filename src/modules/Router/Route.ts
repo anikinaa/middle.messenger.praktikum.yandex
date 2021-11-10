@@ -1,23 +1,21 @@
 import { Block, IBlockClass } from '../Block'
 import { renderDOM } from '../../utils/renderDOM'
-
-type IRouteProps = {
-    rootQuery: string
-    title: string
-    privatePage: boolean
-    exact: boolean
-}
+import {IRouterProps} from './types'
 
 export class Route{
     private _pathname: string;
     private readonly _blockClass: IBlockClass;
     private _block: Block | null = null;
-    private _props: IRouteProps | null = null;
+    private _props: IRouterProps | null = null;
 
-    constructor(pathname: string, view: IBlockClass, props: IRouteProps) {
+    constructor(pathname: string, view: IBlockClass, props: IRouterProps) {
         this._pathname = pathname;
         this._blockClass = view;
         this._props = props;
+    }
+
+    get redirect() {
+        return this._props!.redirect
     }
 
     get exact() {

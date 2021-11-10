@@ -28,7 +28,7 @@ export class ChatsApi extends BaseAPI {
         email?: string
     }) {
         const {id, ...query} = data
-        return chatAPIInstance.post(`/${id}/users`, {data: query})
+        return chatAPIInstance.get(`/${id}/users`, {data: query})
     }
 
 

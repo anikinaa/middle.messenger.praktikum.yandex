@@ -1,7 +1,7 @@
 import {AsyncStore, errorCatch, Store} from "../modules";
 import {chatsApi} from "./chats";
 import {selectActiveIdChat} from "../modules/Store/selectors/chats";
-import {selectUsersChat} from "../modules/Store/selectors/chatUsers";
+import { selectUsersChatData } from "../modules/Store/selectors/chatUsers";
 import {IUserChat} from "../models/user";
 
 export class ChatUsersController extends AsyncStore{
@@ -12,7 +12,7 @@ export class ChatUsersController extends AsyncStore{
     @errorCatch
     async fetchUsers() {
         const id = selectActiveIdChat(Store.getState()) as number
-        const usersChat = selectUsersChat(Store.getState())
+        const usersChat = selectUsersChatData(Store.getState())
         const offset = usersChat.length
 
         const {status, response} = await chatsApi.users({
@@ -25,7 +25,7 @@ export class ChatUsersController extends AsyncStore{
             const newUsersChat = JSON.parse(response) as IUserChat[]
             Store.setState({
                 usersChat: {
-                    data: [...usersChat, ...usersChat],
+                    data: [...newUsersChat, ...usersChat],
                     allLoad: newUsersChat.length === 0
                 }
             })
@@ -34,5 +34,13 @@ export class ChatUsersController extends AsyncStore{
         }
     }
 
+    resetUser() {
+        Store.setState({
+            usersChat: {
+                data: [],
+                allLoad: false
+            }
+        })
+    }
 
 }
