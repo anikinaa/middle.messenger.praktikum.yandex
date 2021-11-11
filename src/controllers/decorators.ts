@@ -40,3 +40,18 @@ export function errorCatch(target: Object, propertyKey: string, descriptor: Type
     }
     return descriptor
 }
+
+// @ts-ignore
+export function debounce(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
+    const originalMethod = descriptor.value;
+    descriptor.value = function () {
+        let isCooldown = false;
+        if (isCooldown) return;
+
+        originalMethod.apply(this, arguments)
+        isCooldown = true;
+        setTimeout(() => isCooldown = false, 300);
+    }
+    return descriptor
+
+}

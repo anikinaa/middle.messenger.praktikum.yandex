@@ -11,6 +11,7 @@ const _initialState: IStore = {
         data: [],
         allLoad: false
     },
+    searchUsersChat: [],
     activeChat: null
 }
 

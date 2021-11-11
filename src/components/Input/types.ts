@@ -4,4 +4,4 @@ export type IInputProps = {
     value?: string | null
 }
 
-export type IInput = Pick<IBlock<IInputProps>, 'attributes' | 'props'>;
+export type IInput = Pick<IBlock<IInputProps>, 'attributes' | 'props' | 'events'>;

@@ -9,7 +9,7 @@ export type IInputFormProps = {
 
 export type IInputFormMainProps = Omit<IInputFormProps, 'input'> & IInputProps
 
-export type IInputForm = Pick<IBlock<IInputFormProps>, 'attributes'> & {
+export type IInputForm = Pick<IBlock<IInputFormProps>, 'attributes' | 'events'> & {
     props: IInputFormMainProps;
     attributesInput?: Record<string, string>
 };

@@ -3,7 +3,7 @@ import { joinClassName, getDefaultType } from '../../utils/elementAttr'
 import { IInput, IInputProps } from './types'
 
 export class Input extends Block<IInputProps> {
-    constructor({ props, attributes }: IInput) {
+    constructor({ props, attributes, events }: IInput) {
         super({
             props,
             tagName: 'input',
@@ -14,10 +14,12 @@ export class Input extends Block<IInputProps> {
                 value: props?.value || ''
             },
             events: {
+                ...events,
                 input: (e) => {
                     if (this.element.classList.contains('input__invalid')) {
                         this.validateValue(e)
                     }
+                    events?.input && events?.input(e)
                 },
                 focus: (e) => {
                     if (this.valid) {

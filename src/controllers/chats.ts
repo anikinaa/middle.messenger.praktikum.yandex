@@ -3,7 +3,7 @@ import { AsyncStore, errorCatch, errorStateCatch, loading, Store } from "../modu
 import { MessengerPage } from '../pages/Messenger'
 import { IChatTitle } from '../models/chat'
 
-export const chatsApi = new ChatsApi();
+const chatsApi = new ChatsApi();
 
 export class ChatsController extends AsyncStore{
     constructor() {

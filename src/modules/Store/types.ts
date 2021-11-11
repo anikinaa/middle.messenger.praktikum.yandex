@@ -1,4 +1,4 @@
-import {IUserChat, IUserForm} from "../../models/user";
+import { IUser, IUserChat, IUserForm } from "../../models/user";
 import { IChat } from '../../models/chat'
 
 export type IStore = {
@@ -10,4 +10,5 @@ export type IStore = {
         data: IUserChat[] | null
         allLoad: boolean
     }
+    searchUsersChat: IUser[]
 }

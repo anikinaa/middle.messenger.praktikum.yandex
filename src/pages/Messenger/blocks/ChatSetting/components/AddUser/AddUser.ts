@@ -2,6 +2,7 @@ import { Modal } from '../../../../../../blocks/Modal'
 import { MessengerChatSetting } from '../../ChatSetting'
 import { Router } from '../../../../../../modules'
 import { Button, InputForm } from '../../../../../../components'
+import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 
 
 export class MessengerChatAddUser extends Modal {
@@ -10,6 +11,8 @@ export class MessengerChatAddUser extends Modal {
     // static redirect: string = '/messenger'
     static title: string = 'Добавить пользователя в чат'
     static privatePage: boolean = true
+
+    controller: ChatUsersController
 
     constructor() {
         super({
@@ -22,6 +25,12 @@ export class MessengerChatAddUser extends Modal {
                         },
                         attributes: {
                             class: 'left'
+                        },
+                        events: {
+                            input: async (e) => {
+                                const login = (e.target as HTMLInputElement).value
+                                await this.controller.search(login)
+                            }
                         }
                     }),
                     new Button({
@@ -39,6 +48,8 @@ export class MessengerChatAddUser extends Modal {
             },
             onClose: MessengerChatSetting.open
         })
+
+        this.controller = new ChatUsersController()
     }
 
     static open () {

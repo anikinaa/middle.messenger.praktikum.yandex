@@ -1,0 +1,14 @@
+@import "../../../../../../../../scss/extend";
+
+.chat-user-list{
+  display: flex;
+  @extend %secondary-action;
+  background-color: transparent;
+  padding: $space;
+
+  &_name{
+    display: flex;
+    align-items: center;
+    padding-left: $space;
+  }
+}

@@ -23,4 +23,8 @@ export class UserApi extends BaseAPI {
     password(data: IUserPassword) {
         return chatAPIInstance.put<IUserPassword>('/password', {data})
     }
+
+    search(login: string) {
+        return chatAPIInstance.post<{ login: string }>('/search', {data: {login}})
+    }
 }

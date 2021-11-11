@@ -6,21 +6,25 @@ import { IChatSettingUserListProps } from './types'
 import { IUserChat } from '../../../../../../models/user'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 
+import {UserList} from '../../../UserList'
+
+
+type IUserList = {
+    props: {
+        users: IUserChat[]
+    }
+}
+
 const template = new Template(_template)
 
-export class ChatSettingUserList extends Block<IChatSettingUserListProps>{
+export class ChatSettingUserList extends UserList<IChatSettingUserListProps>{
     controller: ChatUsersController
     constructor() {
         const users = selectUsersChat(Store.getState())
         super({
             props: {
                 users: ChatSettingUserList.getUsersList(users)
-            },
-            tagName: 'ul',
-            attributes: {
-                class: 'chat-user'
-            },
-            template
+            }
         })
 
         Store.addListenerForProps('usersChat', () => {

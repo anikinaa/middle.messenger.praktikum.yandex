@@ -7,7 +7,7 @@ import { joinClassName } from '../../utils/elementAttr'
 const template = new Template<IInputFormProps>(_template)
 
 export class InputForm extends Block<IInputFormProps> {
-    constructor({ props, attributes, attributesInput }: IInputForm) {
+    constructor({ props, attributes, attributesInput, events }: IInputForm) {
         const {label, requirements, value} = props
         super({
             props: {
@@ -20,6 +20,7 @@ export class InputForm extends Block<IInputFormProps> {
                 label,
                 requirements,
             },
+            events,
             template,
             attributes: {
                 class: joinClassName(attributes, 'input-form'),
