@@ -1,23 +1,25 @@
 import { Block, Template } from '../../../../modules'
 import { UserListItem } from './components/Item'
 import _template from './template.tpl'
-import { IChatSettingUserListProps } from './types'
-import { IUserChat } from '../../../../models/user'
 
 const template = new Template(_template)
 
+type IUserListProps = {
+    users: UserListItem[]
+}
+
 type IUserList<T> = {
     props: {
-        users: IUserChat[]
+        users: T[]
     }
 }
 
-export class UserList<T extends object> extends Block<T>{
+export class UserList<T = any> extends Block<IUserListProps>{
 
     constructor({props: {users}}: IUserList<T>) {
         super({
             props: {
-                users: UserList.getUsersList(users)
+                users: UserList.getUsersList<T>(users)
             },
             tagName: 'ul',
             attributes: {
@@ -27,13 +29,14 @@ export class UserList<T extends object> extends Block<T>{
         })
     }
 
-    setProps({users}: {users: IUserChat[]}) {
+    setProps({ users }: any) {
+        const userT = users as unknown as T[]
         super.setProps({
-            users: UserList.getUsersList(users)
-        })
+            users: UserList.getUsersList<T>(userT)
+        });
     }
 
-    static getUsersList(users: IUserChat[]): UserListItem[] {
+    static getUsersList<T>(users: T[]): UserListItem[] {
         return users.map(user => new UserListItem({
             props: user
         }))

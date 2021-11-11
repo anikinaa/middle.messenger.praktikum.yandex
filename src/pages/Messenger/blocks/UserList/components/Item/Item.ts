@@ -1,7 +1,7 @@
-import { Block, Template } from '../../../../../../../../modules'
+import { Block, Template } from '../../../../../../modules'
 import _template from './template.tpl'
 import { IUserListItem, IUserListItemProps } from './types'
-import { Avatar } from '../../../../../../../../components'
+import { Avatar } from '../../../../../../components'
 
 const template = new Template(_template)
 
