@@ -1,44 +1,57 @@
-import { Block, Template } from '../../../../modules'
-import { UserListItem } from './components/Item'
+import { Block, IBlock, Template } from '../../../../modules'
+import { IUserListItemBlock, UserListItem } from './components/Item'
 import _template from './template.tpl'
+import { IUser, IUserChat } from '../../../../models/user'
 
 const template = new Template(_template)
 
 type IUserListProps = {
-    users: UserListItem[]
+    users: UserListItem[],
+    item?: IUserListItemBlock
 }
 
-type IUserList<T> = {
+type IUserList = {
     props: {
-        users: T[]
+        users: IUser[] | IUserChat[],
+        item?: IBlock<IUserListItemBlock>
     }
 }
 
-export class UserList<T = any> extends Block<IUserListProps>{
+export class UserList extends Block<IUserListProps>{
 
-    constructor({props: {users}}: IUserList<T>) {
+    constructor({props: {users, item = {}}}: IUserList) {
+        const {attributes, events} = item
+
         super({
             props: {
-                users: UserList.getUsersList<T>(users)
+                users: users.map(user => new UserListItem({
+                    props: user,
+                    attributes,
+                    events,
+                })),
+                item
             },
             tagName: 'ul',
             attributes: {
-                class: 'chat-user'
+                class: 'chat-users'
             },
-            template
+            template,
         })
     }
 
-    setProps({ users }: any) {
-        const userT = users as unknown as T[]
-        super.setProps({
-            users: UserList.getUsersList<T>(userT)
-        });
+    // @ts-ignore
+    setProps({users}: {
+        users: IUser[] | IUserChat[]
+    }): void {
+            const data = users as unknown as IUser[] | IUserChat[]
+            const { item: {attributes, events} = {} } = this.props
+            super.setProps({
+                users: data.map(user => new UserListItem({
+                    props: user,
+                    attributes,
+                    events
+                }))
+            });
     }
 
-    static getUsersList<T>(users: T[]): UserListItem[] {
-        return users.map(user => new UserListItem({
-            props: user
-        }))
-    }
 }

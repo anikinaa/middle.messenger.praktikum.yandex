@@ -11,15 +11,22 @@ import { MessengerChatAddUser } from './pages/Messenger/blocks/ChatSetting/compo
 
 new Store()
 
+document.getElementById('root')!.innerHTML = ''
+
 const router = new Router("#root");
 
-router
-    .use(SignInPage)
-    .use(SignUpPage)
-    .use(MessengerPage)
-    .use(MessengerAddChat)
-    .use(MessengerChatSetting)
-    .use(MessengerChatAddUser)
-    .use(SettingsPage)
-    .use(SettingPassword)
-    .start();
+try {
+    router
+        .use(SignInPage)
+        .use(SignUpPage)
+        .use(MessengerPage)
+        .use(MessengerAddChat)
+        .use(MessengerChatSetting)
+        .use(MessengerChatAddUser)
+        .use(SettingsPage)
+        .use(SettingPassword)
+        .start();
+} catch (e) {
+    console.log('catch')
+    console.error(e)
+}

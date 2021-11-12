@@ -37,7 +37,7 @@ export class ChatsApi extends BaseAPI {
         users: number[]
         chatId: number
     }) {
-        return chatAPIInstance.post('/users', {data})
+        return chatAPIInstance.put('/users', {data})
     }
 
     // @ts-ignore

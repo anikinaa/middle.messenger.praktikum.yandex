@@ -7,5 +7,5 @@ export type IModalProps = {
 
 export type IModal = Omit<IBlock<ICardProps>, 'template' | 'events' | 'tagName'> & {
     props: ICardProps,
-    onClose?: () => void
+    onClose?: () => void,
 }

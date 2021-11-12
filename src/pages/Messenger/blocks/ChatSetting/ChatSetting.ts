@@ -1,6 +1,6 @@
 import {Modal} from "../../../../blocks/Modal";
 import {MessengerPage} from "../../Messenger";
-import {Router} from "../../../../modules";
+import { Router } from "../../../../modules";
 import { ChatSettingUserList } from './components/UserList'
 import { Button } from '../../../../components'
 import { MessengerChatAddUser } from './components/AddUser'
@@ -15,6 +15,7 @@ export class MessengerChatSetting extends Modal {
 
     controller: ChatUsersController
     constructor() {
+
         super({
             props: {
                 header: 'Пользователи чата',

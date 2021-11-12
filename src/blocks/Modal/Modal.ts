@@ -1,5 +1,5 @@
 import {Block, Router, Template} from "../../modules";
-import {Card} from '../../components'
+import { Card, ICardProps } from '../../components'
 import _template from './template.tpl'
 import {IModal, IModalProps} from "./types";
 import { joinClassName } from '../../utils/elementAttr'
@@ -30,5 +30,10 @@ export class Modal extends Block<IModalProps> {
             },
             template
         });
+    }
+
+    setProps(nextProps: Partial<IModalProps>) {
+        const props = nextProps as unknown as ICardProps
+        this.props.card.setProps(props);
     }
 }

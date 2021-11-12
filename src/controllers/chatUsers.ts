@@ -1,4 +1,4 @@
-import {AsyncStore, errorCatch, debounce, Store} from "../modules";
+import {AsyncStore, errorCatch, debounce, Store, loading} from "../modules";
 import {selectActiveIdChat} from "../modules/Store/selectors/chats";
 import { selectUsersChatData } from "../modules/Store/selectors/chatUsers";
 import { IUser, IUserChat } from "../models/user";
@@ -14,7 +14,9 @@ export class ChatUsersController extends AsyncStore{
     }
 
     @errorCatch
+    @loading
     async fetchUsers() {
+        console.log('fetchUsers')
         const id = selectActiveIdChat(Store.getState()) as number
         const usersChat = selectUsersChatData(Store.getState())
         const offset = usersChat.length
@@ -49,17 +51,63 @@ export class ChatUsersController extends AsyncStore{
 
     @debounce
     async search(login: string | undefined) {
-        if (!login && login?.length === 0) {
-            return
-        }
-        const {status, response} = await userApi.search(login as string)
+        if (login) {
+            const {status, response} = await userApi.search(login as string)
 
-        if (status === 200) {
-            const searchUsersChat = JSON.parse(response) as IUser[]
-            Store.setState({searchUsersChat})
+            if (status === 200) {
+                const searchUsersChat = JSON.parse(response) as IUser[]
+                Store.setState({searchUsersChat})
+            } else {
+                throw new Error('Ошибка, попробуйте еще раз')
+            }
         } else {
-            throw new Error('Ошибка, попробуйте еще раз')
+            Store.setState({
+                searchUsersChat: []
+            })
         }
     }
 
+    resetSearchUser() {
+        Store.setState({
+            searchUsersChat: []
+        })
+    }
+
+    @errorCatch
+    @loading
+    async addUser(id: number) {
+        console.log('deleteUser')
+        const chatId = selectActiveIdChat(Store.getState()) as number
+        const {status, response} = await chatsApi.addUser({
+            users: [id],
+            chatId
+        })
+
+        console.log('status',status)
+        if (status === 200) {
+            console.log('await fetchUsers', this.fetchUsers)
+            await this.fetchUsers()
+        } else {
+            const {reason} = JSON.parse(response)
+            this.setError(reason)
+        }
+    }
+
+    @errorCatch
+    @loading
+    async deleteUser(id: number) {
+        console.log('deleteUser')
+        const chatId = selectActiveIdChat(Store.getState()) as number
+        const {status, response} = await chatsApi.deleteUser({
+            users: [id],
+            chatId
+        })
+
+        if (status === 200) {
+            await this.fetchUsers()
+        } else {
+            const {reason} = JSON.parse(response)
+            this.setError(reason)
+        }
+    }
 }

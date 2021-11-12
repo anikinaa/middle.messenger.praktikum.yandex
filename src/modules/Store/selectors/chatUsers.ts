@@ -13,3 +13,16 @@ export const selectUsersChat = Store.makeSelector<IUserChat[]>(
         avatar: getUrlImage(user.avatar)
     }))
 )
+
+export const selectResultSearchUser = Store.makeSelector<IUserChat[]>(
+    (state: IStore) => {
+        const {searchUsersChat, usersChat: { data }} = state
+        const idsUsers = data!.map(({id}) => id)
+        return searchUsersChat
+            .filter(({id}) => !idsUsers.includes(id))
+            .map(user => ({
+            ...user,
+            avatar: getUrlImage(user.avatar)
+        }))
+    }
+)

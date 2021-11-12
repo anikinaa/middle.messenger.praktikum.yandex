@@ -1,5 +1,7 @@
 import { queryStringify } from './utils'
 import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
+import { Router } from '../Router'
+import { setAuthOff } from '../../utils/localStorage'
 
 export class HTTPTransport {
     api: string = 'https://ya-praktikum.tech/api/v2'
@@ -60,7 +62,12 @@ export class HTTPTransport {
             })
 
             xhr.onload = () => {
-                resolve(xhr)
+                if (xhr.status === 401) {
+                    setAuthOff()
+                    Router.go('/')
+                } else {
+                    resolve(xhr)
+                }
             }
             xhr.onabort = reject
             xhr.onerror = reject

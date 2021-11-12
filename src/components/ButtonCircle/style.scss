@@ -5,6 +5,7 @@
   @extend %icon-background;
 
   width: $heightElement;
+  height: $heightElement;
   cursor: pointer;
 
   &__secondary {

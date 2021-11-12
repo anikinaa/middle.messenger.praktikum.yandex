@@ -5,6 +5,7 @@ import {ISignUpFormModel, ISignUpRequestModel} from "../models/signUp";
 import {MessengerPage} from "../pages/Messenger";
 import {SignInPage} from "../pages/SignIn";
 import {errorCatch} from "../utils/errorCatch";
+import { setAuthOff, setAuthOn } from '../utils/localStorage'
 
 const authApi = new AuthApi();
 
@@ -45,7 +46,7 @@ export class AuthController extends AsyncStore {
             Store.setState({
                 userId: id
             })
-            localStorage.setItem('isAuth', 'true')
+            setAuthOff()
             MessengerPage.open()
         } else {
             const {reason} = JSON.parse(response)
@@ -57,10 +58,11 @@ export class AuthController extends AsyncStore {
     async logout() {
         const {status} = await authApi.delete()
         if (status === 200) {
-            localStorage.setItem('isAuth', 'false')
+            setAuthOn()
             SignInPage.open()
         } else {
             throw new Error('Ошибка, попробуйте еще раз')
         }
     }
+
 }

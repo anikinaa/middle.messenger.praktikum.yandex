@@ -1,3 +1,4 @@
 {{{avatar}}}
-<div class="chat-user-list_name">{{name}}</div>
-<div class="chat-user-list_delete"></div>
+<div class="chat-users_item_name">{{name}}</div>
+{{{deleteBtn}}}
+{{@if deleted}}<button type="button" class="chat-users_item_delete"></button>{{/if}}

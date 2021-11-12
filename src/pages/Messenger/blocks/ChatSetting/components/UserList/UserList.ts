@@ -1,24 +1,12 @@
-import { Block, Store, Template } from '../../../../../../modules'
+import { IAsyncStoreState, Store } from '../../../../../../modules'
 import { selectUsersChat } from '../../../../../../modules/Store/selectors/chatUsers'
-import { UserListItem } from './components/Item'
-import _template from './template.tpl'
-import { IChatSettingUserListProps } from './types'
-import { IUserChat } from '../../../../../../models/user'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
-
 import {UserList} from '../../../UserList'
+import { AuthController } from '../../../../../../controllers/auth'
 
-
-// type IUserList = {
-//     props: {
-//         users: IUserChat[]
-//     }
-// }
-
-const template = new Template(_template)
-
-export class ChatSettingUserList extends UserList<IUserChat>{
+export class ChatSettingUserList extends UserList{
     controller: ChatUsersController
+
     constructor() {
         const users = selectUsersChat(Store.getState())
         super({
@@ -31,12 +19,10 @@ export class ChatSettingUserList extends UserList<IUserChat>{
         })
 
         this.controller = new ChatUsersController()
-        this.controller.fetchUsers()?.then()
-    }
+        this.controller.eventBus!.on(AuthController.EVENT, ({isLoading}: IAsyncStoreState) => {
+            this.element?.classList.toggle('loading', isLoading)
+        })
 
-    static getUsersList(users: IUserChat[]): UserListItem[] {
-        return users.map(user => new UserListItem({
-            props: user
-        }))
+        this.controller.fetchUsers()?.then()
     }
 }

@@ -16,7 +16,7 @@ type PartialRecord<K extends keyof any, T> = {
 /* eslint-disable-next-line no-undef */
 type IEvents = PartialRecord<keyof HTMLElementEventMap, EventListener>;
 
-type IAttributes = Record<string, string>;
+type IAttributes = Record<string|number, string>;
 
 export type IBlock<T extends object = {}> = {
     props?: T;
