@@ -15,7 +15,7 @@ export class SettingPassword extends Modal{
     static title: string = 'Смена пароля'
     static privatePage: boolean = true
 
-    controller: UserPasswordController | undefined
+    controller: UserPasswordController
 
     constructor() {
         const submit = new Button({
@@ -111,10 +111,17 @@ export class SettingPassword extends Modal{
 
         this.controller = new UserPasswordController()
 
-        this.controller.eventBus!.on(UserController.EVENT, ({isLoading, error}: IAsyncStoreState) => {
-            form.setProps({error})
-            submit.setProps({isLoading})
-        })
+        this.controller.eventBus!.on(UserController.EVENT, this.updateLocalStore.bind(this))
+    }
+
+    updateLocalStore({isLoading, error}: IAsyncStoreState) {
+        const form = this.props.card.props.body as Form
+        form.setProps({error})
+        form.props.submit.setProps({isLoading})
+    }
+
+    protected componentWillUnmount() {
+        this.controller.eventBus!.off(UserController.EVENT, this.updateLocalStore.bind(this))
     }
 
     static open() {

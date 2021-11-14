@@ -27,16 +27,23 @@ export class AppBarHeader extends Block<IAppBarHeaderProps> {
             template,
         })
 
-        Store.addListenerForProps('activeChat', () => {
-            const user = selectActiveChat(Store.getState())
-            const src = user?.avatar
-            const title = user?.title
+        Store.addListenerForProps('activeChat', this.updateStore.bind(this))
 
-            title && this.setProps({title})
-            src && this.props.avatar.setProps({src})
+    }
 
-            this.element?.classList.toggle('hidden', !Boolean(title))
-        })
+    updateStore(){
+        const user = selectActiveChat(Store.getState())
+        const src = user?.avatar
+        const title = user?.title
 
+        title && this.setProps({title})
+        src && this.props.avatar.setProps({src})
+
+        this.element?.classList.toggle('hidden', !Boolean(title))
+    }
+
+    componentWillUnmount() {
+
+        Store.removeListenerForProps('activeChat', this.updateStore.bind(this))
     }
 }

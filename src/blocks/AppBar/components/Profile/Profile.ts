@@ -41,14 +41,21 @@ export class AppBarProfile extends Block<IAppBarProfileProps> {
             }
         })
 
-        Store.addListenerForProps('user', () => {
-            const {avatar: src, display_name, first_name} = selectUser(Store.getState())
-            this.setProps({
-                name: display_name || first_name
-            })
-            this.props.avatar.setProps({src})
-        })
+        Store.addListenerForProps('user', this.updateStore.bind(this))
         this.controller = new UserController()
         this.controller!.response()?.then()
+    }
+
+    updateStore() {
+        const {avatar: src, display_name, first_name} = selectUser(Store.getState())
+        this.setProps({
+            name: display_name || first_name
+        })
+        this.props.avatar.setProps({src})
+    }
+
+    componentWillUnmount() {
+
+        Store.removeListenerForProps('user', this.updateStore.bind(this))
     }
 }

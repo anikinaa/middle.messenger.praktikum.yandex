@@ -2,7 +2,7 @@ import {Modal} from "../../../../blocks/Modal";
 import {MessengerPage} from "../../Messenger";
 import { Router } from "../../../../modules";
 import { ChatSettingUserList } from './components/UserList'
-import { Button } from '../../../../components'
+import {Button, Link} from '../../../../components'
 import { MessengerChatAddUser } from './components/AddUser'
 import { ChatUsersController } from '../../../../controllers/chatUsers'
 
@@ -31,6 +31,21 @@ export class MessengerChatSetting extends Modal {
                         events: {
                             click: MessengerChatAddUser.open
                         }
+                    }),
+                    new Link({
+                        props: {
+                            text: 'Назад',
+                            href: MessengerPage.pathname
+                        },
+                        attributes: {
+                            class: 'link__block-top'
+                        },
+                        events: {
+                            click: (e) => {
+                                e.preventDefault()
+                                MessengerPage.open()
+                            }
+                        }
                     })
                 ]
             },
@@ -48,7 +63,7 @@ export class MessengerChatSetting extends Modal {
     }
 
     componentWillUnmount() {
-        super.componentWillUnmount();
+
         this.controller.resetUser()
     }
 }

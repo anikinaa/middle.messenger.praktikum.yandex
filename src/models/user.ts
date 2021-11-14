@@ -10,7 +10,8 @@ export type IUser = {
 }
 
 export enum UserRule {
-    admin = 'admin'
+    admin = 'admin',
+    regular = 'regular'
 }
 
 export type IUserChat = IUser & {

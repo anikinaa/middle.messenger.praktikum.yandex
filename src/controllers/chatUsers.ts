@@ -1,22 +1,25 @@
-import {AsyncStore, errorCatch, debounce, Store, loading} from "../modules";
+import {AsyncStore, debounce, errorCatch, loading, Store} from "../modules";
 import {selectActiveIdChat} from "../modules/Store/selectors/chats";
-import { selectUsersChatData } from "../modules/Store/selectors/chatUsers";
-import { IUser, IUserChat } from "../models/user";
-import { ChatsApi } from '../api/chats'
-import { UserApi } from '../api/user'
+import {selectNewUser, selectUsersChatData} from "../modules/Store/selectors/chatUsers";
+import {IUser, IUserChat, UserRule} from "../models/user";
+import {ChatsApi} from '../api/chats'
+import {UserApi} from '../api/user'
+import {getNameImage} from "../utils/urlImages";
 
 const chatsApi = new ChatsApi();
 const userApi = new UserApi()
 
 export class ChatUsersController extends AsyncStore{
+    searchLogin: string
+
     constructor() {
         super()
+        this.searchLogin = ''
     }
 
     @errorCatch
     @loading
     async fetchUsers() {
-        console.log('fetchUsers')
         const id = selectActiveIdChat(Store.getState()) as number
         const usersChat = selectUsersChatData(Store.getState())
         const offset = usersChat.length
@@ -50,8 +53,10 @@ export class ChatUsersController extends AsyncStore{
     }
 
     @debounce
-    async search(login: string | undefined) {
+    @loading
+    async search(login: string | undefined = this.searchLogin) {
         if (login) {
+            this.searchLogin = login
             const {status, response} = await userApi.search(login as string)
 
             if (status === 200) {
@@ -76,17 +81,26 @@ export class ChatUsersController extends AsyncStore{
     @errorCatch
     @loading
     async addUser(id: number) {
-        console.log('deleteUser')
         const chatId = selectActiveIdChat(Store.getState()) as number
         const {status, response} = await chatsApi.addUser({
             users: [id],
             chatId
         })
 
-        console.log('status',status)
         if (status === 200) {
-            console.log('await fetchUsers', this.fetchUsers)
-            await this.fetchUsers()
+            const newUser: IUser = selectNewUser({state: Store.getState(), id})
+            const user: IUserChat = {
+                ...newUser,
+                role: UserRule.regular,
+                avatar: getNameImage(newUser.avatar)
+            }
+            Store.setState((state) => ({
+                ...state,
+                usersChat: {
+                    data: [...state.usersChat.data!, user],
+                    allLoad: state.usersChat.allLoad
+                }
+            }))
         } else {
             const {reason} = JSON.parse(response)
             this.setError(reason)
@@ -96,7 +110,6 @@ export class ChatUsersController extends AsyncStore{
     @errorCatch
     @loading
     async deleteUser(id: number) {
-        console.log('deleteUser')
         const chatId = selectActiveIdChat(Store.getState()) as number
         const {status, response} = await chatsApi.deleteUser({
             users: [id],
@@ -104,7 +117,13 @@ export class ChatUsersController extends AsyncStore{
         })
 
         if (status === 200) {
-            await this.fetchUsers()
+            Store.setState((state) => ({
+                ...state,
+                usersChat: {
+                    data:state.usersChat.data!.filter((user) => user.id !== id),
+                    allLoad: state.usersChat.allLoad
+                }
+            }))
         } else {
             const {reason} = JSON.parse(response)
             this.setError(reason)

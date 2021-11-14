@@ -11,3 +11,7 @@ export const selectUser = Store.makeSelector<IUserForm>(
         avatar: getUrlImage(user.avatar)
     } : {}
 )
+
+export const selectUserId = Store.makeSelector<IUserForm>(
+    (state: IStore) => state.user?.id
+)

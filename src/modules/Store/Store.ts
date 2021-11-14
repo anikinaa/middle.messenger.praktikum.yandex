@@ -6,13 +6,15 @@ import {IStore} from "./types";
 const _initialState: IStore = {
     userId: null,
     user: null,
+    token: null,
     chats: [],
     usersChat: {
         data: [],
         allLoad: false
     },
     searchUsersChat: [],
-    activeChat: null
+    activeChat: null,
+    messages: []
 }
 
 export class Store {
@@ -58,8 +60,12 @@ export class Store {
         },
     }
 
-    static addListenerForProps(key: string, callback: callbackType) {
+    static addListenerForProps(key: keyof IStore, callback: callbackType) {
         Store.__instance?.eventBus?.on(key, callback)
+    }
+
+    static removeListenerForProps(key: keyof IStore, callback: callbackType) {
+        Store.__instance?.eventBus?.off(key, callback)
     }
 
     private _makePropsProxy = (state: IStore) => new Proxy(state, this.proxyHandler);
@@ -78,10 +84,10 @@ export class Store {
     static makeSelector<T>(...callback: any) {
         return memoize<(state: IStore | {}) => T>(() => {
             return (state: IStore) => callback
-                .reduce((state: unknown, fn: (state: unknown) => unknown) => fn(state), state)
+                .reduce((state: unknown, fn: (...args: unknown[]) => unknown) => fn(state), state)
         })()
     }
 
 }
 
-type SetState = Partial<IStore> | ((state: IStore) => IStore)
+type SetState = Partial<IStore> | ((state: IStore) => Partial<IStore>)

@@ -13,7 +13,7 @@ export function getDateTime(dateTime: string | Date):string {
 export function getDate(date: string | Date):string {
     date = getDateInstance(date)
     const dateString = date.toLocaleDateString()
-    if (new Date().toDateString() === dateString) {
+    if (new Date().toLocaleDateString() === dateString) {
         return 'Сегодня'
     }
     return dateString

@@ -3,6 +3,5 @@
     {{{sideBar}}}
     <main class="main">
         {{{dialog}}}
-        {{{messageForm}}}
     </main>
 </div>

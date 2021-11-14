@@ -6,9 +6,11 @@ export type IStore = {
     user: IUserForm | null
     chats: IChat[]
     activeChat: number | null
+    token: string | null
     usersChat: {
         data: IUserChat[] | null
         allLoad: boolean
     }
-    searchUsersChat: IUser[]
+    searchUsersChat: IUser[],
+    messages: any
 }

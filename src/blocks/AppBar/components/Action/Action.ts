@@ -20,9 +20,16 @@ export class AppBarAction extends ButtonCircle{
             }
         });
 
-        Store.addListenerForProps('activeChat', () => {
-            const activeId = selectActiveIdChat(Store.getState())
-            this.element?.classList.toggle('hidden', activeId === null)
-        })
+        Store.addListenerForProps('activeChat', this.updateSore.bind(this))
+    }
+
+    updateSore() {
+        const activeId = selectActiveIdChat(Store.getState())
+        this.element?.classList.toggle('hidden', activeId === null)
+    }
+
+    componentWillUnmount() {
+
+        Store.removeListenerForProps('activeChat', this.updateSore)
     }
 }

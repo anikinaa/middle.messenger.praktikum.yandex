@@ -2,7 +2,6 @@ import { IAsyncStoreState, Router } from '../../../../modules'
 import { Form } from '../../../../blocks'
 import { Modal } from '../../../../blocks/Modal'
 import { Button, InputForm, Link } from '../../../../components'
-import { UserController } from '../../../../controllers/user'
 import { getFormData } from '../../../../utils/getFormData'
 import { MessengerPage } from '../../Messenger'
 import { ChatsController } from '../../../../controllers/chats'
@@ -82,13 +81,21 @@ export class MessengerAddChat extends Modal{
 
         this.controller = new ChatsController()
 
-        this.controller.eventBus!.on(UserController.EVENT, ({isLoading, error}: IAsyncStoreState) => {
-            form.setProps({error})
-            submit.setProps({isLoading})
-        })
+        this.controller.eventBus!.on(ChatsController.EVENT, this.updateLocalStore.bind(this))
+    }
+
+    updateLocalStore({isLoading, error}: IAsyncStoreState) {
+        const form = this.props.card.props.body as Form
+        form.setProps({error})
+        form.props.submit.setProps({isLoading})
+    }
+
+    protected componentWillUnmount() {
+        this.controller!.eventBus!.off(ChatsController.EVENT, this.updateLocalStore.bind(this))
     }
 
     static open() {
         Router.go(MessengerAddChat.pathname)
     }
+
 }

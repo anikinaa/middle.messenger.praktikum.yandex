@@ -1,0 +1,54 @@
+@import "../../../../../../scss/variables";
+
+.message {
+  padding: $space 3 * $space;
+  min-width: $minMessageWidth;
+
+  &_author {
+    font-size: $fontSizeSmall;
+    font-weight: bold;
+  }
+
+  &_time {
+    font-size: $fontSizeSmall;
+  }
+}
+
+.messages .message:not(:first-child) {
+  margin-top: $space;
+
+  .message_author {
+    display: none;
+  }
+}
+
+
+%message-left {
+  .message {
+    margin-left: 2 * $space;
+    background-color: $colorWhite;
+    border-radius: 0 $borderRadius $borderRadius;
+    color: $fontColor;
+
+    &_time {
+      text-align: right;
+    }
+  }
+}
+
+%message-right {
+  flex-direction: row-reverse;
+
+  .message {
+    margin-right: 2 * $space;
+    background-color: $colorPrimaryDark100;
+    border-radius: $borderRadius 0 $borderRadius $borderRadius;
+    color: $contrastFontColor;
+    min-width: $minMessageWidth;
+
+    &_text,
+    &_author {
+      text-align: right;
+    }
+  }
+}

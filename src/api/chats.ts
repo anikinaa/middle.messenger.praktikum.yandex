@@ -19,7 +19,6 @@ export class ChatsApi extends BaseAPI {
         return chatAPIInstance.post('', {data})
     }
 
-    // @ts-ignore
     users(data: {
         id: number
         offset?: number
@@ -31,8 +30,6 @@ export class ChatsApi extends BaseAPI {
         return chatAPIInstance.get(`/${id}/users`, {data: query})
     }
 
-
-    // @ts-ignore
     addUser(data: {
         users: number[]
         chatId: number
@@ -40,11 +37,14 @@ export class ChatsApi extends BaseAPI {
         return chatAPIInstance.put('/users', {data})
     }
 
-    // @ts-ignore
     deleteUser(data: {
         users: number[]
         chatId: number
     }) {
         return chatAPIInstance.delete('/users', {data})
+    }
+
+    token(id: number) {
+        return chatAPIInstance.post(`/token/${id}`)
     }
 }

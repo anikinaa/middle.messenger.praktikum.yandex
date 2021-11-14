@@ -1,10 +1,11 @@
-import {Block, Router, Store, Template} from '../../modules'
+import {Block, IStore, Router, Store, Template} from '../../modules'
 import {
-    AppBar, SideBar, Dialog, MessageForm,
+    AppBar, SideBar, Dialog,
 } from '../../blocks'
 import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
-import { DialogMsgBlock } from '../../blocks/Dialog/components/MsgBlock'
+import {selectActiveIdChat} from "../../modules/Store/selectors/chats";
+import {NoChat} from "./blocks/NoChat";
 
 const template = new Template<IMessengerPageProps>(_template)
 
@@ -16,56 +17,25 @@ export class MessengerPage extends Block<IMessengerPageProps> {
 
     constructor() {
 
-        const dataMessages = [
-            {
-                user: {
-                    author: 'author',
-                    src: '/static/images/avatar.jpg',
-                    isMy: false,
-                },
-                messages: [
-                    {
-                        text: 'Вопрос',
-                        time: '14:00',
-                    },
-                    {
-                        text: 'Вопрос 2',
-                        time: '14:10',
-                    },
-                ],
-            },
-            {
-                user: {
-                    author: 'author',
-                    src: '/static/images/avatar.jpg',
-                    isMy: true,
-                },
-                messages: [
-                    {
-                        time: '15:00',
-                        text: 'Ответ',
-                    },
-                    {
-                        text: 'Ответ 2',
-                        time: '15:10',
-                    },
-                ],
-            },
-        ]
+        const activeId = selectActiveIdChat(Store.getState())
 
         super({
             props: {
                 abbBar: new AppBar(),
                 sideBar: new SideBar(),
-                dialog: [
-                    new Dialog({
-                        date: 'Сегодня',
-                        messages: dataMessages.map((props) => new DialogMsgBlock(props)),
-                    }),
-                ],
-                messageForm: new MessageForm(),
+                dialog: activeId === null ? new NoChat() : new Dialog(),
             },
             template,
+        })
+
+        Store.addListenerForProps('activeChat', this.updateStore.bind(this))
+    }
+
+    updateStore({activeChat}: IStore){
+        this.props.dialog.leave()
+
+        this.setProps({
+            dialog: activeChat === null ? new NoChat() : new Dialog(),
         })
     }
 
@@ -77,5 +47,6 @@ export class MessengerPage extends Block<IMessengerPageProps> {
         Store.setState({
             activeChat: null
         })
+        Store.removeListenerForProps('activeChat', this.updateStore.bind(this))
     }
 }

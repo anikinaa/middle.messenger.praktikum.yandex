@@ -1,4 +1,4 @@
-import { Block, Template } from '../../../../../../modules'
+import {Block, IAsyncStoreState, Template} from '../../../../../../modules'
 import _template from './template.tpl'
 import { IUserListItem, IUserListItemProps } from './types'
 import { Avatar, ButtonCircle } from '../../../../../../components'
@@ -14,7 +14,7 @@ export class UserListItem extends Block<IUserListItemProps> {
 
     constructor({ props, attributes, events }: IUserListItem) {
         // @ts-ignore
-        const { avatar: src, display_name, second_name, first_name, id, role } = props
+        const { avatar: src, display_name, second_name, first_name, id, role, login } = props
 
         const deleteBtn = role === 'regular' ? new ButtonCircle({
             props: {
@@ -30,8 +30,10 @@ export class UserListItem extends Block<IUserListItemProps> {
             }
         }) : undefined
 
+
         super({
             props: {
+                login,
                 name: display_name || `${second_name} ${first_name}`,
                 avatar: new Avatar({
                     props: {
@@ -52,6 +54,14 @@ export class UserListItem extends Block<IUserListItemProps> {
         })
 
         this.controller = new ChatUsersController()
+        this.controller.eventBus!.on(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
     }
 
+    updateLocalStore({isLoading}: IAsyncStoreState){
+        this.element?.classList.toggle('loading', isLoading)
+    }
+
+    componentWillUnmount() {
+        this.controller.eventBus!.off(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
+    }
 }

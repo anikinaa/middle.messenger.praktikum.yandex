@@ -79,9 +79,15 @@ export class SignInForm extends Form{
 
         this.controller = controller
 
-        this.controller.eventBus!.on(AuthController.EVENT, ({isLoading, error}: IAsyncStoreState) => {
-            submit.setProps({isLoading})
-            this.setProps({error})
-        })
+        this.controller.eventBus!.on(AuthController.EVENT, this.updateLocalStore.bind(this))
+    }
+
+    updateLocalStore({isLoading, error}: IAsyncStoreState) {
+        this.props.submit.setProps({isLoading})
+        this.setProps({error})
+    }
+
+    protected componentWillUnmount() {
+        this.controller.eventBus!.off(AuthController.EVENT, this.updateLocalStore.bind(this))
     }
 }

@@ -1,5 +1,5 @@
 import { Block, Template } from '../../modules'
-import { Chats } from '../Chats'
+import { Chats } from '../../pages/Messenger/blocks/Chats'
 import { SideBarHeader } from './components/Header'
 import { ISideBarProps } from './types'
 import _template from './template.tpl'

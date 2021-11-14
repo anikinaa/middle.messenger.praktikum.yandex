@@ -7,6 +7,7 @@ export type IUserListItem = Pick<IBlock<IUser | IUserChat>, 'props' | 'attribute
 }
 
 export type IUserListItemProps = {
+    login: string,
     name: string,
     avatar: Avatar,
     deleteBtn?: ButtonCircle

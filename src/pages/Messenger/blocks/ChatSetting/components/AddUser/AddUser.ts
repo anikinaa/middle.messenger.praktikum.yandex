@@ -1,7 +1,7 @@
 import { Modal } from '../../../../../../blocks/Modal'
 import { MessengerChatSetting } from '../../ChatSetting'
-import { Router, Store } from '../../../../../../modules'
-import { InputForm } from '../../../../../../components'
+import { IAsyncStoreState, Router, Store} from '../../../../../../modules'
+import {InputForm, Link} from '../../../../../../components'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 import { UserList } from '../../../UserList'
 import { selectResultSearchUser } from '../../../../../../modules/Store/selectors/chatUsers'
@@ -15,6 +15,7 @@ export class MessengerChatAddUser extends Modal {
     static privatePage: boolean = true
 
     controller: ChatUsersController
+    userList: UserList
 
     constructor() {
         const users = selectResultSearchUser(Store.getState())
@@ -54,6 +55,18 @@ export class MessengerChatAddUser extends Modal {
                             }
                         }
                     }),
+                    new Link({
+                        props: {
+                            text: 'Назад',
+                            href: MessengerChatSetting.pathname
+                        },
+                        events: {
+                            click: (e) => {
+                                e.preventDefault()
+                                MessengerChatSetting.open()
+                            }
+                        }
+                    })
                 ]
             },
             attributes: {
@@ -63,18 +76,27 @@ export class MessengerChatAddUser extends Modal {
         })
 
 
-        Store.addListenerForProps('searchUsersChat', () => {
-            const users = selectResultSearchUser(Store.getState())
-            // @ts-ignore
-            this.props.card.props.body[1].setProps({users})
-        })
+        Store.addListenerForProps('searchUsersChat', this.updateStore.bind(this))
 
         this.controller = new ChatUsersController()
+
+        this.userList = (this.props.card.props.body as unknown[])[1] as UserList
+        this.controller.eventBus!.on(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
+    }
+
+    updateStore(){
+        const users = selectResultSearchUser(Store.getState())
+        this.userList.setProps({users})
+    }
+
+    updateLocalStore({isLoading}: IAsyncStoreState) {
+        this.userList.element?.classList.toggle('loading', isLoading)
     }
 
     componentWillUnmount() {
-        super.componentWillUnmount();
+        this.controller.eventBus!.off(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
         this.controller.resetSearchUser()
+        Store.removeListenerForProps('searchUsersChat', this.updateStore.bind(this))
     }
 
     static open () {

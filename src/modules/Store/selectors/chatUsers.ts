@@ -1,6 +1,6 @@
 import {Store} from "../Store";
 import {IStore} from "../types";
-import {IUserChat} from "../../../models/user";
+import {IUser, IUserChat} from "../../../models/user";
 import { getUrlImage } from '../../../utils/urlImages'
 
 export const selectUsersChatData = Store.makeSelector<IUserChat[]>(
@@ -24,5 +24,13 @@ export const selectResultSearchUser = Store.makeSelector<IUserChat[]>(
             ...user,
             avatar: getUrlImage(user.avatar)
         }))
+    }
+)
+
+export const selectNewUser = Store.makeSelector<IUser>(
+    ({state, id}: {state: IStore, id: number}) => {
+        const search: IUser[] = selectResultSearchUser(state);
+        const user: IUser = search.find((user) => user.id === id)!
+        return user
     }
 )

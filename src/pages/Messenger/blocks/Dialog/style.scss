@@ -1,0 +1,22 @@
+@import "../../../../scss/variables";
+
+.dialog {
+  flex-grow: 1;
+
+  &-wrap{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  &-date {
+    text-align: center;
+    padding: 2 * $space 0 $space;
+
+    &_wrap {
+      background-color: $colorSecondary200;
+      padding: 0.5 * $space $space;
+      border-radius: 2 * $space;
+      color: $fontColorSecondary;
+    }
+  }
+}

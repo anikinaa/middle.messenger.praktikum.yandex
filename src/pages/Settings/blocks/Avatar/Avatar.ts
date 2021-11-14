@@ -24,16 +24,24 @@ export class SettingAvatar extends ImageUpload{
 
         this.controller = controller
 
-        Store.addListenerForProps('user', () => {
-            const {avatar} = selectUser(Store.getState())
-            this.props.image.setProps({
-                src: avatar
-            })
-        })
+        Store.addListenerForProps('user', this.updateStore.bind(this))
 
-        this.controller.eventBus!.on(AuthController.EVENT, ({isLoading, error}: IAsyncStoreState) => {
-            this.setProps({error})
-            this.setLoading(isLoading)
+        this.controller.eventBus!.on(AuthController.EVENT, this.updateLocalStore.bind(this))
+    }
+
+    updateStore(){
+        const {avatar} = selectUser(Store.getState())
+        this.props.image.setProps({
+            src: avatar
         })
+    }
+
+    updateLocalStore({isLoading, error}: IAsyncStoreState){
+        this.setProps({error})
+        this.setLoading(isLoading)
+    }
+
+    protected componentWillUnmount() {
+        this.controller.eventBus!.off(AuthController.EVENT, this.updateLocalStore.bind(this))
     }
 }

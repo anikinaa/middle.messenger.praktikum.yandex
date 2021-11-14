@@ -35,3 +35,7 @@ export const selectActiveChat = Store.makeSelector<IChat | undefined>(
         return chat || undefined
     }
 )
+
+export const selectTokenChat = Store.makeSelector<string>(
+    (state: IStore) => state.token
+)
