@@ -1,5 +1,5 @@
 import {DialogMsgBlock} from "../MsgBlock";
-import {IDialogDayData} from "../../../../../../modules/Store/selectors/messages";
+import {IDayMessages} from "../../../../../../modules/Store/selectors/messages";
 
 
 export type IDialogDayProps = {
@@ -8,8 +8,5 @@ export type IDialogDayProps = {
 }
 
 export type IDialogDay = {
-    props: {
-        date: string
-        messages: IDialogDayData[]
-    }
+    props: IDayMessages
 }

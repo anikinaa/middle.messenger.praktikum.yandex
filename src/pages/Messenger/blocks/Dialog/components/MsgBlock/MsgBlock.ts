@@ -3,12 +3,12 @@ import { Avatar } from '../../../../../../components'
 import { DialogMsgItem } from '../MsgItem'
 import { IDialogMsgBlockProps, IDialogMsgBlock } from './types'
 import _template from './template.tpl'
-import {IDialogDayData} from "../../../../../../modules/Store/selectors/messages";
+import {IUserMessages} from "../../../../../../modules/Store/selectors/messages";
 
 const template = new Template<IDialogMsgBlockProps>(_template)
 
 export class DialogMsgBlock extends Block<IDialogMsgBlockProps> {
-    constructor({ user: { author, src, isMy }, messages }: IDialogDayData) {
+    constructor({ user: { author, src, isMy }, messages }: IUserMessages) {
         super({
             props: {
                 avatar: new Avatar({
