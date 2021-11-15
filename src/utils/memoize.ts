@@ -1,7 +1,7 @@
 
-type fun = (...args: any) => any
+// type fun = (...args: any) => any
 
-export function memoize<T>(fn: fun):(...args: any) => T {
+export function memoize<A extends any[], R>(fn: (...args: A) => R):(...args: A) => R {
     const cache: Record<string, any> = {};
 
     return function (...args: any) {

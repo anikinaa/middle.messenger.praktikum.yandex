@@ -1,5 +1,5 @@
 import {selectActiveIdChat} from "../modules/Store/selectors/chats";
-import {Store} from "../modules";
+import { callbackType, Store } from "../modules";
 import {MessageSocket} from "../api/messageSocket";
 import {ChatsApi} from "../api/chats";
 import {IMessage} from "../models/message";
@@ -25,8 +25,8 @@ export class MessageController extends ChatUsersController{
             await this.socket.init()
             this.socket.getOld()
 
-            this.listenerNewMessage()
-            this.listenerOldMessages()
+            this.addListener(MessageSocket.EVENTS.message, this.newMessage.bind(this))
+            this.addListener(MessageSocket.EVENTS.getOld, this.oldMessages.bind(this))
 
         } else {
             throw new Error('Ошибка, попробуйте еще раз')
@@ -34,27 +34,43 @@ export class MessageController extends ChatUsersController{
 
     }
 
+    loadMore() {
+        this.socket!.getOld()
+    }
+
     sendMessage(msg: string) {
         this.socket?.sendMessage(msg)
     }
 
-    listenerNewMessage() {
-        this.socket?.registerEvents(MessageSocket.EVENTS.message, (newMessage: IMessage) => {
-            Store.setState(({messages}) => ({
-                messages: [...messages, newMessage]
-            }))
-        })
+    addListener(key: string, callback: callbackType) {
+        this.socket?.addEvents(key,callback)
     }
 
-    listenerOldMessages() {
-        this.socket?.registerEvents(MessageSocket.EVENTS.getOld, (oldMessages: IMessage[]) => {
-            Store.setState(({messages}) => ({
-                messages: [...messages, ...oldMessages]
-            }))
-        })
+    removeListener(key: string, callback: callbackType) {
+        this.socket?.removeEvents(key,callback)
+    }
+
+    newMessage(newMessage: IMessage) {
+        Store.setState(({messages: {data, allLoad}}) => ({
+            messages: {
+                data: [newMessage, ...data],
+                allLoad
+            }
+        }))
+    }
+
+    oldMessages(oldMessages: IMessage[]) {
+        Store.setState(({messages: { data}}) => ({
+            messages: {
+                data: [...data, ...oldMessages],
+                allLoad: oldMessages.length < 20
+            }
+        }))
     }
 
     closeSocket() {
+        this.removeListener(MessageSocket.EVENTS.message, this.newMessage.bind(this))
+        this.removeListener(MessageSocket.EVENTS.getOld, this.oldMessages.bind(this))
         this.socket?.close()
     }
 }

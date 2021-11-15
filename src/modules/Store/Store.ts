@@ -14,7 +14,10 @@ const _initialState: IStore = {
     },
     searchUsersChat: [],
     activeChat: null,
-    messages: []
+    messages: {
+        data: [],
+        allLoad: false
+    },
 }
 
 export class Store {
@@ -81,8 +84,8 @@ export class Store {
         Object.assign(Store.__instance!.state, state)
     }
 
-    static makeSelector<T>(...callback: any) {
-        return memoize<(state: IStore | {}) => T>(() => {
+    static makeSelector<T = any>(...callback: any) {
+        return memoize<any, (state: IStore | any) => T>(() => {
             return (state: IStore) => callback
                 .reduce((state: unknown, fn: (...args: unknown[]) => unknown) => fn(state), state)
         })()

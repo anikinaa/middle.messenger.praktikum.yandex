@@ -1,10 +1,10 @@
 import {
     AppBar, SideBar, Dialog,
 } from '../../blocks'
-import {NoChat} from "./blocks/NoChat";
+import {EmptyText} from "./blocks/EmptyText";
 
 export type IMessengerPageProps = {
     abbBar: AppBar;
     sideBar: SideBar;
-    dialog: Dialog | NoChat;
+    dialog: Dialog | EmptyText;
 };

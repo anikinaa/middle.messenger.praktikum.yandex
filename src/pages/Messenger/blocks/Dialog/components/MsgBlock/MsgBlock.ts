@@ -1,7 +1,7 @@
 import { Block, Template } from '../../../../../../modules'
 import { Avatar } from '../../../../../../components'
 import { DialogMsgItem } from '../MsgItem'
-import { IDialogMsgBlockProps, IDialogMsgBlock } from './types'
+import { IDialogMsgBlockProps } from './types'
 import _template from './template.tpl'
 import {IUserMessages} from "../../../../../../modules/Store/selectors/messages";
 

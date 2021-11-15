@@ -1,12 +1,14 @@
 import {Block} from "../../../../modules";
 import {Template} from "../../../../modules";
 import _template from './teimplate.tpl'
+import { IEmptyText, IEmptyTextProps } from './types'
 
 const template = new Template(_template)
 
-export class NoChat extends Block {
-    constructor() {
+export class EmptyText extends Block<IEmptyTextProps> {
+    constructor({ props }: IEmptyText) {
         super({
+            props,
             attributes: {
                 class: 'no-chat'
             },

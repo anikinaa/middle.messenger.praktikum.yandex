@@ -1,5 +1,6 @@
 import { IUser, IUserChat, IUserForm } from "../../models/user";
 import { IChat } from '../../models/chat'
+import { IMessage } from '../../models/message'
 
 export type IStore = {
     userId: number | null
@@ -12,5 +13,8 @@ export type IStore = {
         allLoad: boolean
     }
     searchUsersChat: IUser[],
-    messages: any
+    messages: {
+        data: IMessage[]
+        allLoad: boolean
+    }
 }

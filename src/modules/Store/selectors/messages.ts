@@ -1,18 +1,19 @@
-import {Store} from "../Store";
-import {IStore} from "../types";
-import {IMessage} from "../../../models/message";
-import {getDate, getTime} from "../../../utils/dateTime";
-import {IUserChat} from "../../../models/user";
-import {getUrlImage} from "../../../utils/urlImages";
+import { Store } from "../Store";
+import { IStore } from "../types";
+import { getDate, getTime } from "../../../utils/dateTime";
+import { IUserChat } from "../../../models/user";
+import { getUrlImage } from "../../../utils/urlImages";
+import { memoize } from '../../../utils/memoize'
 
 export type IUserMessages = {
     user: {
+        id: number
         author: string
         src: string | null
         isMy: boolean
     }
     messages: {
-        test: string
+        text: string
         time: string
     }[]
 }
@@ -22,49 +23,76 @@ export type IDayMessages = {
     messages: IUserMessages[]
 }
 
-export const selectMessages = Store.makeSelector<IDayMessages[]>(
-    ({messages, user, usersChat}: IStore) => {
-        const {id} = user!
-        const data = messages.reduce((dialog: any, msg: IMessage) => {
-            const {time, content, user_id} = msg
-            const date = getDate(time)
-            if (!dialog[date]) {
-                dialog[date] = {}
-            }
-            if (!dialog[date][user_id]) {
-                dialog[date][user_id] = {
-                    user: {},
-                    messages: []
+export type ISelectMessages = {
+    allLoad: boolean,
+    messages: IDayMessages[]
+}
+
+
+const getDateMemo = memoize<[Date | string], string>(getDate)
+
+const getUser = memoize<[number, IUserChat[]], IUserChat | undefined>((user_id, users) => {
+    return users.find(({ id }) => id === user_id)
+})
+
+const getUserName = memoize<[number, IUserChat[]], string>((...args) => {
+    const { display_name, first_name, second_name } = getUser(...args)!
+    return display_name || `${first_name} ${second_name}`
+})
+
+const getUserAvatar = memoize<[number, IUserChat[]], string | null>((...args) => {
+    const { avatar } = getUser(...args)!
+    return getUrlImage(avatar)
+})
+
+export const selectMessages = Store.makeSelector<ISelectMessages>(
+    ({ messages: { data, allLoad }, user, usersChat: { data: usersChat } }: IStore) => {
+        // Текущий пользователь
+        const { id } = user!
+
+        const dayMessages = data.reduce((acc, message) => {
+            const { time, user_id, content } = message
+
+            let lastDay = acc.last()
+            if (getDateMemo(time) !== lastDay?.date) {
+                lastDay = {
+                    date: getDateMemo(time),
+                    messages: [],
                 }
+                acc.push(lastDay)
             }
-            if (!dialog[date][user_id].user.author) {
-                const {
-                    display_name,
-                    avatar,
-                    first_name,
-                    second_name
-                } = usersChat.data!.find(({id}) => id === user_id) as IUserChat
-                dialog[date][user_id].user = {
-                    author: display_name || `${first_name} ${second_name}`,
-                    src: getUrlImage(avatar),
-                    isMy: user_id === id
+
+            let lastUser = lastDay.messages.last()
+            if (lastUser?.user?.id !== user_id) {
+                lastUser = {
+                    user: {
+                        id: user_id,
+                        author: getUserName(user_id, usersChat!),
+                        src: getUserAvatar(user_id, usersChat!),
+                        isMy: user_id === id
+                    },
+                    messages: [],
                 }
+                lastDay.messages.push(lastUser)
             }
-            dialog[date][user_id].messages.push({
+
+            lastUser.messages.push({
                 text: content,
                 time: getTime(time)
             })
-
-            return dialog
-        }, {})
-
-        return Object.entries(data).reduce((acc, [date, users]) => {
-            // @ts-ignore
-            acc.push({
-                date, 
-                messages: Object.values(users)
-            })
             return acc
-        }, [])
-    }
+        }, [] as IDayMessages[])
+
+        return {
+            allLoad,
+            messages: dayMessages
+        }
+    },
+)
+
+export const selectLastMessage = Store.makeSelector<number>(
+    ({ messages: {data} }: IStore) => {
+        const last = data.last()
+        return last ? last.id : 0
+    },
 )

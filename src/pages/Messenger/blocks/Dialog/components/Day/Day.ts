@@ -1,15 +1,18 @@
-import {Block} from "../../../../../../modules";
+import { Block, Template } from "../../../../../../modules";
 import {DialogMsgBlock} from "../MsgBlock";
 import {IDialogDay, IDialogDayProps} from "./types";
+import _template from './template.tpl'
+
+const template = new Template(_template)
 
 export class DialogDay extends Block<IDialogDayProps>{
     constructor({props: {date, messages}}: IDialogDay) {
-        console.log(messages)
         super({
             props: {
                 date,
-                messages: new DialogMsgBlock(messages)
-            }
+                messages: messages.map((msg) => new DialogMsgBlock(msg))
+            },
+            template
         });
     }
 }

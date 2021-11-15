@@ -1,6 +1,7 @@
 import {selectActiveIdChat, selectTokenChat} from "../modules/Store/selectors/chats";
 import {callbackType, EventBus, Store} from "../modules";
 import {selectUserId} from "../modules/Store/selectors/user";
+import { selectLastMessage } from '../modules/Store/selectors/messages'
 
 enum EVENTS {
     pong= 'pong',
@@ -24,8 +25,12 @@ export class MessageSocket {
         this.eventBus.on(MessageSocket.EVENTS.pong, this._ping.bind(this))
     }
 
-    registerEvents(key: string, callback: callbackType) {
+    addEvents(key: string, callback: callbackType) {
         this.eventBus.on(key, callback)
+    }
+
+    removeEvents(key: string, callback: callbackType) {
+        this.eventBus.off(key, callback)
     }
 
     async init() {
@@ -79,7 +84,8 @@ export class MessageSocket {
         }
     }
 
-    getOld(offset: number = 0) {
+    getOld() {
+        const offset = selectLastMessage(Store.getState())
         this._send({
             content: offset.toString(),
             type: MessageSocket.EVENTS.getOld

@@ -5,9 +5,15 @@ import {
 import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
 import {selectActiveIdChat} from "../../modules/Store/selectors/chats";
-import {NoChat} from "./blocks/NoChat";
+import {EmptyText} from "./blocks/EmptyText";
 
 const template = new Template<IMessengerPageProps>(_template)
+
+const getContent = (activeId: number | null) => activeId === null ? new EmptyText({
+    props: {
+        text: 'Выберите чат'
+    }
+}) : new Dialog()
 
 export class MessengerPage extends Block<IMessengerPageProps> {
     static exact: boolean = false
@@ -23,7 +29,7 @@ export class MessengerPage extends Block<IMessengerPageProps> {
             props: {
                 abbBar: new AppBar(),
                 sideBar: new SideBar(),
-                dialog: activeId === null ? new NoChat() : new Dialog(),
+                dialog: getContent(activeId)
             },
             template,
         })
@@ -35,7 +41,7 @@ export class MessengerPage extends Block<IMessengerPageProps> {
         this.props.dialog.leave()
 
         this.setProps({
-            dialog: activeChat === null ? new NoChat() : new Dialog(),
+            dialog: getContent(activeChat),
         })
     }
 

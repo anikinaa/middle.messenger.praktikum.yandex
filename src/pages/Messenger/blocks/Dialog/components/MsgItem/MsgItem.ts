@@ -6,6 +6,7 @@ const template = new Template<IMsgItemProps>(_template)
 
 export class DialogMsgItem extends Block<IMsgItemProps> {
     constructor(props: IMsgItemProps) {
+
         super({
             props,
             template,

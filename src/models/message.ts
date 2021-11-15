@@ -13,6 +13,7 @@ export type IMessageSend = {
 }
 
 export type IMessage = {
+    id: string
     chat_id: number,
     time: string,
     type: messageType,

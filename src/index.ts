@@ -1,3 +1,4 @@
+import './utils/array'
 import { Store, Router } from './modules'
 import { SignInPage } from './pages/SignIn'
 import { SignUpPage } from './pages/SignUp'
@@ -6,8 +7,8 @@ import {MessengerAddChat} from './pages/Messenger/blocks/AddChat'
 import {MessengerChatSetting} from "./pages/Messenger/blocks/ChatSetting";
 import { SettingsPage } from "./pages/Settings";
 import { SettingPassword } from './pages/Settings/blocks/Password'
-import './scss/main.scss'
 import { MessengerChatAddUser } from './pages/Messenger/blocks/ChatSetting/components/AddUser'
+import './scss/main.scss'
 
 new Store()
 
