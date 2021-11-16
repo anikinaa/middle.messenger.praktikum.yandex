@@ -7,7 +7,7 @@ const template = new Template<ILinkProps>(_template)
 
 export class Link extends Block<ILinkProps> {
     constructor({ props, attributes, events }: ILink) {
-        const {text, href} = props
+        const { text, href } = props
 
         super({
             props: {
@@ -25,7 +25,7 @@ export class Link extends Block<ILinkProps> {
     }
 
     setProps({ href, ...props }: Partial<ILinkMainProps>) {
-        super.setProps(props);
+        super.setProps(props)
         if (href) {
             this.element?.setAttribute('href', href)
         }

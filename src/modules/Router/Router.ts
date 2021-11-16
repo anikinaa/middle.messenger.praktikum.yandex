@@ -1,42 +1,45 @@
-import {Route} from './Route'
-import {IPageClass} from './types'
+import { Route } from './Route'
+import { IPageClass } from './types'
 
-export class Router{
+export class Router {
     static __instance: Router | null = null
 
     private routes: Route[] = []
+
     private _currentRoute: Route[] = []
+
     private history: History = window.history
+
     private readonly _rootQuery: string | null = null
 
     constructor(rootQuery: string) {
         if (Router.__instance) {
-            return Router.__instance;
+            return Router.__instance
         }
-        this._rootQuery = rootQuery;
-        Router.__instance = this;
+        this._rootQuery = rootQuery
+        Router.__instance = this
     }
 
     use(block: IPageClass) {
-        const pathname: string = block.pathname;
-        const title: string = block.title;
-        const privatePage: boolean = block.privatePage;
-        const exact: boolean = block.exact;
-        const redirect: string | undefined = block.redirect;
+        const { pathname } = block
+        const { title } = block
+        const { privatePage } = block
+        const { exact } = block
+        const { redirect } = block
         const route = new Route(pathname, block, {
             rootQuery: this._rootQuery!,
             title,
             privatePage,
             exact,
-            redirect
-        });
-        this.routes!.push(route);
+            redirect,
+        })
+        this.routes!.push(route)
         return this
     }
 
     get isAuth() {
         const isAuth = localStorage.getItem('isAuth')
-        return  Boolean(isAuth && JSON.parse(isAuth))
+        return Boolean(isAuth && JSON.parse(isAuth))
     }
 
     start() {
@@ -53,32 +56,32 @@ export class Router{
         console.log(window.location.pathname)
         window.onpopstate = (event: PopStateEvent) => {
             // @ts-ignore
-            this._onRoute(event.currentTarget.location.pathname);
-        };
-        this._onRoute(window.location.pathname);
+            this._onRoute(event.currentTarget.location.pathname)
+        }
+        this._onRoute(window.location.pathname)
     }
 
     _onRoute(pathname: string) {
-        let routes = this.getRoutes(pathname);
+        const routes = this.getRoutes(pathname)
 
         if (routes.length === 0) {
             return
         }
 
-        for (let route of routes) {
+        for (const route of routes) {
             if (route.privatePage && !this.isAuth) {
                 this.go('/')
                 return
-            } else if (!route.privatePage && this.isAuth) {
+            } if (!route.privatePage && this.isAuth) {
                 this.go('/messenger')
                 return
             }
         }
 
-        const leaveRoutes = this._currentRoute.filter(r => !routes.includes(r));
-        leaveRoutes.forEach(route => route.leave() )
+        const leaveRoutes = this._currentRoute.filter((r) => !routes.includes(r))
+        leaveRoutes.forEach((route) => route.leave())
         this._currentRoute = leaveRoutes
-        routes.forEach(route => {
+        routes.forEach((route) => {
             route.render()
         })
         this._currentRoute = routes
@@ -87,20 +90,23 @@ export class Router{
     static go(pathname: string) {
         Router.__instance?.go(pathname)
     }
+
     go(pathname: string) {
-        this.history.pushState({}, "", pathname);
-        this._onRoute(pathname);
+        this.history.pushState({}, '', pathname)
+        this._onRoute(pathname)
     }
+
     back() {
         this.history.back()
     }
+
     forward() {
         this.history.forward()
     }
 
     getRoutes(pathname:string) {
-        let routes = []
-        for (let route of this.routes) {
+        const routes = []
+        for (const route of this.routes) {
             if (route.exact && route.isExact(pathname)) {
                 return [route]
             }
@@ -108,6 +114,6 @@ export class Router{
                 routes.push(route)
             }
         }
-        return routes;
+        return routes
     }
 }

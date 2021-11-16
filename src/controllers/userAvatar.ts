@@ -1,11 +1,13 @@
-import {UserApi} from "../api/user";
-import {AsyncStore, errorStateCatch, loading, Store} from "../modules";
+import { UserApi } from '../api/user'
+import {
+    AsyncStore, errorStateCatch, loading, Store,
+} from '../modules'
 
-export const userApi = new UserApi();
+export const userApi = new UserApi()
 
-export class UserAvatarController extends AsyncStore{
+export class UserAvatarController extends AsyncStore {
     constructor() {
-        super();
+        super()
     }
 
     @errorStateCatch
@@ -14,15 +16,13 @@ export class UserAvatarController extends AsyncStore{
         this.resetError()
         const formData = new FormData()
         formData.append('avatar', file)
-        const {status, response} = await userApi.avatar(formData)
+        const { status, response } = await userApi.avatar(formData)
         if (status === 200) {
             Store.setState({
-                user: JSON.parse(response)
+                user: JSON.parse(response),
             })
         } else {
             throw new Error('Ошибка, попробуйте еще раз')
         }
     }
-
-
 }

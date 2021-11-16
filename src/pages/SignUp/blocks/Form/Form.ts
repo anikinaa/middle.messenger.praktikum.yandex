@@ -1,18 +1,18 @@
-import {Form} from "../../../../blocks/Form/Form";
-import {AuthController} from "../../../../controllers/auth";
-import {Button, InputForm, Link} from "../../../../components";
-import {REGEXP} from "../../../../utils/REGEXP";
-import {IAsyncStoreState} from "../../../../modules";
-import {SignInPage} from "../../../SignIn";
-import {getFormData} from "../../../../utils/getFormData";
-import {ISignUpFormModel} from "../../../../models/signUp";
+import { Form } from '../../../../blocks/Form/Form'
+import { AuthController } from '../../../../controllers/auth'
+import { Button, InputForm, Link } from '../../../../components'
+import { REGEXP } from '../../../../utils/REGEXP'
+import { IAsyncStoreState } from '../../../../modules'
+import { SignInPage } from '../../../SignIn'
+import { getFormData } from '../../../../utils/getFormData'
+import { ISignUpFormModel } from '../../../../models/signUp'
 
-export class SignUpForm extends Form{
+export class SignUpForm extends Form {
     controller: AuthController
 
     constructor() {
         const controller = new AuthController()
-        const {isLoading, error} = controller.getState()
+        const { isLoading, error } = controller.getState()
 
         const fields = [
             new InputForm({
@@ -25,8 +25,8 @@ export class SignUpForm extends Form{
                     type: 'email',
                     name: 'email',
                     pattern: REGEXP.EMAIL.PATTERN,
-                    class: 'input-form__required'
-                }
+                    class: 'input-form__required',
+                },
             }),
             new InputForm({
                 props: {
@@ -38,7 +38,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'first_name',
                     pattern: REGEXP.NAME.PATTERN,
-                    class: 'input-form__required'
+                    class: 'input-form__required',
                 },
             }),
             new InputForm({
@@ -51,7 +51,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'second_name',
                     pattern: REGEXP.NAME.PATTERN,
-                    class: 'input-form__required'
+                    class: 'input-form__required',
                 },
             }),
             new InputForm({
@@ -64,7 +64,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'login',
                     pattern: REGEXP.LOGIN.PATTERN,
-                    class: 'input-form__required'
+                    class: 'input-form__required',
                 },
             }),
             new InputForm({
@@ -77,7 +77,7 @@ export class SignUpForm extends Form{
                     type: 'text',
                     name: 'phone',
                     pattern: REGEXP.PHONE.PATTERN,
-                    class: 'input-form__required'
+                    class: 'input-form__required',
                 },
             }),
             new InputForm({
@@ -91,7 +91,7 @@ export class SignUpForm extends Form{
                     name: 'password',
                     pattern: REGEXP.PASSWORD.PATTERN,
                     autocomplete: 'on',
-                    class: 'input-form__required'
+                    class: 'input-form__required',
                 },
             }),
             new InputForm({
@@ -105,7 +105,7 @@ export class SignUpForm extends Form{
                     name: 'repeat_password',
                     pattern: REGEXP.PASSWORD.PATTERN,
                     autocomplete: 'on',
-                    class: 'input-form__required'
+                    class: 'input-form__required',
                 },
             }),
         ]
@@ -113,12 +113,12 @@ export class SignUpForm extends Form{
         const submit = new Button({
             props: {
                 name: 'Зарегистрироваться',
-                isLoading
+                isLoading,
             },
             attributes: {
                 type: 'submit',
                 class: 'button__primary',
-            }
+            },
         })
 
         const signIn = new Link({
@@ -130,8 +130,8 @@ export class SignUpForm extends Form{
                 click: (e) => {
                     SignInPage.open()
                     e.preventDefault()
-                }
-            }
+                },
+            },
         })
 
         super({
@@ -153,12 +153,11 @@ export class SignUpForm extends Form{
         this.controller = controller
 
         this.controller.eventBus!.on(AuthController.EVENT, this.updateLocalStore.bind(this))
-
     }
 
-    updateLocalStore({isLoading, error}: IAsyncStoreState) {
-        this.props.submit.setProps({isLoading})
-        this.setProps({error})
+    updateLocalStore({ isLoading, error }: IAsyncStoreState) {
+        this.props.submit.setProps({ isLoading })
+        this.setProps({ error })
     }
 
     protected componentWillUnmount() {

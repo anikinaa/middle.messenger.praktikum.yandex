@@ -1,5 +1,5 @@
 import { Block, IBlock } from '../../modules'
-import {Button, InputForm} from '../../components'
+import { Button, InputForm } from '../../components'
 
 export interface IFormProps {
     fields: Block<any>[] | Block<any> | InputForm[];

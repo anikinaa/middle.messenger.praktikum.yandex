@@ -10,6 +10,7 @@ const template = new Template<IChats>(_template)
 
 export class Chats extends Block<IChats> {
     controller: ChatsController | undefined
+
     constructor() {
         super({
             props: {
@@ -21,7 +22,6 @@ export class Chats extends Block<IChats> {
             tagName: 'ul',
             template,
         })
-
 
         Store.addListenerForProps('chats', this.updateStore.bind(this))
         this.controller = new ChatsController()
@@ -44,13 +44,12 @@ export class Chats extends Block<IChats> {
                     time: chat.last_message.time,
                 },
                 unreadCount: chat.unread_count,
-            }
+            },
         }))
-        this.setProps({chats})
+        this.setProps({ chats })
     }
 
     componentWillUnmount() {
-
         Store.removeListenerForProps('chats', this.updateStore.bind(this))
     }
 }

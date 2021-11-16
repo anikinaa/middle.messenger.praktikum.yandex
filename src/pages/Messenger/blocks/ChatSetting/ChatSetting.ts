@@ -1,21 +1,24 @@
-import {Modal} from "../../../../blocks/Modal";
-import {MessengerPage} from "../../Messenger";
-import { Router } from "../../../../modules";
+import { Modal } from '../../../../blocks/Modal'
+import { MessengerPage } from '../../Messenger'
+import { Router } from '../../../../modules'
 import { ChatSettingUserList } from './components/UserList'
-import {Button, Link} from '../../../../components'
+import { Button, Link } from '../../../../components'
 import { MessengerChatAddUser } from './components/AddUser'
 import { ChatUsersController } from '../../../../controllers/chatUsers'
 
 export class MessengerChatSetting extends Modal {
     static exact: boolean = false
+
     static pathname: string = '/messenger/chat-setting'
+
     // static redirect: string = '/messenger'
     static title: string = 'Пользователи чата'
+
     static privatePage: boolean = true
 
     controller: ChatUsersController
-    constructor() {
 
+    constructor() {
         super({
             props: {
                 header: 'Пользователи чата',
@@ -23,47 +26,46 @@ export class MessengerChatSetting extends Modal {
                     new ChatSettingUserList(),
                     new Button({
                         props: {
-                            name: 'Добавить пользователя'
+                            name: 'Добавить пользователя',
                         },
                         attributes: {
-                            class: 'button__primary'
+                            class: 'button__primary',
                         },
                         events: {
-                            click: MessengerChatAddUser.open
-                        }
+                            click: MessengerChatAddUser.open,
+                        },
                     }),
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: MessengerPage.pathname
+                            href: MessengerPage.pathname,
                         },
                         attributes: {
-                            class: 'link__block-top'
+                            class: 'link__block-top',
                         },
                         events: {
                             click: (e) => {
                                 e.preventDefault()
                                 MessengerPage.open()
-                            }
-                        }
-                    })
-                ]
+                            },
+                        },
+                    }),
+                ],
             },
             attributes: {
-                class: 'center'
+                class: 'center',
             },
-            onClose: MessengerPage.open
+            onClose: MessengerPage.open,
         })
 
         this.controller = new ChatUsersController()
     }
 
-    static open () {
+    static open() {
         Router.go(MessengerChatSetting.pathname)
     }
 
     componentWillUnmount() {
-
         this.controller.resetUser()
     }
 }

@@ -1,4 +1,4 @@
-import {Block, IAsyncStoreState, Template} from '../../../../../../modules'
+import { Block, IAsyncStoreState, Template } from '../../../../../../modules'
 import _template from './template.tpl'
 import { IUserListItem, IUserListItemProps } from './types'
 import { Avatar, ButtonCircle } from '../../../../../../components'
@@ -9,12 +9,13 @@ import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 const template = new Template(_template)
 
 export class UserListItem extends Block<IUserListItemProps> {
-
     controller: ChatUsersController
 
     constructor({ props, attributes, events }: IUserListItem) {
         // @ts-ignore
-        const { avatar: src, display_name, second_name, first_name, id, role, login } = props
+        const {
+            avatar: src, display_name, second_name, first_name, id, role, login,
+        } = props
 
         const deleteBtn = role === 'regular' ? new ButtonCircle({
             props: {
@@ -26,10 +27,9 @@ export class UserListItem extends Block<IUserListItemProps> {
             events: {
                 click: async () => {
                     await this.controller.deleteUser(id)
-                }
-            }
+                },
+            },
         }) : undefined
-
 
         super({
             props: {
@@ -57,7 +57,7 @@ export class UserListItem extends Block<IUserListItemProps> {
         this.controller.eventBus!.on(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
     }
 
-    updateLocalStore({isLoading}: IAsyncStoreState){
+    updateLocalStore({ isLoading }: IAsyncStoreState) {
         this.element?.classList.toggle('loading', isLoading)
     }
 

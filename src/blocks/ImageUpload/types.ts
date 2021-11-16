@@ -1,6 +1,5 @@
 import { Avatar } from '../../components'
-import { ImageUploadInput } from './components/Input'
-import {IImageUploadInputProps} from "./components/Input";
+import { ImageUploadInput, IImageUploadInputProps } from './components/Input'
 
 export type IImageUpload = IImageUploadInputProps & {
     callback: (file: File) => void

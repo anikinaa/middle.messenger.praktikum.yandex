@@ -1,8 +1,4 @@
-
-interface Array<T> {
-    last: () => T | undefined;
-}
-
-Array.prototype.last = function() {
-    return this[this.length - 1];
+// eslint-disable-next-line no-extend-native
+Array.prototype.last = function last() {
+    return this[this.length - 1]
 }

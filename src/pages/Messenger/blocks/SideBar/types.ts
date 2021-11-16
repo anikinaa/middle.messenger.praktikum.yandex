@@ -1,5 +1,5 @@
 import { SideBarHeader } from './components/Header'
-import { Chats } from '../../pages/Messenger/blocks/Chats'
+import { Chats } from '../Chats'
 
 export interface ISideBarProps {
     header: SideBarHeader;

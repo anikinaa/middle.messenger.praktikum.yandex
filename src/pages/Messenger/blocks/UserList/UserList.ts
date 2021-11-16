@@ -17,41 +17,39 @@ type IUserList = {
     }
 }
 
-export class UserList extends Block<IUserListProps>{
-
-    constructor({props: {users, item = {}}}: IUserList) {
-        const {attributes, events} = item
+export class UserList extends Block<IUserListProps> {
+    constructor({ props: { users, item = {} } }: IUserList) {
+        const { attributes, events } = item
 
         super({
             props: {
-                users: users.map(user => new UserListItem({
+                users: users.map((user) => new UserListItem({
                     props: user,
                     attributes,
                     events,
                 })),
-                item
+                item,
             },
             tagName: 'ul',
             attributes: {
-                class: 'chat-users'
+                class: 'chat-users',
             },
             template,
         })
     }
 
     // @ts-ignore
-    setProps({users}: {
+    setProps({ users }: {
         users: IUser[] | IUserChat[]
     }): void {
-            const data = users as unknown as IUser[] | IUserChat[]
-            const { item: {attributes, events} = {} } = this.props
-            super.setProps({
-                users: data.map(user => new UserListItem({
-                    props: user,
-                    attributes,
-                    events
-                }))
-            });
+        const data = users as unknown as IUser[] | IUserChat[]
+        const { item: { attributes, events } = {} } = this.props
+        super.setProps({
+            users: data.map((user) => new UserListItem({
+                props: user,
+                attributes,
+                events,
+            })),
+        })
     }
-
 }

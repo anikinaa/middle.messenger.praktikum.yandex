@@ -9,10 +9,13 @@ import { UserController } from '../../../../controllers/user'
 import { getFormData } from '../../../../utils/getFormData'
 import { IUserPasswordForm } from '../../../../models/user'
 
-export class SettingPassword extends Modal{
+export class SettingPassword extends Modal {
     static exact: boolean = false
-    static pathname: string = `/settings/password`
+
+    static pathname: string = '/settings/password'
+
     static title: string = 'Смена пароля'
+
     static privatePage: boolean = true
 
     controller: UserPasswordController
@@ -20,12 +23,12 @@ export class SettingPassword extends Modal{
     constructor() {
         const submit = new Button({
             props: {
-                name: 'Применить'
+                name: 'Применить',
             },
             attributes: {
                 type: 'submit',
-                class: 'button__primary'
-            }
+                class: 'button__primary',
+            },
         })
 
         const fields = [
@@ -81,8 +84,8 @@ export class SettingPassword extends Modal{
                 click: (e) => {
                     e.preventDefault()
                     SettingsPage.open()
-                }
-            }
+                },
+            },
         })
 
         const form = new Form({
@@ -97,27 +100,27 @@ export class SettingPassword extends Modal{
                     const data = getFormData(e) as unknown as IUserPasswordForm
                     this.controller?.changePassword(data)
                     e.preventDefault()
-                }
-            }
+                },
+            },
         })
 
         super({
             props: {
                 header: 'Смена пароля',
-                body: form
+                body: form,
             },
-            onClose: SettingsPage.open
-        });
+            onClose: SettingsPage.open,
+        })
 
         this.controller = new UserPasswordController()
 
         this.controller.eventBus!.on(UserController.EVENT, this.updateLocalStore.bind(this))
     }
 
-    updateLocalStore({isLoading, error}: IAsyncStoreState) {
+    updateLocalStore({ isLoading, error }: IAsyncStoreState) {
         const form = this.props.card.props.body as Form
-        form.setProps({error})
-        form.props.submit.setProps({isLoading})
+        form.setProps({ error })
+        form.props.submit.setProps({ isLoading })
     }
 
     protected componentWillUnmount() {

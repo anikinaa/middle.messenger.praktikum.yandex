@@ -1,4 +1,4 @@
-import { ButtonCircle } from '../../components'
+import { ButtonCircle } from '../../../../components'
 import { AppBarProfile } from './components/Profile'
 import { AppBarHeader } from './components/Header'
 

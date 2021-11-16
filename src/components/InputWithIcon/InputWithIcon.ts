@@ -7,13 +7,12 @@ import _template from './template.tpl'
 const template = new Template<IInputWithIconProps>(_template)
 
 export class InputWithIcon extends Block<IInputWithIconProps> {
-    constructor({ props: {icon, value}, attributesInput, attributes }: IInputWithIcon) {
-
+    constructor({ props: { icon, value }, attributesInput, attributes }: IInputWithIcon) {
         super({
             props: {
                 input: new Input({
                     props: {
-                        value
+                        value,
                     },
                     attributes: {
                         ...attributesInput,
@@ -31,7 +30,7 @@ export class InputWithIcon extends Block<IInputWithIconProps> {
     }
 
     setProps({ value, ...props }: Partial<IInputWithIconMainProps>) {
-        super.setProps(props);
-        this.props.input.setProps({value})
+        super.setProps(props)
+        this.props.input.setProps({ value })
     }
 }

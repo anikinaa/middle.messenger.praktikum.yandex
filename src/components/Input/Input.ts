@@ -11,7 +11,7 @@ export class Input extends Block<IInputProps> {
                 ...attributes,
                 class: joinClassName(attributes, 'input'),
                 type: getDefaultType(attributes, 'text'),
-                value: props?.value || ''
+                value: props?.value || '',
             },
             events: {
                 ...events,
@@ -31,12 +31,11 @@ export class Input extends Block<IInputProps> {
                 },
             },
         })
-
     }
 
-    setProps({value, ...props}: Partial<IInputProps>) {
-        super.setProps(props);
-        this.element.setAttribute('value',value || '')
+    setProps({ value, ...props }: Partial<IInputProps>) {
+        super.setProps(props)
+        this.element.setAttribute('value', value || '')
     }
 
     validateValue(e: Event) {
@@ -54,6 +53,12 @@ export class Input extends Block<IInputProps> {
 
     private _validate() {
         this.toggleClass('input__invalid', !this.valid)
+    }
+
+    empty() {
+        this.element.blur()
+        this.element.value = ''
+        this.element.classList.remove('input__invalid')
     }
 
     get element() {

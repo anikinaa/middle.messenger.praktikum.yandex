@@ -3,7 +3,6 @@ import { getDefaultType, joinClassName } from '../../utils/elementAttr'
 import { IButtonCircle, ButtonCircleProps } from './types'
 
 export class ButtonCircle extends Block<ButtonCircleProps> {
-
     constructor(data: IButtonCircle) {
         const { props, attributes, events } = data
 
@@ -23,5 +22,4 @@ export class ButtonCircle extends Block<ButtonCircleProps> {
             this.element!.style.backgroundImage = `background-image: url(${icon})`
         }
     }
-
 }

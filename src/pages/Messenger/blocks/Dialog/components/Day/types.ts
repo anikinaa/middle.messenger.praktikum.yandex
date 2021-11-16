@@ -1,6 +1,5 @@
-import {DialogMsgBlock} from "../MsgBlock";
-import {IDayMessages} from "../../../../../../modules/Store/selectors/messages";
-
+import { DialogMsgBlock } from '../MsgBlock'
+import { IDayMessages } from '../../../../../../modules/Store/selectors/messages'
 
 export type IDialogDayProps = {
     date: string

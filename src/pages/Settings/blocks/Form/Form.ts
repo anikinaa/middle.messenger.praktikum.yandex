@@ -1,18 +1,20 @@
-import {Form} from "../../../../blocks/Form";
-import {Button, InputForm, Link} from "../../../../components";
-import {getFormData} from "../../../../utils/getFormData";
-import {REGEXP} from "../../../../utils/REGEXP";
-import {IAsyncStoreState, IStore, Store} from "../../../../modules";
-import {selectUser} from "../../../../modules/Store/selectors/user";
-import {UserController} from "../../../../controllers/user";
-import {IUserUpdate} from "../../../../models/user";
+import { Form } from '../../../../blocks/Form'
+import { Button, InputForm, Link } from '../../../../components'
+import { getFormData } from '../../../../utils/getFormData'
+import { REGEXP } from '../../../../utils/REGEXP'
+import { IAsyncStoreState, IStore, Store } from '../../../../modules'
+import { selectUser } from '../../../../modules/Store/selectors/user'
+import { UserController } from '../../../../controllers/user'
+import { IUserUpdate } from '../../../../models/user'
 import { SettingPassword } from '../Password'
 
 export class SettingForm extends Form {
     controller: UserController | undefined
 
     constructor() {
-        const {email, login, first_name, second_name, display_name, phone} = selectUser(Store.getState())
+        const {
+            email, login, first_name, second_name, display_name, phone,
+        } = selectUser(Store.getState())
 
         const fields: InputForm[] = [
             new InputForm({
@@ -120,8 +122,8 @@ export class SettingForm extends Form {
                             click: (e) => {
                                 e.preventDefault()
                                 SettingPassword.open()
-                            }
-                        }
+                            },
+                        },
                     }),
                     new Link({
                         props: {
@@ -135,8 +137,8 @@ export class SettingForm extends Form {
                             click: (e) => {
                                 e.preventDefault()
                                 this.controller?.logout()
-                            }
-                        }
+                            },
+                        },
                     }),
                 ],
             },
@@ -147,49 +149,48 @@ export class SettingForm extends Form {
                     await this.controller!.update(data)
                 },
             },
-        });
+        })
 
         Store.addListenerForProps('user', this.updateStore.bind(this))
 
         const controller = new UserController()
-        controller.eventBus!.on(UserController.EVENT, ({isLoading, error}: IAsyncStoreState) => {
-            this.props.submit.setProps({isLoading})
-            this.setProps({error})
+        controller.eventBus!.on(UserController.EVENT, ({ isLoading, error }: IAsyncStoreState) => {
+            this.props.submit.setProps({ isLoading })
+            this.setProps({ error })
         })
         controller.response()?.then()
         this.controller = controller
     }
 
-    updateStore({user}:IStore) {
+    updateStore({ user }:IStore) {
         const {
             email, login, first_name,
             second_name, display_name,
-            phone
+            phone,
         } = user!
 
         const fields = this.props.fields as InputForm[]
         fields[0].setProps({
-            value: email
+            value: email,
         })
         fields[1].setProps({
-            value:login
+            value: login,
         })
         fields[2].setProps({
-            value:first_name
+            value: first_name,
         })
         fields[3].setProps({
-            value:second_name
+            value: second_name,
         })
         fields[4].setProps({
-            value:display_name
+            value: display_name,
         })
         fields[5].setProps({
-            value:phone
+            value: phone,
         })
     }
 
     componentWillUnmount() {
-
         Store.removeListenerForProps('user', this.updateStore.bind(this))
     }
 }

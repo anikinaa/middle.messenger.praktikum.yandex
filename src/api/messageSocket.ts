@@ -1,6 +1,6 @@
-import {selectActiveIdChat, selectTokenChat} from "../modules/Store/selectors/chats";
-import {callbackType, EventBus, Store} from "../modules";
-import {selectUserId} from "../modules/Store/selectors/user";
+import { selectActiveIdChat, selectTokenChat } from '../modules/Store/selectors/chats'
+import { callbackType, EventBus, Store } from '../modules'
+import { selectUserId } from '../modules/Store/selectors/user'
 import { selectLastMessage } from '../modules/Store/selectors/messages'
 
 enum EVENTS {
@@ -14,10 +14,15 @@ enum EVENTS {
 
 export class MessageSocket {
     base: string = 'wss://ya-praktikum.tech/ws/chats'
+
     socket: WebSocket | null | undefined
+
     timeout: NodeJS.Timeout | null = null
+
     pool: number = 3000
+
     eventBus: EventBus
+
     static EVENTS = EVENTS
 
     constructor() {
@@ -54,20 +59,20 @@ export class MessageSocket {
     sendMessage(message: string) {
         this._send({
             content: message,
-            type: MessageSocket.EVENTS.message
+            type: MessageSocket.EVENTS.message,
         })
     }
 
     private _listener() {
-        this.socket!.addEventListener('message', event => {
+        this.socket!.addEventListener('message', (event) => {
             const data = JSON.parse(event.data)
-            const type = data.type
+            const { type } = data
             if (Object.values(MessageSocket.EVENTS).includes(type)) {
                 this.eventBus.emitIsExist(type, data)
             } else if (Array.isArray(data)) {
                 this.eventBus.emitIsExist(MessageSocket.EVENTS.getOld, data)
             }
-        });
+        })
     }
 
     private _send(data: any) {
@@ -78,7 +83,7 @@ export class MessageSocket {
         if (this.socket) {
             this.timeout = setTimeout(() => {
                 this._send({
-                    type: MessageSocket.EVENTS.ping
+                    type: MessageSocket.EVENTS.ping,
                 })
             }, this.pool)
         }
@@ -88,7 +93,7 @@ export class MessageSocket {
         const offset = selectLastMessage(Store.getState())
         this._send({
             content: offset.toString(),
-            type: MessageSocket.EVENTS.getOld
+            type: MessageSocket.EVENTS.getOld,
         })
     }
 
@@ -97,5 +102,4 @@ export class MessageSocket {
         this.socket?.close()
         this.socket = null
     }
-
 }

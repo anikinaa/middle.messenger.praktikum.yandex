@@ -1,7 +1,7 @@
-import {callbackType, EventBus} from "../EventBus";
-import {cloneDeep} from "../../utils/cloneDeep";
-import {memoize} from "../../utils/memoize";
-import {IStore} from "./types";
+import { callbackType, EventBus } from '../EventBus'
+import { cloneDeep } from '../../utils/cloneDeep'
+import { memoize } from '../../utils/memoize'
+import { IStore } from './types'
 
 const _initialState: IStore = {
     userId: null,
@@ -10,20 +10,25 @@ const _initialState: IStore = {
     chats: [],
     usersChat: {
         data: [],
-        allLoad: false
+        allLoad: false,
     },
     searchUsersChat: [],
     activeChat: null,
     messages: {
         data: [],
-        allLoad: false
+        allLoad: false,
     },
 }
 
+type SetState = Partial<IStore> | ((state: IStore) => Partial<IStore>)
+
 export class Store {
     static __instance: Store | null = null
+
     static EVENT: string = 'FLOW_CHANGE_STORE'
+
     state: IStore | undefined
+
     eventBus: EventBus | undefined;
 
     constructor(initialState = _initialState) {
@@ -36,20 +41,23 @@ export class Store {
         Store.__instance = this
     }
 
+    static setState(state: SetState) {
+        const newState = typeof state === 'function' ? state(Store.__instance!.state!) : state
+        Object.assign(Store.__instance!.state, newState)
+    }
+
     private _registerEvents() {
         this.eventBus!.on(Store.EVENT, (target: any, key: string) => {
             this.eventBus!.emitIsExist(key, target)
         })
     }
 
-
     proxyHandler: ProxyHandler<any> = {
         get: (target: IStore, key: keyof IStore) => {
             if (typeof target[key] === 'object' && target[key] !== null) {
                 return new Proxy(target[key], this.proxyHandler)
-            } else {
-                return target[key];
             }
+            return target[key]
         },
         set: (target, prop, val) => {
             const key = prop as string
@@ -77,20 +85,9 @@ export class Store {
         return cloneDeep(Store.__instance?.state || {})
     }
 
-    static setState(state: SetState ) {
-        if (typeof state === 'function') {
-            state = state(Store.__instance!.state!)
-        }
-        Object.assign(Store.__instance!.state, state)
-    }
-
     static makeSelector<T = any>(...callback: any) {
-        return memoize<any, (state: IStore | any) => T>(() => {
-            return (state: IStore) => callback
-                .reduce((state: unknown, fn: (...args: unknown[]) => unknown) => fn(state), state)
-        })()
+        // eslint-disable-next-line no-spaced-func, func-call-spacing
+        return memoize<any, (state: IStore | any) => T>(() => (state: IStore) => callback
+            .reduce((st: unknown, fn: (...args: unknown[]) => unknown) => fn(st), state))()
     }
-
 }
-
-type SetState = Partial<IStore> | ((state: IStore) => Partial<IStore>)

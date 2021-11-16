@@ -1,9 +1,9 @@
 import { Block, Store, Template } from '../../../../modules'
 import { IDialogProps } from './types'
 import _template from './template.tpl'
-import { MessageController } from "../../../../controllers/message";
-import { DialogDay } from "./components/Day";
-import { selectMessages } from "../../../../modules/Store/selectors/messages";
+import { MessageController } from '../../../../controllers/message'
+import { DialogDay } from './components/Day'
+import { selectMessages } from '../../../../modules/Store/selectors/messages'
 import { MessageForm } from '../MessageForm'
 import { Button } from '../../../../components'
 import { MessageSocket } from '../../../../api/messageSocket'
@@ -12,6 +12,7 @@ const template = new Template<IDialogProps>(_template)
 
 export class Dialog extends Block<IDialogProps> {
     controller: MessageController
+
     firstLoad: boolean
 
     constructor() {
@@ -27,7 +28,6 @@ export class Dialog extends Block<IDialogProps> {
             },
             template,
         })
-
 
         this.controller = controller
         this.firstLoad = true
@@ -52,9 +52,8 @@ export class Dialog extends Block<IDialogProps> {
     updateMessage() {
         this.element?.classList.remove('loading')
         const { messages, allLoad } = selectMessages(Store.getState())
-        console.log(messages, allLoad)
         this.setProps({
-            dialogs: messages.map(props => new DialogDay({ props })),
+            dialogs: messages.map((props) => new DialogDay({ props })),
             btnView: !allLoad ? new Button({
                 props: {
                     name: 'Смотреть еще...',

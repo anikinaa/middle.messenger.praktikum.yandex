@@ -1,16 +1,17 @@
-import {EventBus} from "../EventBus";
-import {cloneDeep} from "../../utils/cloneDeep";
-import {IAsyncStoreState} from "./types";
-
+import { EventBus } from '../EventBus'
+import { cloneDeep } from '../../utils/cloneDeep'
+import { IAsyncStoreState } from './types'
 
 export abstract class AsyncStore {
     static EVENT:string = 'CHANGE_STORE'
 
     eventBus: EventBus | undefined;
+
     initialState:IAsyncStoreState = {
         error: null,
-        isLoading: false
+        isLoading: false,
     }
+
     state: IAsyncStoreState
 
     protected constructor() {
@@ -44,24 +45,23 @@ export abstract class AsyncStore {
 
     protected onLoading() {
         this._setState({
-            isLoading: true
+            isLoading: true,
         })
     }
 
     protected offLoading() {
         this._setState({
-            isLoading: false
+            isLoading: false,
         })
     }
 
     protected setError(error: string) {
-        this._setState({error})
+        this._setState({ error })
     }
 
     protected resetError() {
         this._setState({
-            error: null
+            error: null,
         })
     }
-
 }

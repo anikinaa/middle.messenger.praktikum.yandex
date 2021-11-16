@@ -1,26 +1,26 @@
-import {ImageUpload} from "../../../../blocks/ImageUpload";
-import {UserAvatarController} from "../../../../controllers/userAvatar";
-import {selectUser} from "../../../../modules/Store/selectors/user";
-import {IAsyncStoreState, Store} from "../../../../modules";
-import {AuthController} from "../../../../controllers/auth";
+import { ImageUpload } from '../../../../blocks/ImageUpload'
+import { UserAvatarController } from '../../../../controllers/userAvatar'
+import { selectUser } from '../../../../modules/Store/selectors/user'
+import { IAsyncStoreState, Store } from '../../../../modules'
+import { AuthController } from '../../../../controllers/auth'
 
-export class SettingAvatar extends ImageUpload{
+export class SettingAvatar extends ImageUpload {
     controller: UserAvatarController
 
     constructor() {
-        const {avatar} = selectUser(Store.getState())
+        const { avatar } = selectUser(Store.getState())
         const controller = new UserAvatarController()
-        const {isLoading, error} = controller.getState()
+        const { isLoading, error } = controller.getState()
 
         super({
             name: 'avatar',
             value: avatar,
-            callback: async(file) => {
+            callback: async (file) => {
                 await this.controller.changeAvatar(file)
             },
             error,
-            isLoading
-        });
+            isLoading,
+        })
 
         this.controller = controller
 
@@ -29,15 +29,15 @@ export class SettingAvatar extends ImageUpload{
         this.controller.eventBus!.on(AuthController.EVENT, this.updateLocalStore.bind(this))
     }
 
-    updateStore(){
-        const {avatar} = selectUser(Store.getState())
+    updateStore() {
+        const { avatar } = selectUser(Store.getState())
         this.props.image.setProps({
-            src: avatar
+            src: avatar,
         })
     }
 
-    updateLocalStore({isLoading, error}: IAsyncStoreState){
-        this.setProps({error})
+    updateLocalStore({ isLoading, error }: IAsyncStoreState) {
+        this.setProps({ error })
         this.setLoading(isLoading)
     }
 

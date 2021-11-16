@@ -118,7 +118,7 @@ export abstract class Block<T extends object = {}> {
             return
         }
         Object.assign(this.props, nextProps)
-    };
+    }
 
     get element() {
         return this._element

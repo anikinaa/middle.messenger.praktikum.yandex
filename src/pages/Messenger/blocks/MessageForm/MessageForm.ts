@@ -1,11 +1,11 @@
 import { Block, Template } from '../../../../modules'
-import { getFormData} from '../../../../utils/getFormData'
+import { getFormData } from '../../../../utils/getFormData'
 import { Input, ButtonCircle } from '../../../../components'
 import { IMessageFormProps } from './types'
 import _template from './template.tpl'
 import iconSend from '../../../../assets/icons/send.svg'
 import { REGEXP } from '../../../../utils/REGEXP'
-import {MessageController} from "../../../../controllers/message";
+import { MessageController } from '../../../../controllers/message'
 
 const template = new Template<IMessageFormProps>(_template)
 
@@ -24,7 +24,7 @@ export class MessageForm extends Block<IMessageFormProps> {
 
         const submit = new ButtonCircle({
             props: {
-                icon: iconSend
+                icon: iconSend,
             },
             attributes: {
                 type: 'submit',
@@ -45,9 +45,9 @@ export class MessageForm extends Block<IMessageFormProps> {
             events: {
                 submit: (e) => {
                     e.preventDefault()
-                    const {message} = getFormData(e)
-                    this.controller.sendMessage(message as string)
-                    this.props.message.element.value = ''
+                    const { message: sendMessage } = getFormData(e)
+                    this.controller.sendMessage(sendMessage as string)
+                    this.props.message.empty()
                 },
             },
         })

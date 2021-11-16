@@ -1,20 +1,23 @@
 import { Modal } from '../../../../../../blocks/Modal'
 import { MessengerChatSetting } from '../../ChatSetting'
-import { IAsyncStoreState, Router, Store} from '../../../../../../modules'
-import {InputForm, Link} from '../../../../../../components'
+import { IAsyncStoreState, Router, Store } from '../../../../../../modules'
+import { InputForm, Link } from '../../../../../../components'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 import { UserList } from '../../../UserList'
 import { selectResultSearchUser } from '../../../../../../modules/Store/selectors/chatUsers'
 
-
 export class MessengerChatAddUser extends Modal {
     static exact: boolean = false
+
     static pathname: string = '/messenger/chat-setting/add-user'
+
     // static redirect: string = '/messenger'
     static title: string = 'Добавить пользователя в чат'
+
     static privatePage: boolean = true
 
     controller: ChatUsersController
+
     userList: UserList
 
     constructor() {
@@ -26,55 +29,54 @@ export class MessengerChatAddUser extends Modal {
                 body: [
                     new InputForm({
                         props: {
-                            label: "Логин прользователя"
+                            label: 'Логин прользователя',
                         },
                         attributes: {
-                            class: 'left'
+                            class: 'left',
                         },
                         events: {
                             input: async (e) => {
                                 const login = (e.target as HTMLInputElement).value
                                 await this.controller.search(login)
-                            }
-                        }
+                            },
+                        },
                     }),
                     new UserList({
                         props: {
                             users,
                             item: {
                                 attributes: {
-                                    class: 'chat-users_item__point'
+                                    class: 'chat-users_item__point',
                                 },
                                 events: {
                                     click: async (e) => {
                                         const el = e.currentTarget as HTMLElement
                                         const id = el.getAttribute('data-id')
                                         await this.controller.addUser(Number(id))
-                                    }
-                                }
-                            }
-                        }
+                                    },
+                                },
+                            },
+                        },
                     }),
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: MessengerChatSetting.pathname
+                            href: MessengerChatSetting.pathname,
                         },
                         events: {
                             click: (e) => {
                                 e.preventDefault()
                                 MessengerChatSetting.open()
-                            }
-                        }
-                    })
-                ]
+                            },
+                        },
+                    }),
+                ],
             },
             attributes: {
-                class: 'center'
+                class: 'center',
             },
-            onClose: MessengerChatSetting.open
+            onClose: MessengerChatSetting.open,
         })
-
 
         Store.addListenerForProps('searchUsersChat', this.updateStore.bind(this))
 
@@ -84,12 +86,12 @@ export class MessengerChatAddUser extends Modal {
         this.controller.eventBus!.on(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
     }
 
-    updateStore(){
+    updateStore() {
         const users = selectResultSearchUser(Store.getState())
-        this.userList.setProps({users})
+        this.userList.setProps({ users })
     }
 
-    updateLocalStore({isLoading}: IAsyncStoreState) {
+    updateLocalStore({ isLoading }: IAsyncStoreState) {
         this.userList.element?.classList.toggle('loading', isLoading)
     }
 
@@ -99,8 +101,7 @@ export class MessengerChatAddUser extends Modal {
         Store.removeListenerForProps('searchUsersChat', this.updateStore.bind(this))
     }
 
-    static open () {
+    static open() {
         Router.go(MessengerChatAddUser.pathname)
     }
-
 }

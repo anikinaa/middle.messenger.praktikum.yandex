@@ -1,5 +1,4 @@
-import {Block} from "../../../../modules";
-import {Template} from "../../../../modules";
+import { Block, Template } from '../../../../modules'
 import _template from './teimplate.tpl'
 import { IEmptyText, IEmptyTextProps } from './types'
 
@@ -10,9 +9,9 @@ export class EmptyText extends Block<IEmptyTextProps> {
         super({
             props,
             attributes: {
-                class: 'no-chat'
+                class: 'no-chat',
             },
-            template
-        });
+            template,
+        })
     }
 }

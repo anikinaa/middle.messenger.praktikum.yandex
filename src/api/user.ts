@@ -1,13 +1,13 @@
-import {HTTPTransport} from "../modules";
-import {BaseAPI} from "../modules/BaseAPI";
-import {IUserPassword, IUserUpdate} from "../models/user";
+import { HTTPTransport } from '../modules'
+import { BaseAPI } from '../modules/BaseAPI'
+import { IUserPassword, IUserUpdate } from '../models/user'
 
-const chatAPIInstance = new HTTPTransport('/user');
+const chatAPIInstance = new HTTPTransport('/user')
 
 export class UserApi extends BaseAPI {
     // @ts-ignore
     update(data: IUserUpdate) {
-        return chatAPIInstance.put<IUserUpdate>('/profile', {data})
+        return chatAPIInstance.put<IUserUpdate>('/profile', { data })
     }
 
     // @ts-ignore
@@ -15,16 +15,16 @@ export class UserApi extends BaseAPI {
         return chatAPIInstance.put<FormData>('/profile/avatar', {
             formData: true,
             data,
-            headers: {}
+            headers: {},
         })
     }
 
     // @ts-ignore
     password(data: IUserPassword) {
-        return chatAPIInstance.put<IUserPassword>('/password', {data})
+        return chatAPIInstance.put<IUserPassword>('/password', { data })
     }
 
     search(login: string) {
-        return chatAPIInstance.post<{ login: string }>('/search', {data: {login}})
+        return chatAPIInstance.post<{ login: string }>('/search', { data: { login } })
     }
 }

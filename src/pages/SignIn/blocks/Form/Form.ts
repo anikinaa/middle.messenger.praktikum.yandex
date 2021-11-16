@@ -1,17 +1,17 @@
-import {Form} from "../../../../blocks";
-import {IAsyncStoreState} from "../../../../modules";
-import {Button, InputForm, Link} from "../../../../components";
-import {SignUpPage} from "../../../SignUp";
-import {getFormData} from "../../../../utils/getFormData";
-import {AuthController} from "../../../../controllers/auth";
-import {ISignInFormModel} from "../../../../models/signIn";
+import { Form } from '../../../../blocks'
+import { IAsyncStoreState } from '../../../../modules'
+import { Button, InputForm, Link } from '../../../../components'
+import { SignUpPage } from '../../../SignUp'
+import { getFormData } from '../../../../utils/getFormData'
+import { AuthController } from '../../../../controllers/auth'
+import { ISignInFormModel } from '../../../../models/signIn'
 
-export class SignInForm extends Form{
+export class SignInForm extends Form {
     controller: AuthController
 
     constructor() {
         const controller = new AuthController()
-        const {isLoading, error} = controller.getState()
+        const { isLoading, error } = controller.getState()
 
         const fields = [
             new InputForm({
@@ -40,12 +40,12 @@ export class SignInForm extends Form{
         const submit = new Button({
             props: {
                 name: 'Войти',
-                isLoading
+                isLoading,
             },
             attributes: {
                 type: 'submit',
                 class: 'button__primary',
-            }
+            },
         })
 
         super({
@@ -63,8 +63,8 @@ export class SignInForm extends Form{
                             click: (e: Event) => {
                                 SignUpPage.open()
                                 e.preventDefault()
-                            }
-                        }
+                            },
+                        },
                     }),
                 ],
             },
@@ -75,16 +75,16 @@ export class SignInForm extends Form{
                     await this.controller.signIn(data)
                 },
             },
-        });
+        })
 
         this.controller = controller
 
         this.controller.eventBus!.on(AuthController.EVENT, this.updateLocalStore.bind(this))
     }
 
-    updateLocalStore({isLoading, error}: IAsyncStoreState) {
-        this.props.submit.setProps({isLoading})
-        this.setProps({error})
+    updateLocalStore({ isLoading, error }: IAsyncStoreState) {
+        this.props.submit.setProps({ isLoading })
+        this.setProps({ error })
     }
 
     protected componentWillUnmount() {

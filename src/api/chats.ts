@@ -1,8 +1,8 @@
-import {HTTPTransport} from "../modules";
-import {BaseAPI} from "../modules/BaseAPI";
+import { HTTPTransport } from '../modules'
+import { BaseAPI } from '../modules/BaseAPI'
 import { IChatTitle } from '../models/chat'
 
-const chatAPIInstance = new HTTPTransport('/chats');
+const chatAPIInstance = new HTTPTransport('/chats')
 
 export class ChatsApi extends BaseAPI {
     // @ts-ignore
@@ -11,12 +11,12 @@ export class ChatsApi extends BaseAPI {
         limit?: string
         title?: string
     } = {}) {
-        return chatAPIInstance.get('', {data})
+        return chatAPIInstance.get('', { data })
     }
 
     // @ts-ignore
     create(data: IChatTitle) {
-        return chatAPIInstance.post('', {data})
+        return chatAPIInstance.post('', { data })
     }
 
     users(data: {
@@ -26,22 +26,22 @@ export class ChatsApi extends BaseAPI {
         name?: string
         email?: string
     }) {
-        const {id, ...query} = data
-        return chatAPIInstance.get(`/${id}/users`, {data: query})
+        const { id, ...query } = data
+        return chatAPIInstance.get(`/${id}/users`, { data: query })
     }
 
     addUser(data: {
         users: number[]
         chatId: number
     }) {
-        return chatAPIInstance.put('/users', {data})
+        return chatAPIInstance.put('/users', { data })
     }
 
     deleteUser(data: {
         users: number[]
         chatId: number
     }) {
-        return chatAPIInstance.delete('/users', {data})
+        return chatAPIInstance.delete('/users', { data })
     }
 
     token(id: number) {

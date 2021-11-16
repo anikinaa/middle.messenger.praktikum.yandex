@@ -1,5 +1,5 @@
-@import "../../../../scss/variables";
-@import "../../../../scss/extend";
+@import "../../../../../../scss/variables";
+@import "../../../../../../scss/extend";
 
 .my-profile {
   @extend %flex-center;
@@ -27,7 +27,7 @@
     cursor: pointer;
     width: $heightHeader;
     height: $heightHeader;
-    background-image: url("../../../../assets/icons/logout.svg");
+    background-image: url("../../../../../../assets/icons/logout.svg");
     background-size: 30px;
     background-repeat: no-repeat;
     background-position: 50% 50%;

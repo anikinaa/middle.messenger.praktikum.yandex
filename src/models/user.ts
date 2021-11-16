@@ -18,7 +18,7 @@ export type IUserChat = IUser & {
     role: UserRule
 }
 
-export type IUserForm =  IUser & {
+export type IUserForm = IUser & {
     password: string
 }
 

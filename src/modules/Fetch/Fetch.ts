@@ -5,6 +5,7 @@ import { setAuthOff } from '../../utils/localStorage'
 
 export class HTTPTransport {
     api: string = 'https://ya-praktikum.tech/api/v2'
+
     baseApi: string
 
     constructor(baseApi: string) {
@@ -28,8 +29,12 @@ export class HTTPTransport {
     }
 
     private requestFabric<T>(url:string, method: METHODS_FETCH, options: IFetchMethodsOptions<T>) {
-        const { data, headers, timeout, formData } = options
-        return this.request<T>(url, { data, headers, method, formData }, timeout)
+        const {
+            data, headers, timeout, formData,
+        } = options
+        return this.request<T>(url, {
+            data, headers, method, formData,
+        }, timeout)
     }
 
     /* eslint-disable-next-line class-methods-use-this */

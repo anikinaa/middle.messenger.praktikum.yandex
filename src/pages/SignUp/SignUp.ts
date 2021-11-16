@@ -1,11 +1,14 @@
 import { Router } from '../../modules'
-import {Card} from '../../components'
-import {SignUpForm} from "./blocks/Form";
+import { Card } from '../../components'
+import { SignUpForm } from './blocks/Form'
 
-export class SignUpPage extends Card<SignUpForm> {
+export class SignUpPage extends Card {
     static exact: boolean = true
+
     static pathname: string = '/sign-up'
+
     static title: string = 'Регистрация'
+
     static privatePage: boolean = false
 
     constructor() {

@@ -1,4 +1,4 @@
-import { IUser, IUserChat, IUserForm } from "../../models/user";
+import { IUser, IUserChat, IUserForm } from '../../models/user'
 import { IChat } from '../../models/chat'
 import { IMessage } from '../../models/message'
 

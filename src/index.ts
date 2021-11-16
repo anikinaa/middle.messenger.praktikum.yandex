@@ -2,10 +2,10 @@ import './utils/array'
 import { Store, Router } from './modules'
 import { SignInPage } from './pages/SignIn'
 import { SignUpPage } from './pages/SignUp'
-import { MessengerPage } from "./pages/Messenger";
-import {MessengerAddChat} from './pages/Messenger/blocks/AddChat'
-import {MessengerChatSetting} from "./pages/Messenger/blocks/ChatSetting";
-import { SettingsPage } from "./pages/Settings";
+import { MessengerPage } from './pages/Messenger'
+import { MessengerAddChat } from './pages/Messenger/blocks/AddChat'
+import { MessengerChatSetting } from './pages/Messenger/blocks/ChatSetting'
+import { SettingsPage } from './pages/Settings'
 import { SettingPassword } from './pages/Settings/blocks/Password'
 import { MessengerChatAddUser } from './pages/Messenger/blocks/ChatSetting/components/AddUser'
 import './scss/main.scss'
@@ -14,7 +14,7 @@ new Store()
 
 document.getElementById('root')!.innerHTML = ''
 
-const router = new Router("#root");
+const router = new Router('#root')
 
 try {
     router
@@ -26,7 +26,7 @@ try {
         .use(MessengerChatAddUser)
         .use(SettingsPage)
         .use(SettingPassword)
-        .start();
+        .start()
 } catch (e) {
     console.log('catch')
     console.error(e)

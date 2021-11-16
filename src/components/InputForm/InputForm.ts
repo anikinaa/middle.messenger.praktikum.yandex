@@ -7,13 +7,15 @@ import { joinClassName } from '../../utils/elementAttr'
 const template = new Template<IInputFormProps>(_template)
 
 export class InputForm extends Block<IInputFormProps> {
-    constructor({ props, attributes, attributesInput, events }: IInputForm) {
-        const {label, requirements, value} = props
+    constructor({
+        props, attributes, attributesInput, events,
+    }: IInputForm) {
+        const { label, requirements, value } = props
         super({
             props: {
                 input: new Input({
                     props: {
-                        value
+                        value,
                     },
                     attributes: attributesInput,
                 }),
@@ -28,8 +30,8 @@ export class InputForm extends Block<IInputFormProps> {
         })
     }
 
-    setProps({value, ...props}: Partial<IInputFormMainProps>) {
-        super.setProps(props);
-        this.props.input.setProps({value})
+    setProps({ value, ...props }: Partial<IInputFormMainProps>) {
+        super.setProps(props)
+        this.props.input.setProps({ value })
     }
 }

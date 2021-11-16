@@ -7,10 +7,13 @@ import { MessengerPage } from '../../Messenger'
 import { ChatsController } from '../../../../controllers/chats'
 import { IChatTitle } from '../../../../models/chat'
 
-export class MessengerAddChat extends Modal{
+export class MessengerAddChat extends Modal {
     static exact: boolean = false
+
     static pathname: string = '/messenger/add-chat'
+
     static title: string = 'Добавление чата'
+
     static privatePage: boolean = true
 
     controller: ChatsController | undefined
@@ -18,12 +21,12 @@ export class MessengerAddChat extends Modal{
     constructor() {
         const submit = new Button({
             props: {
-                name: 'Добавить'
+                name: 'Добавить',
             },
             attributes: {
                 type: 'submit',
-                class: 'button__primary'
-            }
+                class: 'button__primary',
+            },
         })
 
         const fields = [
@@ -51,8 +54,8 @@ export class MessengerAddChat extends Modal{
                 click: (e) => {
                     e.preventDefault()
                     MessengerPage.open()
-                }
-            }
+                },
+            },
         })
 
         const form = new Form({
@@ -67,27 +70,27 @@ export class MessengerAddChat extends Modal{
                     const data = getFormData(e) as unknown as IChatTitle
                     this.controller?.addChat(data)
                     e.preventDefault()
-                }
-            }
+                },
+            },
         })
 
         super({
             props: {
                 header: 'Добавление чата',
-                body: form
+                body: form,
             },
-            onClose: MessengerPage.open
-        });
+            onClose: MessengerPage.open,
+        })
 
         this.controller = new ChatsController()
 
         this.controller.eventBus!.on(ChatsController.EVENT, this.updateLocalStore.bind(this))
     }
 
-    updateLocalStore({isLoading, error}: IAsyncStoreState) {
+    updateLocalStore({ isLoading, error }: IAsyncStoreState) {
         const form = this.props.card.props.body as Form
-        form.setProps({error})
-        form.props.submit.setProps({isLoading})
+        form.setProps({ error })
+        form.props.submit.setProps({ isLoading })
     }
 
     protected componentWillUnmount() {
@@ -97,5 +100,4 @@ export class MessengerAddChat extends Modal{
     static open() {
         Router.go(MessengerAddChat.pathname)
     }
-
 }

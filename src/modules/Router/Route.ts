@@ -1,17 +1,20 @@
 import { Block, IBlockClass } from '../Block'
 import { renderDOM } from '../../utils/renderDOM'
-import {IRouterProps} from './types'
+import { IRouterProps } from './types'
 
-export class Route{
+export class Route {
     private _pathname: string;
+
     private readonly _blockClass: IBlockClass;
+
     private _block: Block | null = null;
+
     private _props: IRouterProps | null = null;
 
     constructor(pathname: string, view: IBlockClass, props: IRouterProps) {
-        this._pathname = pathname;
-        this._blockClass = view;
-        this._props = props;
+        this._pathname = pathname
+        this._blockClass = view
+        this._props = props
     }
 
     get redirect() {
@@ -32,15 +35,15 @@ export class Route{
 
     navigate(pathname: string) {
         if (this.match(pathname)) {
-            this._pathname = pathname;
-            this.render();
+            this._pathname = pathname
+            this.render()
         }
     }
 
     leave() {
         if (this._block) {
-            this._block.leave();
-            this._block = null;
+            this._block.leave()
+            this._block = null
         }
     }
 
@@ -58,17 +61,17 @@ export class Route{
 
     render() {
         if (!this._block) {
-            this._block = new this._blockClass();
+            this._block = new this._blockClass()
             this.setTitle()
             renderDOM(this._block, this.rootQuery)
-            return;
+            return
         }
 
-        this._block.show();
+        this._block.show()
         this.setTitle()
     }
 
-    setTitle () {
+    setTitle() {
         // @ts-ignore
         document.title = this._props!.title
     }

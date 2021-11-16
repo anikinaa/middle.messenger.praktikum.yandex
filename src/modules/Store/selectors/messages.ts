@@ -1,8 +1,8 @@
-import { Store } from "../Store";
-import { IStore } from "../types";
-import { getDate, getTime } from "../../../utils/dateTime";
-import { IUserChat } from "../../../models/user";
-import { getUrlImage } from "../../../utils/urlImages";
+import { Store } from '../Store'
+import { IStore } from '../types'
+import { getDate, getTime } from '../../../utils/dateTime'
+import { IUserChat } from '../../../models/user'
+import { getUrlImage } from '../../../utils/urlImages'
 import { memoize } from '../../../utils/memoize'
 
 export type IUserMessages = {
@@ -28,12 +28,11 @@ export type ISelectMessages = {
     messages: IDayMessages[]
 }
 
-
 const getDateMemo = memoize<[Date | string], string>(getDate)
 
-const getUser = memoize<[number, IUserChat[]], IUserChat | undefined>((user_id, users) => {
-    return users.find(({ id }) => id === user_id)
-})
+const getUser = memoize<[number, IUserChat[]], IUserChat | undefined>(
+    (user_id, users) => users.find(({ id }) => id === user_id),
+)
 
 const getUserName = memoize<[number, IUserChat[]], string>((...args) => {
     const { display_name, first_name, second_name } = getUser(...args)!
@@ -69,7 +68,7 @@ export const selectMessages = Store.makeSelector<ISelectMessages>(
                         id: user_id,
                         author: getUserName(user_id, usersChat!),
                         src: getUserAvatar(user_id, usersChat!),
-                        isMy: user_id === id
+                        isMy: user_id === id,
                     },
                     messages: [],
                 }
@@ -78,20 +77,20 @@ export const selectMessages = Store.makeSelector<ISelectMessages>(
 
             lastUser.messages.push({
                 text: content,
-                time: getTime(time)
+                time: getTime(time),
             })
             return acc
         }, [] as IDayMessages[])
 
         return {
             allLoad,
-            messages: dayMessages
+            messages: dayMessages,
         }
     },
 )
 
 export const selectLastMessage = Store.makeSelector<number>(
-    ({ messages: {data} }: IStore) => {
+    ({ messages: { data } }: IStore) => {
         const last = data.last()
         return last ? last.id : 0
     },

@@ -7,4 +7,3 @@ export type ButtonCircleProps = {
 export type IButtonCircle = Omit<IBlock<ButtonCircleProps>, 'tagName' | 'template'> & {
     props: ButtonCircleProps
 };
-

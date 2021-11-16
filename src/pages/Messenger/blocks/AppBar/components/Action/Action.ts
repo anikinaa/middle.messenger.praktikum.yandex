@@ -1,10 +1,10 @@
-import {ButtonCircle} from "../../../../components";
-import iconDots from "../../../../assets/icons/dots.svg";
-import {selectActiveIdChat} from "../../../../modules/Store/selectors/chats";
-import {Store} from "../../../../modules";
-import {MessengerChatSetting} from "../../../../pages/Messenger/blocks/ChatSetting";
+import { ButtonCircle } from '../../../../../../components'
+import iconDots from '../../../../../../assets/icons/dots.svg'
+import { selectActiveIdChat } from '../../../../../../modules/Store/selectors/chats'
+import { Store } from '../../../../../../modules'
+import { MessengerChatSetting } from '../../../ChatSetting'
 
-export class AppBarAction extends ButtonCircle{
+export class AppBarAction extends ButtonCircle {
     constructor() {
         const activeId = selectActiveIdChat(Store.getState())
 
@@ -16,9 +16,9 @@ export class AppBarAction extends ButtonCircle{
                 class: `button-circle__gray ${activeId !== null ? '' : 'hidden'}`,
             },
             events: {
-                click: MessengerChatSetting.open
-            }
-        });
+                click: MessengerChatSetting.open,
+            },
+        })
 
         Store.addListenerForProps('activeChat', this.updateSore.bind(this))
     }
@@ -29,7 +29,6 @@ export class AppBarAction extends ButtonCircle{
     }
 
     componentWillUnmount() {
-
         Store.removeListenerForProps('activeChat', this.updateSore)
     }
 }

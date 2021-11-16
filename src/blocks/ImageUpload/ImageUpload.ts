@@ -1,13 +1,15 @@
-import {Block, Template} from '../../modules'
-import {Avatar} from '../../components'
-import {ImageUploadInput} from './components/Input'
-import {IImageUploadProps, IImageUpload} from './types'
+import { Block, Template } from '../../modules'
+import { Avatar } from '../../components'
+import { ImageUploadInput } from './components/Input'
+import { IImageUploadProps, IImageUpload } from './types'
 import _template from './template.tpl'
 
 const template = new Template<IImageUploadProps>(_template)
 
 export class ImageUpload extends Block<IImageUploadProps> {
-    constructor({name, value, callback, error, isLoading}: IImageUpload) {
+    constructor({
+        name, value, callback, error, isLoading,
+    }: IImageUpload) {
         const className = isLoading ? 'image-upload image-upload__loading' : 'image-upload'
         super({
             props: {
