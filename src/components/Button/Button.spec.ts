@@ -3,7 +3,10 @@ import { Button } from './Button'
 import { IButton } from './types'
 
 describe('Button - компонент кнопки', () => {
+    let cleanup: Function
+
     beforeEach(() => {
+        cleanup = require('jsdom-global')('<html><body></body></html>') as Function
     })
 
     function createBtn(options?: Partial<IButton>): Button {
@@ -69,5 +72,8 @@ describe('Button - компонент кнопки', () => {
     })
 
     after(() => {
+        window.close()
+        cleanup()
     })
+
 })
