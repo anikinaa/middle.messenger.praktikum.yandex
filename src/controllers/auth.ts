@@ -6,16 +6,12 @@ import {
 import { ISignUpFormModel, ISignUpRequestModel } from '../models/signUp'
 import { MessengerPage } from '../pages/Messenger'
 import { SignInPage } from '../pages/SignIn'
-import { errorCatch } from '../utils/errorCatch'
+import { errorCatch } from '../utils/decorators/errorCatch'
 import { setAuthOff, setAuthOn } from '../utils/localStorage'
 
 const authApi = new AuthApi()
 
 export class AuthController extends AsyncStore {
-    constructor() {
-        super()
-    }
-
     @errorStateCatch
     @loading
     async signIn(data: ISignInFormModel) {
@@ -56,6 +52,7 @@ export class AuthController extends AsyncStore {
     }
 
     @errorCatch
+    // eslint-disable-next-line class-methods-use-this
     async logout() {
         const { status } = await authApi.delete()
         if (status === 200) {

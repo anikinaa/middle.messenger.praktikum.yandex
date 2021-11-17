@@ -1,10 +1,11 @@
-import { HTTPTransport } from '../modules'
+import { Fetch } from '../modules'
 import { BaseAPI } from '../modules/BaseAPI'
 import { ISignInFormModel } from '../models/signIn'
 import { ISignUpRequestModel } from '../models/signUp'
 
-const chatAPIInstance = new HTTPTransport('/auth')
+const chatAPIInstance = new Fetch('/auth')
 
+/* eslint-disable class-methods-use-this */
 export class AuthApi extends BaseAPI {
     // @ts-ignore
     request(data: ISignInFormModel) {
@@ -24,3 +25,4 @@ export class AuthApi extends BaseAPI {
         return chatAPIInstance.post('/logout')
     }
 }
+/* eslint-enable class-methods-use-this */

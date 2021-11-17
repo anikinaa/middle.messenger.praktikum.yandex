@@ -7,11 +7,8 @@ import { IChatTitle } from '../models/chat'
 
 const chatsApi = new ChatsApi()
 
+/* eslint-disable class-methods-use-this */
 export class ChatsController extends AsyncStore {
-    constructor() {
-        super()
-    }
-
     @errorCatch
     async fetchChats() {
         const { status, response } = await chatsApi.request()
@@ -42,3 +39,4 @@ export class ChatsController extends AsyncStore {
         Store.setState({ activeChat })
     }
 }
+/* eslint-enable class-methods-use-this */

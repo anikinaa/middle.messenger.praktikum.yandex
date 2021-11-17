@@ -11,6 +11,7 @@ import { getNameImage } from '../utils/urlImages'
 const chatsApi = new ChatsApi()
 const userApi = new UserApi()
 
+/* eslint-disable class-methods-use-this */
 export class ChatUsersController extends AsyncStore {
     searchLogin: string
 
@@ -132,3 +133,4 @@ export class ChatUsersController extends AsyncStore {
         }
     }
 }
+/* eslint-enable class-methods-use-this */

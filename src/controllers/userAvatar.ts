@@ -6,12 +6,9 @@ import {
 export const userApi = new UserApi()
 
 export class UserAvatarController extends AsyncStore {
-    constructor() {
-        super()
-    }
-
     @errorStateCatch
     @loading
+    // eslint-disable-next-line class-methods-use-this
     async changeAvatar(file: File) {
         this.resetError()
         const formData = new FormData()

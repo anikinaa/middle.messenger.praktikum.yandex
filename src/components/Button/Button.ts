@@ -1,7 +1,7 @@
 import { Block, Template } from '../../modules'
 import { getDefaultType, joinClassName } from '../../utils/elementAttr'
 import { IButton, IButtonProps } from './types'
-import _template from './template.tpl'
+import _template from './template'
 
 const template = new Template(_template)
 
@@ -21,8 +21,13 @@ export class Button extends Block<IButtonProps> {
             template,
         })
 
-        this.setProps = ({ isLoading }) => {
-            this.element?.classList.toggle('button__loading', isLoading)
+        this.setProps = ({ isLoading, name }) => {
+            if (name) {
+                super.setProps({ name })
+            }
+            if (isLoading !== undefined) {
+                this.element?.classList.toggle('button__loading', isLoading)
+            }
         }
     }
 }

@@ -3,13 +3,11 @@ import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
 import { Router } from '../Router'
 import { setAuthOff } from '../../utils/localStorage'
 
-export class HTTPTransport {
-    api: string = 'https://ya-praktikum.tech/api/v2'
-
+export class Fetch {
     baseApi: string
 
-    constructor(baseApi: string) {
-        this.baseApi = `${this.api}${baseApi}`
+    constructor(baseApi: string = '', host:string = 'https://ya-praktikum.tech/api/v2') {
+        this.baseApi = `${host}${baseApi}`
     }
 
     get<T>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<XMLHttpRequest> {
@@ -70,9 +68,8 @@ export class HTTPTransport {
                 if (xhr.status === 401) {
                     setAuthOff()
                     Router.go('/')
-                } else {
-                    resolve(xhr)
                 }
+                resolve(xhr)
             }
             xhr.onabort = reject
             xhr.onerror = reject

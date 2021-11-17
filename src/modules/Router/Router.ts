@@ -37,7 +37,7 @@ export class Router {
         return this
     }
 
-    get isAuth() {
+    static get isAuth() {
         const isAuth = localStorage.getItem('isAuth')
         return Boolean(isAuth && JSON.parse(isAuth))
     }
@@ -53,7 +53,6 @@ export class Router {
                 }
             })
         }
-        console.log(window.location.pathname)
         window.onpopstate = (event: PopStateEvent) => {
             // @ts-ignore
             this._onRoute(event.currentTarget.location.pathname)
@@ -68,11 +67,12 @@ export class Router {
             return
         }
 
+        // eslint-disable-next-line no-restricted-syntax
         for (const route of routes) {
-            if (route.privatePage && !this.isAuth) {
+            if (route.privatePage && !Router.isAuth) {
                 this.go('/')
                 return
-            } if (!route.privatePage && this.isAuth) {
+            } if (!route.privatePage && Router.isAuth) {
                 this.go('/messenger')
                 return
             }
@@ -106,6 +106,8 @@ export class Router {
 
     getRoutes(pathname:string) {
         const routes = []
+
+        // eslint-disable-next-line no-restricted-syntax
         for (const route of this.routes) {
             if (route.exact && route.isExact(pathname)) {
                 return [route]

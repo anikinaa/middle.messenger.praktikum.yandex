@@ -32,13 +32,13 @@ export class Store {
     eventBus: EventBus | undefined;
 
     constructor(initialState = _initialState) {
-        if (Store.__instance) {
-            return Store.__instance
-        }
         this.state = this._makePropsProxy(initialState)
         this.eventBus = new EventBus()
         this._registerEvents()
-        Store.__instance = this
+    }
+
+    static init() {
+        Store.__instance = new Store()
     }
 
     static setState(state: SetState) {

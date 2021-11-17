@@ -1,9 +1,10 @@
-import { HTTPTransport } from '../modules'
+import { Fetch } from '../modules'
 import { BaseAPI } from '../modules/BaseAPI'
 import { IUserPassword, IUserUpdate } from '../models/user'
 
-const chatAPIInstance = new HTTPTransport('/user')
+const chatAPIInstance = new Fetch('/user')
 
+/* eslint-disable class-methods-use-this */
 export class UserApi extends BaseAPI {
     // @ts-ignore
     update(data: IUserUpdate) {
@@ -28,3 +29,4 @@ export class UserApi extends BaseAPI {
         return chatAPIInstance.post<{ login: string }>('/search', { data: { login } })
     }
 }
+/* eslint-enable class-methods-use-this */

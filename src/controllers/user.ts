@@ -9,12 +9,9 @@ const authApi = new AuthApi()
 export const userApi = new UserApi()
 
 export class UserController extends AuthController {
-    constructor() {
-        super()
-    }
-
     @errorStateCatch
     @loading
+    // eslint-disable-next-line class-methods-use-this
     async response() {
         const { status, response } = await authApi.user()
         if (status === 200) {

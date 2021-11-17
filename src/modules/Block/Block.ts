@@ -101,15 +101,18 @@ export abstract class Block<T extends object = {}> {
         Object.values(this.props).forEach((prop: Block | any) => {
             if (Array.isArray(prop)) {
                 prop.forEach((item: Block | any) => {
-                    item?.leave && item?.leave()
+                    if (item?.leave) {
+                        item?.leave()
+                    }
                 })
-            } else {
-                prop?.leave && prop?.leave()
+            } else if (prop?.leave) {
+                prop?.leave()
             }
         })
         this.componentWillUnmount()
     }
 
+    // eslint-disable-next-line class-methods-use-this
     protected componentWillUnmount() {
     }
 

@@ -23,8 +23,8 @@ export class Modal extends Block<IModalProps> {
             },
             events: {
                 click: (e) => {
-                    if (e.target === this.element) {
-                        onClose && onClose()
+                    if (e.target === this.element && onClose) {
+                        onClose()
                     }
                 },
             },

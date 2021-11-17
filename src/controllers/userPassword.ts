@@ -6,10 +6,6 @@ import { SettingsPage } from '../pages/Settings'
 export const userApi = new UserApi()
 
 export class UserPasswordController extends AsyncStore {
-    constructor() {
-        super()
-    }
-
     @errorStateCatch
     @loading
     async changePassword(data: IUserPasswordForm) {

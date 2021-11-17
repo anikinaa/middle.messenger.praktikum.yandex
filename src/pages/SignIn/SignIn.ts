@@ -2,7 +2,7 @@ import { Router } from '../../modules'
 import { Card } from '../../components'
 import { SignInForm } from './blocks/Form'
 
-export class SignInPage extends Card<SignInForm> {
+export class SignInPage extends Card {
     static exact: boolean = true
 
     static pathname: string = '/'

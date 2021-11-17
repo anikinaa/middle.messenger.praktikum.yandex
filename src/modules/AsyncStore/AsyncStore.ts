@@ -22,6 +22,7 @@ export abstract class AsyncStore {
     private _makePropsProxy = (state: any) => new Proxy(state, {
         set: (target, prop, val) => {
             const key = prop as any
+            // eslint-disable-next-line no-param-reassign
             target[key] = val
             this.eventBus!.emitIsExist(AsyncStore.EVENT, target as IAsyncStoreState)
             return true

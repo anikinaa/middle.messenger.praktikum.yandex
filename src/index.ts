@@ -10,10 +10,9 @@ import { SettingPassword } from './pages/Settings/blocks/Password'
 import { MessengerChatAddUser } from './pages/Messenger/blocks/ChatSetting/components/AddUser'
 import './scss/main.scss'
 
-new Store()
-
 document.getElementById('root')!.innerHTML = ''
 
+Store.init()
 const router = new Router('#root')
 
 try {
@@ -28,6 +27,6 @@ try {
         .use(SettingPassword)
         .start()
 } catch (e) {
-    console.log('catch')
+    // eslint-disable-next-line no-console
     console.error(e)
 }

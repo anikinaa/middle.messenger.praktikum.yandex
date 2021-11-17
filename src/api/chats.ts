@@ -1,9 +1,10 @@
-import { HTTPTransport } from '../modules'
+import { Fetch } from '../modules'
 import { BaseAPI } from '../modules/BaseAPI'
 import { IChatTitle } from '../models/chat'
 
-const chatAPIInstance = new HTTPTransport('/chats')
+const chatAPIInstance = new Fetch('/chats')
 
+/* eslint-disable class-methods-use-this */
 export class ChatsApi extends BaseAPI {
     // @ts-ignore
     request(data: {
@@ -48,3 +49,4 @@ export class ChatsApi extends BaseAPI {
         return chatAPIInstance.post(`/token/${id}`)
     }
 }
+/* eslint-enable class-methods-use-this */

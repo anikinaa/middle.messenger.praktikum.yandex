@@ -10,10 +10,6 @@ const chatsApi = new ChatsApi()
 export class MessageController extends ChatUsersController {
     socket: MessageSocket | undefined
 
-    constructor() {
-        super()
-    }
-
     async active() {
         const id = selectActiveIdChat(Store.getState()) as number
         const { status, response } = await chatsApi.token(id)
@@ -25,8 +21,8 @@ export class MessageController extends ChatUsersController {
             await this.socket.init()
             this.socket.getOld()
 
-            this.addListener(MessageSocket.EVENTS.message, this.newMessage.bind(this))
-            this.addListener(MessageSocket.EVENTS.getOld, this.oldMessages.bind(this))
+            this.addListener(MessageSocket.EVENTS.message, MessageController._newMessage)
+            this.addListener(MessageSocket.EVENTS.getOld, MessageController._oldMessages)
         } else {
             throw new Error('Ошибка, попробуйте еще раз')
         }
@@ -48,7 +44,7 @@ export class MessageController extends ChatUsersController {
         this.socket?.removeEvents(key, callback)
     }
 
-    newMessage(newMessage: IMessage) {
+    private static _newMessage(newMessage: IMessage) {
         Store.setState(({ messages: { data, allLoad } }) => ({
             messages: {
                 data: [newMessage, ...data],
@@ -57,7 +53,7 @@ export class MessageController extends ChatUsersController {
         }))
     }
 
-    oldMessages(oldMessages: IMessage[]) {
+    private static _oldMessages(oldMessages: IMessage[]) {
         Store.setState(({ messages: { data } }) => ({
             messages: {
                 data: [...data, ...oldMessages],
@@ -67,8 +63,8 @@ export class MessageController extends ChatUsersController {
     }
 
     closeSocket() {
-        this.removeListener(MessageSocket.EVENTS.message, this.newMessage.bind(this))
-        this.removeListener(MessageSocket.EVENTS.getOld, this.oldMessages.bind(this))
+        this.removeListener(MessageSocket.EVENTS.message, MessageController._newMessage)
+        this.removeListener(MessageSocket.EVENTS.getOld, MessageController._oldMessages)
         this.socket?.close()
     }
 }

@@ -17,7 +17,7 @@ export class MessageSocket {
 
     socket: WebSocket | null | undefined
 
-    timeout: NodeJS.Timeout | null = null
+    timeout: ReturnType<typeof setTimeout> | null = null
 
     pool: number = 3000
 
