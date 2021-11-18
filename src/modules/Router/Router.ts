@@ -12,7 +12,7 @@ export class Router {
 
     private readonly _rootQuery: string | null = null
 
-    constructor(rootQuery: string) {
+    constructor(rootQuery: string = 'body') {
         if (Router.__instance) {
             return Router.__instance
         }

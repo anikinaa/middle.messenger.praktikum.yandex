@@ -94,6 +94,7 @@ describe('Fetch - работа с запросами', () => {
     // })
 
     after(() => {
+        Router.__instance = null
         window.close()
         cleanup()
     })
