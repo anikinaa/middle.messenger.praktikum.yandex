@@ -16,6 +16,7 @@ export class Input extends Block<IInputProps> {
             events: {
                 ...events,
                 input: (e) => {
+                    this._sanitize(e)
                     if (this.element.classList.contains('input__invalid')) {
                         this.validateValue(e)
                     }
@@ -33,6 +34,18 @@ export class Input extends Block<IInputProps> {
                 },
             },
         })
+    }
+
+    private _sanitize(e: Event) {
+        const { value } = e.target as HTMLInputElement
+        const map: Record<string, string> = {
+            '&': '',
+            '<': '«',
+            '>': '»',
+            '/': '',
+        }
+        const reg = /[&<>/]/ig
+        this.element.value = value.replace(reg, (match) => (map[match]))
     }
 
     setProps({ value, ...props }: Partial<IInputProps>) {

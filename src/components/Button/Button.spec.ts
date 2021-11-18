@@ -75,5 +75,4 @@ describe('Button - компонент кнопки', () => {
         window.close()
         cleanup()
     })
-
 })

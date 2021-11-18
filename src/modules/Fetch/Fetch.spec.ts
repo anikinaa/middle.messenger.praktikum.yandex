@@ -75,23 +75,23 @@ describe('Fetch - работа с запросами', () => {
         server.remove()
     })
 
-    // it('timeout', async () => {
-    //     const server = MockXMLHttpRequest.newServer({
-    //         get: ['/url', {
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: '{ "message": "Success!" }',
-    //         }],
-    //     }).install()
-    //
-    //     const fetch = new Fetch('', '')
-    //     try {
-    //         await fetch.get('/')
-    //     } catch ({ type }) {
-    //         expect(type).to.equal('timeout')
-    //     } finally {
-    //         server.remove()
-    //     }
-    // })
+    it('timeout', async () => {
+        const server = MockXMLHttpRequest.newServer({
+            get: ['/url', {
+                headers: { 'Content-Type': 'application/json' },
+                body: '{ "message": "Success!" }',
+            }],
+        }).install()
+
+        const fetch = new Fetch('', '')
+        try {
+            await fetch.get('/')
+        } catch ({ type }) {
+            expect(type).to.equal('timeout')
+        } finally {
+            server.remove()
+        }
+    })
 
     after(() => {
         Router.__instance = null
