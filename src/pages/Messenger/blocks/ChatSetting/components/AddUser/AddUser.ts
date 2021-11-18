@@ -11,7 +11,8 @@ export class MessengerChatAddUser extends Modal {
 
     static pathname: string = '/messenger/chat-setting/add-user'
 
-    // static redirect: string = '/messenger'
+    static redirect: string = '/messenger'
+
     static title: string = 'Добавить пользователя в чат'
 
     static privatePage: boolean = true

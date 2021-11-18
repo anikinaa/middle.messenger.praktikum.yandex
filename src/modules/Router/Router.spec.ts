@@ -69,16 +69,12 @@ function firePopstateOnRoute(window: any): void {
     history._length = 1
     history._stack = [window.location.pathname]
     Object.defineProperty(history, 'length', {
-        // only returns odd die sides
         get() {
             return this._length
         },
         set() {
         },
     });
-
-    // @ts-ignore
-    // (history as unknown as {__proto__: History})['__proto__'].length = () => 0;
 
     (history as unknown as { __proto__: History }).__proto__.pushState = function patchedBack(this: History, ...args: Parameters<History['back']>): void {
         originalPushState.apply(this, args)
