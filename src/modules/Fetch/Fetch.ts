@@ -2,7 +2,6 @@ import { queryStringify } from './utils'
 import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
 import { Router } from '../Router'
 import { setAuthOff } from '../../utils/localStorage'
-import { PlainObject } from '../../utils/cloneDeep'
 
 export class Fetch {
     baseApi: string
@@ -76,8 +75,6 @@ export class Fetch {
             xhr.onerror = reject
             xhr.ontimeout = reject
 
-            this._sanitizeData(data as PlainObject)
-
             if (method === METHODS_FETCH.GET || !data) {
                 xhr.send()
             } else if (formData) {
@@ -86,26 +83,5 @@ export class Fetch {
                 xhr.send(JSON.stringify(data))
             }
         })
-    }
-
-    private _sanitizeData(obj: PlainObject = {}) {
-        Object.entries(obj).forEach(([key, val]: [string, any]) => {
-            if (typeof val === 'string') {
-                obj[key] = this._sanitizeStr(val)
-            }
-        })
-    }
-
-    private _sanitizeStr(string:string) {
-        const map: Record<string, string> = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#x27;',
-            '/': '&#x2F;',
-        }
-        const reg = /[&<>"'/]/ig
-        return string.replace(reg, (match) => (map[match]))
     }
 }

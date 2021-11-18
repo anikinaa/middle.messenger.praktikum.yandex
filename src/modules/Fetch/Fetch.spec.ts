@@ -7,6 +7,7 @@ describe('Fetch - работа с запросами', () => {
     let cleanup: Function
 
     beforeEach(() => {
+        // eslint-disable-next-line global-require
         cleanup = require('jsdom-global')('<html><body></body></html>', {
             url: 'http://localhost/page',
         }) as Function
@@ -59,6 +60,7 @@ describe('Fetch - работа с запросами', () => {
     })
 
     it('401 redirect', async () => {
+        // eslint-disable-next-line no-new
         new Router('')
 
         const server = MockXMLHttpRequest.newServer({
@@ -93,7 +95,7 @@ describe('Fetch - работа с запросами', () => {
         }
     })
 
-    after(() => {
+    afterEach(() => {
         Router.__instance = null
         window.close()
         cleanup()

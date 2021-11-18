@@ -13,6 +13,7 @@ describe('Template - шаблонизатор', () => {
     }
 
     beforeEach(() => {
+        // eslint-disable-next-line global-require
         cleanup = require('jsdom-global')('<html><body></body></html>') as Function
     })
 
@@ -61,7 +62,7 @@ describe('Template - шаблонизатор', () => {
         expect(html).to.equal('<div></div>')
     })
 
-    after(() => {
+    afterEach(() => {
         window.close()
         cleanup()
     })

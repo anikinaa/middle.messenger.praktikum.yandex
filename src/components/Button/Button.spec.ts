@@ -6,6 +6,7 @@ describe('Button - компонент кнопки', () => {
     let cleanup: Function
 
     beforeEach(() => {
+        // eslint-disable-next-line global-require
         cleanup = require('jsdom-global')('<html><body></body></html>') as Function
     })
 
@@ -71,7 +72,7 @@ describe('Button - компонент кнопки', () => {
         expect(click).to.equal(true)
     })
 
-    after(() => {
+    afterEach(() => {
         window.close()
         cleanup()
     })

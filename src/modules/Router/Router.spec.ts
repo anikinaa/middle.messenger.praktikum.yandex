@@ -3,7 +3,7 @@ import { JSDOM } from 'jsdom'
 import { Router } from './Router'
 import { Block } from '../Block'
 
-/* eslint max-classes-per-file: 0 */
+/* eslint-disable */
 class PageStart extends Block {
     static exact: boolean = true
 
@@ -14,7 +14,7 @@ class PageStart extends Block {
     static privatePage: boolean = false
 
     constructor() {
-        super();
+        super()
     }
 
     static open() {
@@ -32,7 +32,7 @@ class Page1 extends Block {
     static privatePage: boolean = false
 
     constructor() {
-        super();
+        super()
     }
 
     static open() {
@@ -50,15 +50,16 @@ class Page2 extends Block {
     static privatePage: boolean = false
 
     constructor() {
-        super();
+        super()
     }
 
     static open() {
         Router.go(Page1.pathname)
     }
 }
-/* eslint max-classes-per-file: 2 */
+/* eslint-enable */
 
+/* eslint-disable */
 function firePopstateOnRoute(window: any): void {
     const { history } = window
     const originalBack = history.back
@@ -127,6 +128,7 @@ function firePopstateOnRoute(window: any): void {
         window.dispatchEvent(event)
     }
 }
+/* eslint-enable */
 
 describe('Router', () => {
     let router: Router
@@ -215,7 +217,7 @@ describe('Router', () => {
         })
     })
 
-    after(() => {
+    afterEach(() => {
         window.close()
     })
 })
