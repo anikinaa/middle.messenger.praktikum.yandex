@@ -1,6 +1,8 @@
 import { Fetch } from '../modules'
 import { BaseAPI } from '../modules/BaseAPI'
-import { IUserPassword, IUserUpdate } from '../models/user'
+import {
+    IRequestUserSearch, IUser, IUserPassword, IUserUpdate,
+} from '../models/user'
 
 const chatAPIInstance = new Fetch('/user')
 
@@ -8,12 +10,12 @@ const chatAPIInstance = new Fetch('/user')
 export class UserApi extends BaseAPI {
     // @ts-ignore
     update(data: IUserUpdate) {
-        return chatAPIInstance.put<IUserUpdate>('/profile', { data })
+        return chatAPIInstance.put<IUserUpdate, IUser>('/profile', { data })
     }
 
     // @ts-ignore
     avatar(data: FormData) {
-        return chatAPIInstance.put<FormData>('/profile/avatar', {
+        return chatAPIInstance.put<FormData, IUser>('/profile/avatar', {
             formData: true,
             data,
         })
@@ -24,8 +26,8 @@ export class UserApi extends BaseAPI {
         return chatAPIInstance.put<IUserPassword>('/password', { data })
     }
 
-    search(data: { login: string }) {
-        return chatAPIInstance.post<{ login: string }>('/search', { data })
+    search(data: IRequestUserSearch) {
+        return chatAPIInstance.post<IRequestUserSearch, IUser[]>('/search', { data })
     }
 }
 /* eslint-enable class-methods-use-this */

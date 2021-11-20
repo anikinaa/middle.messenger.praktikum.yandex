@@ -79,6 +79,10 @@ export class Dialog extends Block<IDialogProps> {
                 data: [],
                 allLoad: false,
             },
+            usersChat: {
+                data: [],
+                allLoad: false,
+            },
         })
     }
 }

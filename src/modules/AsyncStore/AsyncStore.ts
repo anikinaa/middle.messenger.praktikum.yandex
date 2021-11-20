@@ -1,6 +1,7 @@
 import { EventBus } from '../EventBus'
 import { cloneDeep } from '../../utils/cloneDeep'
 import { IAsyncStoreState } from './types'
+import { isPlainObject } from '../../utils/isPlainObject'
 
 export abstract class AsyncStore {
     static EVENT:string = 'CHANGE_STORE'
@@ -56,8 +57,20 @@ export abstract class AsyncStore {
         })
     }
 
-    protected setError(error: string) {
-        this._setState({ error })
+    protected setError(error: unknown | string) {
+        let errorMsg
+
+        if (typeof error === 'string') {
+            errorMsg = error
+        } else if (isPlainObject(error) && error.reason) {
+            errorMsg = error.reason as string
+        } else {
+            errorMsg = 'Ошибка! попробуйте еще раз'
+        }
+
+        this._setState({
+            error: errorMsg,
+        })
     }
 
     protected resetError() {

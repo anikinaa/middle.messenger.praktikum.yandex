@@ -1,5 +1,5 @@
 import { selectActiveIdChat } from '../modules/Store/selectors/chats'
-import { callbackType, Store } from '../modules'
+import { callbackType, errorCatch, Store } from '../modules'
 import { MessageSocket } from '../api/messageSocket'
 import { ChatsApi } from '../api/chats'
 import { IMessage } from '../models/message'
@@ -10,22 +10,18 @@ const chatsApi = new ChatsApi()
 export class MessageController extends ChatUsersController {
     socket: MessageSocket | undefined
 
+    @errorCatch
     async active() {
         const id = selectActiveIdChat(Store.getState()) as number
-        const { status, response } = await chatsApi.token(id)
+        const { token } = await chatsApi.token(id)
         await this.fetchUsers()
-        if (status === 200) {
-            const { token } = JSON.parse(response)
-            Store.setState({ token })
-            this.socket = new MessageSocket()
-            await this.socket.init()
-            this.socket.getOld()
+        Store.setState({ token })
+        this.socket = new MessageSocket()
+        await this.socket.init()
+        this.socket.getOld()
 
-            this.addListener(MessageSocket.EVENTS.message, MessageController._newMessage)
-            this.addListener(MessageSocket.EVENTS.getOld, MessageController._oldMessages)
-        } else {
-            throw new Error('Ошибка, попробуйте еще раз')
-        }
+        this.addListener(MessageSocket.EVENTS.message, MessageController._newMessage)
+        this.addListener(MessageSocket.EVENTS.getOld, MessageController._oldMessages)
     }
 
     loadMore() {

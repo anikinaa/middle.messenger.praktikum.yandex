@@ -5,3 +5,7 @@ export type ISignUpFormModel = Omit<IUserForm, 'id' | 'avatar'> & {
 }
 
 export type ISignUpRequestModel = Omit<IUserForm, 'id' | 'avatar'>
+
+export type ISignUpResponseModel = {
+    id: number
+}

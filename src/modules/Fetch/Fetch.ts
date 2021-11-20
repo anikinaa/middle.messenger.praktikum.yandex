@@ -10,37 +10,38 @@ export class Fetch {
         this.baseApi = `${host}${baseApi}`
     }
 
-    get<T>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric<T>(url, METHODS_FETCH.GET, options)
+    get<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.GET, options)
     }
 
-    post<T>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric<T>(url, METHODS_FETCH.POST, options)
+    post<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.POST, options)
     }
 
-    put<T>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric<T>(url, METHODS_FETCH.PUT, options)
+    put<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.PUT, options)
     }
 
-    delete<T>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric<T>(url, METHODS_FETCH.DELETE, options)
+    delete<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.DELETE, options)
     }
 
-    private requestFabric<T>(url:string, method: METHODS_FETCH, options: IFetchMethodsOptions<T>) {
+    private requestFabric<T, U>(url:string, method: METHODS_FETCH,
+        options: IFetchMethodsOptions<T>) {
         const {
             data, headers, timeout, formData,
         } = options
-        return this.request<T>(url, {
+        return this.request<T, U>(url, {
             data, headers, method, formData,
         }, timeout)
     }
 
     /* eslint-disable-next-line class-methods-use-this */
-    private request<T>(
+    private request<T, U>(
         url: string,
         options: IFetchOptions<T>,
         timeout = 5000,
-    ): Promise<XMLHttpRequest> {
+    ): Promise<U> {
         const {
             method,
             data,
@@ -67,11 +68,24 @@ export class Fetch {
             }
 
             xhr.onload = () => {
-                if (xhr.status === 401) {
-                    setAuthOff()
-                    Router.go('/')
+                const { response, status } = xhr
+
+                let responseData
+                try {
+                    responseData = JSON.parse(response)
+                } catch (err) {
+                    responseData = response
                 }
-                resolve(xhr)
+
+                if (status === 200) {
+                    resolve(responseData)
+                } else {
+                    if (status === 401) {
+                        setAuthOff()
+                        Router.go('/')
+                    }
+                    reject(responseData)
+                }
             }
             xhr.onabort = reject
             xhr.onerror = reject

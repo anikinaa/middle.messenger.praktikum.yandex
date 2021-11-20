@@ -11,32 +11,21 @@ const chatsApi = new ChatsApi()
 export class ChatsController extends AsyncStore {
     @errorCatch
     async fetchChats() {
-        const { status, response } = await chatsApi.request()
-        if (status === 200) {
-            Store.setState({
-                chats: JSON.parse(response),
-            })
-        } else {
-            throw new Error('Ошибка, попробуйте еще раз')
-        }
+        const chats = await chatsApi.request()
+        Store.setState({ chats })
     }
 
     @errorStateCatch
     @loading
     async addChat(data: IChatTitle) {
-        this.resetError()
-        const { status, response } = await chatsApi.create(data)
-        if (status === 200) {
-            MessengerPage.open()
-            await this.fetchChats()
-        } else {
-            const { reason } = JSON.parse(response)
-            this.setError(reason)
-        }
+        await chatsApi.create(data)
+        MessengerPage.open()
+        await this.fetchChats()
     }
 
     select(activeChat: number) {
         Store.setState({ activeChat })
     }
 }
+
 /* eslint-enable class-methods-use-this */

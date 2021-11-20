@@ -1,7 +1,11 @@
 import { Fetch } from '../modules'
 import { BaseAPI } from '../modules/BaseAPI'
 import { ISignInFormModel } from '../models/signIn'
-import { ISignUpRequestModel } from '../models/signUp'
+import {
+    ISignUpRequestModel,
+    ISignUpResponseModel,
+} from '../models/signUp'
+import { IUser } from '../models/user'
 
 const chatAPIInstance = new Fetch('/auth')
 
@@ -14,11 +18,11 @@ export class AuthApi extends BaseAPI {
 
     // @ts-ignore
     create(data: ISignUpRequestModel) {
-        return chatAPIInstance.post('/signup', { data })
+        return chatAPIInstance.post<ISignUpRequestModel, ISignUpResponseModel>('/signup', { data })
     }
 
     user() {
-        return chatAPIInstance.get('/user')
+        return chatAPIInstance.get<undefined, IUser>('/user')
     }
 
     delete() {

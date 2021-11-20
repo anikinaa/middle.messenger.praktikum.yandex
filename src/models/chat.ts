@@ -1,5 +1,11 @@
 import { IUser } from './user'
 
+export type IChatRequest = {
+    offset?: string
+    limit?: string
+    title?: string
+}
+
 export type IChat = {
     id: number
     title: string

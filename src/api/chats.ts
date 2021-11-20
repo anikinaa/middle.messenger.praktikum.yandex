@@ -1,52 +1,38 @@
 import { Fetch } from '../modules'
 import { BaseAPI } from '../modules/BaseAPI'
-import { IChatTitle } from '../models/chat'
+import { IChat, IChatRequest, IChatTitle } from '../models/chat'
+import { IRequestAddDelUser, IRequestUsersChat, IUserChat } from '../models/user'
 
 const chatAPIInstance = new Fetch('/chats')
 
 /* eslint-disable class-methods-use-this */
 export class ChatsApi extends BaseAPI {
     // @ts-ignore
-    request(data: {
-        offset?: string
-        limit?: string
-        title?: string
-    } = {}) {
-        return chatAPIInstance.get('', { data })
+    request(data: IChatRequest = {}) {
+        return chatAPIInstance.get<IChatRequest, IChat[]>('', { data })
     }
 
     // @ts-ignore
     create(data: IChatTitle) {
-        return chatAPIInstance.post('', { data })
+        return chatAPIInstance.post<IChatTitle>('', { data })
     }
 
-    users(data: {
-        id: number
-        offset?: number
-        limit?: number
-        name?: string
-        email?: string
-    }) {
+    usersChat(data: IRequestUsersChat) {
         const { id, ...query } = data
-        return chatAPIInstance.get(`/${id}/users`, { data: query })
+        return chatAPIInstance.get<Omit<IRequestUsersChat, 'id'>, IUserChat[]>(`/${id}/users`, { data: query })
     }
 
-    addUser(data: {
-        users: number[]
-        chatId: number
-    }) {
-        return chatAPIInstance.put('/users', { data })
+    addUser(data: IRequestAddDelUser) {
+        return chatAPIInstance.put<IRequestAddDelUser>('/users', { data })
     }
 
-    deleteUser(data: {
-        users: number[]
-        chatId: number
-    }) {
-        return chatAPIInstance.delete('/users', { data })
+    deleteUser(data: IRequestAddDelUser) {
+        return chatAPIInstance.delete<IRequestAddDelUser>('/users', { data })
     }
 
     token(id: number) {
-        return chatAPIInstance.post(`/token/${id}`)
+        return chatAPIInstance.post<undefined, {token: string}>(`/token/${id}`)
     }
 }
+
 /* eslint-enable class-methods-use-this */

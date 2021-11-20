@@ -1,3 +1,20 @@
+export type IRequestUsersChat = {
+    id: number
+    offset?: number
+    limit?: number
+    name?: string
+    email?: string
+}
+
+export type IRequestAddDelUser = {
+    users: number[]
+    chatId: number
+}
+
+export type IRequestUserSearch = {
+    login: string
+}
+
 export type IUser = {
     id: number
     login: string

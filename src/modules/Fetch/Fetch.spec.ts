@@ -13,81 +13,80 @@ describe('Fetch - работа с запросами', () => {
         }) as Function
     })
 
-    async function createFetch(method: 'get' | 'post' | 'put' | 'delete', statusServer = 200) {
-        const server = MockXMLHttpRequest.newServer({
+    function createServer(method: 'get' | 'post' | 'put' | 'delete', statusResponse = 200) {
+        return MockXMLHttpRequest.newServer({
             [method]: ['/url', {
-                status: statusServer,
+                status: statusResponse,
                 headers: { 'Content-Type': 'application/json' },
                 body: '{ "message": "Success!" }',
             }],
         }).install()
+    }
 
+    async function createServerFetch(method: 'get' | 'post' | 'put' | 'delete', statusResponse = 200) {
+        const server = createServer(method, statusResponse)
         const fetch = new Fetch('', '')
-        const xhr = await fetch[method]('/url')
-        const { status } = xhr
-        const { message } = JSON.parse(xhr.response)
-        return { message, server, status }
+        const { message } = await fetch[method]('/url')
+        return { message, server }
     }
 
     it('GET', async () => {
-        const { message, server } = await createFetch('get')
+        const { message, server } = await createServerFetch('get')
         expect(message).to.equal('Success!')
         server.remove()
     })
 
     it('POST', async () => {
-        const { message, server } = await createFetch('post')
+        const { message, server } = await createServerFetch('post')
         expect(message).to.equal('Success!')
         server.remove()
     })
 
     it('PUT', async () => {
-        const { message, server } = await createFetch('put')
+        const { message, server } = await createServerFetch('put')
         expect(message).to.equal('Success!')
         server.remove()
     })
 
     it('DELETE', async () => {
-        const { message, server } = await createFetch('delete')
+        const { message, server } = await createServerFetch('delete')
         expect(message).to.equal('Success!')
         server.remove()
     })
 
-    it('xhr status', async () => {
-        const { status, server } = await createFetch('get', 404)
-        expect(status).to.equal(404)
-        server.remove()
+    it('xhr error', async () => {
+        const server = await createServer('get', 404)
+        try {
+            await new Fetch('', '').get('/url')
+            expect(false).to.equal(true)
+        } catch (e) {
+            expect(true).to.equal(true)
+        } finally {
+            server.remove()
+        }
     })
 
     it('401 redirect', async () => {
         // eslint-disable-next-line no-new
         new Router('')
-
-        const server = MockXMLHttpRequest.newServer({
-            get: ['/auth', {
-                status: 401,
-                headers: { 'Content-Type': 'application/json' },
-                body: '{ "message": "Success!" }',
-            }],
-        }).install()
-
-        const fetch = new Fetch('', '')
-        await fetch.get('/auth')
-        expect(window.location.pathname).to.equal('/')
-        server.remove()
+        const server = createServer('get', 401)
+        try {
+            await new Fetch('', '').get('/url')
+            expect(window.location.pathname).to.equal('/')
+        } catch (e) {
+            expect(window.location.pathname).to.equal('/')
+        } finally {
+            server.remove()
+        }
     })
 
     it('timeout', async () => {
-        const server = MockXMLHttpRequest.newServer({
-            get: ['/url', {
-                headers: { 'Content-Type': 'application/json' },
-                body: '{ "message": "Success!" }',
-            }],
-        }).install()
+        const server = createServer('get')
 
         const fetch = new Fetch('', '')
         try {
             await fetch.get('/')
+            expect('success').to.equal('timeout')
         } catch ({ type }) {
             expect(type).to.equal('timeout')
         } finally {

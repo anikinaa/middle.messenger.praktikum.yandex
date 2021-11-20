@@ -10,16 +10,9 @@ export class UserAvatarController extends AsyncStore {
     @loading
     // eslint-disable-next-line class-methods-use-this
     async changeAvatar(file: File) {
-        this.resetError()
         const formData = new FormData()
         formData.append('avatar', file)
-        const { status, response } = await userApi.avatar(formData)
-        if (status === 200) {
-            Store.setState({
-                user: JSON.parse(response),
-            })
-        } else {
-            throw new Error('Ошибка, попробуйте еще раз')
-        }
+        const user = await userApi.avatar(formData)
+        Store.setState({ user })
     }
 }

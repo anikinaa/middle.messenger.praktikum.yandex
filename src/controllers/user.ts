@@ -13,29 +13,16 @@ export class UserController extends AuthController {
     @loading
     // eslint-disable-next-line class-methods-use-this
     async response() {
-        const { status, response } = await authApi.user()
-        if (status === 200) {
-            Store.setState({
-                user: JSON.parse(response),
-            })
-        } else {
-            throw new Error('Ошибка, попробуйте еще раз')
-        }
+        const user = await authApi.user()
+        Store.setState({ user })
     }
 
     @errorStateCatch
     @loading
+    // eslint-disable-next-line class-methods-use-this
     async update(data: IUserUpdate) {
-        this.resetError()
-        const { status, response } = await userApi.update(data)
-        if (status === 200) {
-            Store.setState({
-                user: JSON.parse(response),
-            })
-            MessengerPage.open()
-        } else {
-            const { reason } = JSON.parse(response)
-            this.setError(reason)
-        }
+        const user = await userApi.update(data)
+        Store.setState({ user })
+        MessengerPage.open()
     }
 }
