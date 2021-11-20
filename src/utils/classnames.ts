@@ -1,3 +1,6 @@
-export function classNames(baseClass: string, data: Record<string, boolean | undefined | null>): string {
-    return Object.entries(data).reduce((acc, [className, flag]) => flag ? `${acc} ${className}` : acc, baseClass)
+type ICondition = Record<string, boolean | undefined | null>
+
+export function classNames(baseClass: string, condition: ICondition): string {
+    return Object.entries(condition)
+        .reduce((acc, [className, flag]) => (flag ? `${acc} ${className}` : acc), baseClass)
 }

@@ -1,4 +1,3 @@
-import './utils/array'
 import { Store, Router } from './modules'
 import { SignInPage } from './pages/SignIn'
 import { SignUpPage } from './pages/SignUp'

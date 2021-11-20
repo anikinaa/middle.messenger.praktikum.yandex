@@ -4,7 +4,7 @@ import {
 import { EmptyText } from './blocks/EmptyText'
 
 export type IMessengerPageProps = {
-    abbBar: AppBar;
-    sideBar: SideBar;
-    dialog: Dialog | EmptyText;
+    abbBar: AppBar
+    sideBar: SideBar
+    dialog: Dialog | EmptyText
 };

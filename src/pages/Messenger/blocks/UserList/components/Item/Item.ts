@@ -17,8 +17,6 @@ export class UserListItem extends Block<IUserListItemProps> {
             avatar: src, display_name, second_name, first_name, id, role, login,
         } = props
 
-
-
         const deleteBtn = role === 'regular' ? new ButtonCircle({
             props: {
                 icon: deleteIcon,

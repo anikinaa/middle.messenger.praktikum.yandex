@@ -3,7 +3,7 @@ import { Avatar } from '../../components'
 import { ImageUploadInput } from './components/Input'
 import { IImageUploadProps, IImageUpload } from './types'
 import _template from './template.tpl'
-import {classNames} from "../../utils/classnames";
+import { classNames } from '../../utils/classnames'
 
 const template = new Template<IImageUploadProps>(_template)
 
@@ -12,7 +12,7 @@ export class ImageUpload extends Block<IImageUploadProps> {
         name, value, callback, error, isLoading,
     }: IImageUpload) {
         const className = classNames('image-upload', {
-            'image-upload__loading': isLoading
+            'image-upload__loading': isLoading,
         })
         super({
             props: {

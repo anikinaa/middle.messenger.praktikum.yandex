@@ -1,7 +1,7 @@
 import { IBlock } from '../../modules'
 
 export interface IAvatarProps {
-    src?: string | null;
+    src?: string | null
     className?: string
 }
 

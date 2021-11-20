@@ -1,9 +1,10 @@
+/* eslint-disable max-classes-per-file */
 import { expect } from 'chai'
 import { JSDOM } from 'jsdom'
 import { Router } from './Router'
 import { Block } from '../Block'
 
-/* eslint-disable */
+/* eslint-disable no-useless-constructor,no-use-before-define */
 class PageStart extends Block {
     static exact: boolean = true
 
@@ -57,9 +58,9 @@ class Page2 extends Block {
         Router.go(Page1.pathname)
     }
 }
-/* eslint-enable */
+/* eslint-enable no-useless-constructor,no-use-before-define */
 
-/* eslint-disable */
+/* eslint-disable no-proto,no-plusplus */
 function firePopstateOnRoute(window: any): void {
     const { history } = window
     const originalBack = history.back
@@ -124,7 +125,7 @@ function firePopstateOnRoute(window: any): void {
         window.dispatchEvent(event)
     }
 }
-/* eslint-enable */
+/* eslint-enable no-proto,no-plusplus */
 
 describe('Router', () => {
     let router: Router
@@ -217,3 +218,4 @@ describe('Router', () => {
         window.close()
     })
 })
+/* eslint-enable  max-classes-per-file */

@@ -15,7 +15,7 @@ export class UserApi extends BaseAPI {
     avatar(data: FormData) {
         return chatAPIInstance.put<FormData>('/profile/avatar', {
             formData: true,
-            data
+            data,
         })
     }
 

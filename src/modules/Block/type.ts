@@ -19,11 +19,11 @@ type IEvents = PartialRecord<keyof HTMLElementEventMap, EventListener>;
 type IAttributes = Record<string|number, string>;
 
 export type IBlock<T extends object = {}> = {
-    props?: T;
-    tagName?: string;
-    attributes?: IAttributes;
-    events?: IEvents;
-    template?: Template<T>;
+    props?: T
+    tagName?: string
+    attributes?: IAttributes
+    events?: IEvents
+    template?: Template<T>
 };
 
-export type IBlockClass = { new(): Block<any>; }
+export type IBlockClass = { new(): Block<any> }

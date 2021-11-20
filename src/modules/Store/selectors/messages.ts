@@ -4,6 +4,7 @@ import { getDate, getTime } from '../../../utils/dateTime'
 import { IUserChat } from '../../../models/user'
 import { getUrlImage } from '../../../utils/urlImages'
 import { memoize } from '../../../utils/memoize'
+import { arrayLast } from '../../../utils/arrayLast'
 
 export type IUserMessages = {
     user: {
@@ -24,7 +25,7 @@ export type IDayMessages = {
 }
 
 export type ISelectMessages = {
-    allLoad: boolean,
+    allLoad: boolean
     messages: IDayMessages[]
 }
 
@@ -52,7 +53,7 @@ export const selectMessages = Store.makeSelector<ISelectMessages>(
         const dayMessages = data.reduce((acc, message) => {
             const { time, user_id, content } = message
 
-            let lastDay = acc.last()
+            let lastDay = arrayLast(acc)
             if (getDateMemo(time) !== lastDay?.date) {
                 lastDay = {
                     date: getDateMemo(time),
@@ -61,7 +62,7 @@ export const selectMessages = Store.makeSelector<ISelectMessages>(
                 acc.push(lastDay)
             }
 
-            let lastUser = lastDay.messages.last()
+            let lastUser = arrayLast(lastDay.messages)
             if (lastUser?.user?.id !== user_id) {
                 lastUser = {
                     user: {
@@ -91,7 +92,7 @@ export const selectMessages = Store.makeSelector<ISelectMessages>(
 
 export const selectLastMessage = Store.makeSelector<number>(
     ({ messages: { data } }: IStore) => {
-        const last = data.last()
+        const last = arrayLast(data)
         return last ? last.id : 0
     },
 )

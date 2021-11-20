@@ -23,9 +23,9 @@ export type IMessageFile = {
 
 export type IMessage = {
     id: string
-    chat_id: number,
-    time: string,
-    type: messageType,
+    chat_id: number
+    time: string
+    type: messageType
     user_id: number
     content: string
     file?: IMessageFile

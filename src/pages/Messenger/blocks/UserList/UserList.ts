@@ -6,13 +6,13 @@ import { IUser, IUserChat } from '../../../../models/user'
 const template = new Template(_template)
 
 type IUserListProps = {
-    users: UserListItem[],
+    users: UserListItem[]
     item?: IUserListItemBlock
 }
 
 type IUserList = {
     props: {
-        users: IUser[] | IUserChat[],
+        users: IUser[] | IUserChat[]
         item?: IBlock<IUserListItemBlock>
     }
 }

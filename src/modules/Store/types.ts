@@ -12,7 +12,7 @@ export type IStore = {
         data: IUserChat[] | null
         allLoad: boolean
     }
-    searchUsersChat: IUser[],
+    searchUsersChat: IUser[]
     messages: {
         data: IMessage[]
         allLoad: boolean

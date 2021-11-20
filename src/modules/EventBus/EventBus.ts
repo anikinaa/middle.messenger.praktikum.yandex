@@ -2,7 +2,7 @@ export type callbackType = (...args: any) => void;
 
 export class EventBus {
     listeners: {
-        [event: string]: callbackType[];
+        [event: string]: callbackType[]
     };
 
     constructor() {

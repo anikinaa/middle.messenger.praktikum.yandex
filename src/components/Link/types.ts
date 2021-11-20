@@ -1,11 +1,11 @@
 import { IBlock } from '../../modules'
 
 export type ILinkProps = {
-    text: string;
+    text: string
 }
 
 export type ILinkMainProps = ILinkProps & {
-    href: string;
+    href: string
 }
 
 export type ILink = Pick<IBlock<ILinkProps>, 'attributes' | 'events'> & {

@@ -25,7 +25,7 @@ export type IUserForm = IUser & {
 export type IUserUpdate = Omit<IUserForm, 'id' | 'password' | 'avatar'>
 
 export type IUserPassword = {
-    oldPassword: string,
+    oldPassword: string
     newPassword: string
 }
 

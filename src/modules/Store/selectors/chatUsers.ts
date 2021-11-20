@@ -28,7 +28,7 @@ export const selectResultSearchUser = Store.makeSelector<IUserChat[]>(
 )
 
 export const selectNewUser = Store.makeSelector<IUser>(
-    ({ state, id }: {state: IStore, id: number}) => {
+    ({ state, id }: {state: IStore; id: number}) => {
         const search: IUser[] = selectResultSearchUser(state)
         const user: IUser = search.find((item) => item.id === id)!
         return user

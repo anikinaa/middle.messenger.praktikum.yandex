@@ -1,7 +1,7 @@
 import { Block, IBlock } from '../../modules'
 
 export interface ICardProps {
-    header: string;
+    header: string
     body: Block<any> | Block<any>[]
 }
 

@@ -2,8 +2,8 @@ import { IInputProps, Input } from '../Input'
 import { IBlock } from '../../modules'
 
 export interface IInputWithIconProps {
-    input: Input;
-    icon: string;
+    input: Input
+    icon: string
 }
 
 export type IInputWithIconMainProps = Omit<IInputWithIconProps, 'input'> & IInputProps

@@ -7,8 +7,8 @@ export type IImageUpload = IImageUploadInputProps & {
     isLoading?: boolean | null
 }
 export interface IImageUploadProps {
-    image: Avatar;
-    input: ImageUploadInput;
+    image: Avatar
+    input: ImageUploadInput
     error?: string | null
     isLoading?: boolean | null
 }
