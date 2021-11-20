@@ -1,4 +1,4 @@
-@import "../../../../scss/extend";
+@import '../../../../scss/extend';
 
 .app-bar {
   background-color: $colorGray;
@@ -8,7 +8,6 @@
 
   &_left {
     @extend %flex-center;
-
     height: $heightHeader;
     width: $widthAside;
     background-color: $colorGray100;
@@ -16,13 +15,11 @@
 
   &_center {
     @extend %flex-center;
-
     flex-grow: 1;
   }
 
   &_right {
     @extend %flex-center;
-
     padding-right: 4 * $space;
   }
 }

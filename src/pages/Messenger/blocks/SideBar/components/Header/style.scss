@@ -1,6 +1,7 @@
-@import "../../../../../../scss/extend";
+@import '../../../../../../scss/extend';
 
 .header {
+
   &_search {
     display: flex;
     height: 100%;
@@ -11,7 +12,6 @@
 
   &_add {
     @extend %flex-center;
-
     width: $heightHeader;
     flex-direction: column;
   }

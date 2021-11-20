@@ -1,4 +1,4 @@
-@import "../../../../../../scss/variables";
+@import '../../../../../../scss/variables';
 
 .message {
   padding: $space 3 * $space;
@@ -24,6 +24,7 @@
 
 
 %message-left {
+
   .message {
     margin-left: 2 * $space;
     background-color: $colorWhite;

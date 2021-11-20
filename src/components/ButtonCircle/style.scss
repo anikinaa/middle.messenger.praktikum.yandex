@@ -1,9 +1,8 @@
-@import "../../scss/extend";
+@import '../../scss/extend';
 
 .button-circle {
   @extend %action;
   @extend %icon-background;
-
   width: $heightElement;
   height: $heightElement;
   cursor: pointer;

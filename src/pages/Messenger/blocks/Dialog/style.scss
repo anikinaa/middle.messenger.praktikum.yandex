@@ -1,4 +1,4 @@
-@import "../../../../scss/variables";
+@import '../../../../scss/variables';
 
 .dialog {
   flex-grow: 1;
@@ -7,13 +7,14 @@
   height: 1px;
   background-color: rgba(225,225,225,0.1);
 
-  &-wrap{
+  &-wrap {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     overflow: auto;
     height: 1px;
   }
+
   &-date {
     text-align: center;
     padding: 2 * $space 0 $space;
@@ -26,7 +27,7 @@
     }
   }
 
-  &-btn{
+  &-btn {
     padding-bottom: 2 * $space;
     text-align: center;
   }

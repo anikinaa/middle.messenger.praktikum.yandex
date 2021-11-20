@@ -1,6 +1,6 @@
-@import "../../../../../../scss/extend";
+@import '../../../../../../scss/extend';
 
-.chat-users_item{
+.chat-users_item {
   display: flex;
   @extend %secondary-action;
   background-color: transparent;
@@ -10,7 +10,7 @@
     cursor: pointer;
   }
 
-  &_info{
+  &_info {
     padding-left: 8px;
     flex-grow: 1;
     display: flex;
@@ -18,10 +18,12 @@
     align-items: start;
     justify-content: center;
   }
-  &_name{
+
+  &_name {
     font-weight: normal;
   }
-  &_login{
+
+  &_login {
     color: $fontColorSecondary;
   }
 }

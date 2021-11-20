@@ -1,4 +1,4 @@
-@import "../../scss/extend";
+@import '../../scss/extend';
 
 .image-upload {
   position: relative;
@@ -7,7 +7,7 @@
   align-items: center;
   padding-bottom: 4 * $space;
 
-  &__loading{
+  &__loading {
     @extend %loading;
   }
 }

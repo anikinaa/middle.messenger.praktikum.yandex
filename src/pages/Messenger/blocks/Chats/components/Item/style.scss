@@ -1,5 +1,5 @@
-@import "../../../../../../scss/variables";
-@import "../../../../../../scss/extend";
+@import '../../../../../../scss/variables';
+@import '../../../../../../scss/extend';
 
 .chat-item {
   list-style: none;
@@ -15,7 +15,6 @@
     cursor: pointer;
 
     @extend %secondary-action;
-
     background-color: transparent;
   }
 
@@ -35,6 +34,7 @@
   }
 
   &__active {
+
     .chat-item_btn {
       @extend %primary-action;
     }

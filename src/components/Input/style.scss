@@ -1,4 +1,4 @@
-@import "../../scss/extend";
+@import '../../scss/extend';
 
 .input {
   width: 100%;
@@ -24,14 +24,15 @@
     padding-left: 2 * $space;
   }
 
-  &__invalid{
+  &__invalid {
     box-shadow: 0 0 3px $colorDanger;
     background-color: $colorDangerFill;
 
-    &:hover{
+    &:hover {
       background-color: $colorDangerFill100;
     }
-    &:focus{
+
+    &:focus {
       background-color: $colorDangerFill200;
     }
 

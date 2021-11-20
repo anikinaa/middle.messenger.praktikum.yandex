@@ -1,8 +1,7 @@
-@import "../../../../scss/extend";
+@import '../../../../scss/extend';
 
 .message-form {
   @extend %flex-center;
-
   background-color: $colorWhite;
   padding: 0 4 * $space;
   height: $heightHeader;

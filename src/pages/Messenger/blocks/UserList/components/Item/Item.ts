@@ -12,10 +12,12 @@ export class UserListItem extends Block<IUserListItemProps> {
     controller: ChatUsersController
 
     constructor({ props, attributes, events }: IUserListItem) {
-        // @ts-ignore
         const {
+            // @ts-ignore
             avatar: src, display_name, second_name, first_name, id, role, login,
         } = props
+
+
 
         const deleteBtn = role === 'regular' ? new ButtonCircle({
             props: {

@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .input-form {
   position: relative;
@@ -14,9 +14,10 @@
     }
   }
 
-  &__required{
+  &__required {
     position: relative;
-    &:after{
+
+    &:after {
       content: '*';
       position: absolute;
       color: $colorDanger;
