@@ -1,4 +1,7 @@
-export function getPropObj(obj: Record<string, any>, path:string): any {
+export function getPropObj(obj: Record<string, any>, path?:string): any {
+    if (!path || path.length === 0) {
+        return obj
+    }
     if (!/^[^\\.]\w*(\.\w)*$/.test(path)) {
         throw new Error('неверный формат')
     }
