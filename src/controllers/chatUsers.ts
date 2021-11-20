@@ -60,7 +60,7 @@ export class ChatUsersController extends AsyncStore {
     async search(login: string | undefined = this.searchLogin) {
         if (login) {
             this.searchLogin = login
-            const { status, response } = await userApi.search(login as string)
+            const { status, response } = await userApi.search({login})
 
             if (status === 200) {
                 const searchUsersChat = JSON.parse(response) as IUser[]

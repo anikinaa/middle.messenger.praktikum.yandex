@@ -6,7 +6,7 @@ import {
 import { ISignUpFormModel, ISignUpRequestModel } from '../models/signUp'
 import { MessengerPage } from '../pages/Messenger'
 import { SignInPage } from '../pages/SignIn'
-import { errorCatch } from '../utils/decorators/errorCatch'
+import { errorCatch } from '../utils/decorators'
 import { setAuthOff, setAuthOn } from '../utils/localStorage'
 
 const authApi = new AuthApi()

@@ -19,7 +19,7 @@ export class MessageSocket {
 
     timeout: ReturnType<typeof setTimeout> | null = null
 
-    pool: number = 3000
+    timeoutMs: number = 3000
 
     eventBus: EventBus
 
@@ -85,7 +85,7 @@ export class MessageSocket {
                 this._send({
                     type: MessageSocket.EVENTS.ping,
                 })
-            }, this.pool)
+            }, this.timeoutMs)
         }
     }
 

@@ -15,8 +15,7 @@ export class UserApi extends BaseAPI {
     avatar(data: FormData) {
         return chatAPIInstance.put<FormData>('/profile/avatar', {
             formData: true,
-            data,
-            headers: {},
+            data
         })
     }
 
@@ -25,8 +24,8 @@ export class UserApi extends BaseAPI {
         return chatAPIInstance.put<IUserPassword>('/password', { data })
     }
 
-    search(login: string) {
-        return chatAPIInstance.post<{ login: string }>('/search', { data: { login } })
+    search(data: { login: string }) {
+        return chatAPIInstance.post<{ login: string }>('/search', { data })
     }
 }
 /* eslint-enable class-methods-use-this */

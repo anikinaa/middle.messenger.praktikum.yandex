@@ -14,7 +14,7 @@ export abstract class AsyncStore {
 
     state: IAsyncStoreState
 
-    protected constructor() {
+    constructor() {
         this.eventBus = new EventBus()
         this.state = this._makePropsProxy(this.initialState)
     }

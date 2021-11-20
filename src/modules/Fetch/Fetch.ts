@@ -60,9 +60,11 @@ export class Fetch {
             xhr.open(method, newUrl, true)
             xhr.timeout = timeout
 
-            Object.entries(headers).forEach(([key, val]) => {
-                xhr.setRequestHeader(key, val)
-            })
+            if (!formData) {
+                Object.entries(headers).forEach(([key, val]) => {
+                    xhr.setRequestHeader(key, val)
+                })
+            }
 
             xhr.onload = () => {
                 if (xhr.status === 401) {
