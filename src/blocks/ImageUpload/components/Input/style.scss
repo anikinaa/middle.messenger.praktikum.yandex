@@ -1,6 +1,7 @@
-@import "../../../../scss/extend";
+@import '../../../../scss/extend';
 
 .image-upload {
+
   &_button {
     position: absolute;
     bottom: 0;
@@ -11,8 +12,7 @@
     @extend %action;
     @extend %action__primary;
     @extend %icon-background;
-
-    background-image: url("../../../../assets/icons/upload.svg");
+    background-image: url('../../../../assets/icons/upload.svg');
     cursor: pointer;
   }
 

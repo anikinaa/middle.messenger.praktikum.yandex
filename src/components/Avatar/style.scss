@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .avatar {
   width: $avatarSize;
@@ -6,7 +6,7 @@
   background-size: 100% auto;
   border-radius: 0.5 * $avatarSize;
   background-color: $colorSecondary;
-  background-image: url("../../assets/images/no-avatar.png");
+  background-image: url('../../assets/images/no-avatar.png');
 
   &__small {
     width: 5 * $space;

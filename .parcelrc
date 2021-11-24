@@ -2,8 +2,7 @@
   "extends": "@parcel/config-default",
   "transformers": {
     "static/*/*.hbs": ["@anikin/parcel-transformer-handlebars", "..."],
-    "src/**/*.tpl": ["@anikin/parcel-transformer-template-precompile", "..."],
-    "src/**/*.hbs": ["@anikin/parcel-transformer-template-precompile", "..."]
+    "src/**/*.tpl": ["@anikin/parcel-transformer-template-precompile", "..."]
   },
   "reporters":  ["...", "parcel-reporter-static-files-copy"]
 }

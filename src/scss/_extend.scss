@@ -1,4 +1,4 @@
-@import "./variables";
+@import './variables';
 
 %action {
   border: none;
@@ -32,6 +32,11 @@
   &:focus {
     background-color: $colorPrimary200;
   }
+}
+
+%loading {
+  opacity: 0.6;
+  cursor: progress !important;
 }
 
 %secondary-action {

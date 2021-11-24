@@ -1,8 +1,8 @@
 import { IBlock } from '../../../../modules'
 
 export interface IImageUploadInputProps {
-    name: string;
-    value?: string;
+    name: string
+    value?: string | null
 }
 
 export type IImageUploadInput = Pick<

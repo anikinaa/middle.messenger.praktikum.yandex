@@ -3,7 +3,24 @@
   "rules": {
     "color-hex-case": "lower",
     "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true
+    "scss/at-rule-no-unknown": true,
+    "string-quotes": "single",
+    "value-list-comma-newline-after": "never-multi-line",
+    "declaration-bang-space-after": "never",
+    "declaration-bang-space-before": "always",
+    "declaration-colon-space-before": "never",
+    "selector-attribute-brackets-space-inside": "never",
+    "selector-attribute-operator-space-after": "never",
+    "selector-max-empty-lines": 0,
+    "selector-attribute-operator-space-before": "never",
+    "selector-list-comma-newline-before": "never-multi-line",
+    "selector-combinator-space-after": "always",
+    "selector-pseudo-class-parentheses-space-inside": "never",
+    "declaration-block-semicolon-newline-after": "always",
+    "declaration-block-trailing-semicolon": "always",
+    "block-opening-brace-newline-after": "always",
+    "block-opening-brace-space-before": "always",
+    "rule-empty-line-before": "always"
   },
   "ignoreFiles": [
     "dist/*",

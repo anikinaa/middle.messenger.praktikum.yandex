@@ -1,20 +1,25 @@
 import { Block } from '../../modules'
 import { getDefaultType, joinClassName } from '../../utils/elementAttr'
-import { IButtonCircle } from './types'
+import { IButtonCircle, ButtonCircleProps } from './types'
 
-export class ButtonCircle extends Block<{}> {
+export class ButtonCircle extends Block<ButtonCircleProps> {
     constructor(data: IButtonCircle) {
-        const { icon, attributes, events } = data
+        const { props, attributes, events } = data
 
         super({
+            props,
             tagName: 'button',
             attributes: {
                 ...attributes,
                 class: joinClassName(attributes, 'button-circle'),
                 type: getDefaultType(attributes, 'button'),
-                style: `background-image: url(${icon})`,
+                style: `background-image: url(${props.icon})`,
             },
             events,
         })
+
+        this.setProps = ({ icon }) => {
+            this.element!.style.backgroundImage = `background-image: url(${icon})`
+        }
     }
 }

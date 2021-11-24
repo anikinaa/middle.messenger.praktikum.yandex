@@ -18,6 +18,8 @@
     "noStrictGenericChecks": false,
     "strictPropertyInitialization": true,
     "target": "es5",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": [
       "es5",
       "dom.iterable",

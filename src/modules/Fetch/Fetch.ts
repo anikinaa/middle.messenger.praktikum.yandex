@@ -1,55 +1,91 @@
 import { queryStringify } from './utils'
 import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
+import { Router } from '../Router'
+import { setAuthOff } from '../../utils/localStorage'
 
-export class HTTPTransport<D extends object = object> {
-    get(url: string, options: IFetchMethodsOptions<D> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric(url, METHODS_FETCH.GET, options)
+export class Fetch {
+    baseApi: string
+
+    constructor(baseApi: string = '', host:string = 'https://ya-praktikum.tech/api/v2') {
+        this.baseApi = `${host}${baseApi}`
     }
 
-    post(url: string, options: IFetchMethodsOptions<D> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric(url, METHODS_FETCH.POST, options)
+    get<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.GET, options)
     }
 
-    put(url: string, options: IFetchMethodsOptions<D> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric(url, METHODS_FETCH.PUT, options)
+    post<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.POST, options)
     }
 
-    delete(url: string, options: IFetchMethodsOptions<D> = {}): Promise<XMLHttpRequest> {
-        return this.requestFabric(url, METHODS_FETCH.DELETE, options)
+    put<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.PUT, options)
     }
 
-    private requestFabric(url:string, method: METHODS_FETCH, options: IFetchMethodsOptions<D>) {
-        const { data, headers, timeout } = options
-        return this.request(url, { data, headers, method }, timeout)
+    delete<T, U = unknown>(url: string, options: IFetchMethodsOptions<T> = {}): Promise<U> {
+        return this.requestFabric<T, U>(url, METHODS_FETCH.DELETE, options)
+    }
+
+    private requestFabric<T, U>(url:string, method: METHODS_FETCH,
+        options: IFetchMethodsOptions<T>) {
+        const {
+            data, headers, timeout, formData,
+        } = options
+        return this.request<T, U>(url, {
+            data, headers, method, formData,
+        }, timeout)
     }
 
     /* eslint-disable-next-line class-methods-use-this */
-    private request(
+    private request<T, U>(
         url: string,
-        options: IFetchOptions<D>,
+        options: IFetchOptions<T>,
         timeout = 5000,
-    ): Promise<XMLHttpRequest> {
+    ): Promise<U> {
         const {
-            method, data, headers = {
+            method,
+            data,
+            formData = false,
+            headers = {
                 'Content-Type': 'application/json',
             },
         } = options
-        let newUrl = url
+        let newUrl = `${this.baseApi}${url}`
         if (method === METHODS_FETCH.GET && data) {
-            newUrl += queryStringify<D>(data)
+            newUrl += queryStringify<T>(data)
         }
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest()
-            xhr.open(method, newUrl)
+            xhr.withCredentials = true
+            xhr.open(method, newUrl, true)
             xhr.timeout = timeout
 
-            Object.entries(headers).forEach(([key, val]) => {
-                xhr.setRequestHeader(key, val)
-            })
+            if (!formData) {
+                Object.entries(headers).forEach(([key, val]) => {
+                    xhr.setRequestHeader(key, val)
+                })
+            }
 
             xhr.onload = () => {
-                resolve(xhr)
+                const { response, status } = xhr
+
+                let responseData
+                try {
+                    responseData = JSON.parse(response)
+                } catch (err) {
+                    responseData = response
+                }
+
+                if (status === 200) {
+                    resolve(responseData)
+                } else {
+                    if (status === 401) {
+                        setAuthOff()
+                        Router.go('/')
+                    }
+                    reject(responseData)
+                }
             }
             xhr.onabort = reject
             xhr.onerror = reject
@@ -57,6 +93,8 @@ export class HTTPTransport<D extends object = object> {
 
             if (method === METHODS_FETCH.GET || !data) {
                 xhr.send()
+            } else if (formData) {
+                xhr.send(data as unknown as FormData)
             } else {
                 xhr.send(JSON.stringify(data))
             }

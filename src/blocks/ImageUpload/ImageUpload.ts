@@ -1,15 +1,22 @@
 import { Block, Template } from '../../modules'
 import { Avatar } from '../../components'
-import { ImageUploadInput, IImageUploadInputProps } from './components/Input'
-import { IImageUploadProps } from './types'
+import { ImageUploadInput } from './components/Input'
+import { IImageUploadProps, IImageUpload } from './types'
 import _template from './template.tpl'
+import { classNames } from '../../utils/classnames'
 
 const template = new Template<IImageUploadProps>(_template)
 
 export class ImageUpload extends Block<IImageUploadProps> {
-    constructor({ name, value }: IImageUploadInputProps) {
+    constructor({
+        name, value, callback, error, isLoading,
+    }: IImageUpload) {
+        const className = classNames('image-upload', {
+            'image-upload__loading': isLoading,
+        })
         super({
             props: {
+                error,
                 image: new Avatar({
                     props: {
                         src: value,
@@ -23,22 +30,22 @@ export class ImageUpload extends Block<IImageUploadProps> {
                     events: {
                         change: (e) => {
                             const el = e.target as HTMLInputElement
-                            if (el.files?.[0]) {
-                                const reader = new FileReader()
-                                reader.onload = () => {
-                                    const src = reader.result as string
-                                    this.props.image.setProps({ src })
-                                }
-                                reader.readAsDataURL(el.files[0])
+                            const file = el.files?.[0]
+                            if (file) {
+                                callback(file)
                             }
                         },
                     },
                 }),
             },
             attributes: {
-                class: 'image-upload',
+                class: className,
             },
             template,
         })
+    }
+
+    setLoading(isLoading: boolean) {
+        this.element?.classList.toggle('image-upload__loading', isLoading)
     }
 }

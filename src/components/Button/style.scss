@@ -1,15 +1,18 @@
-@import "../../scss/extend";
+@import '../../scss/extend';
 
 .button {
   min-height: $buttonHeight;
   min-width: $buttonMinWidth;
 
   @extend %action;
-
   font-weight: bold;
   cursor: pointer;
   padding: 0 4 * $space;
   margin: 0 auto;
+
+  &__loading {
+    @extend %loading;
+  }
 
   &__secondary {
     @extend %secondary-action;
@@ -21,5 +24,12 @@
 
   &__primary {
     @extend %primary-action;
+  }
+
+  &__small {
+    font-weight: normal;
+    font-size: $fontSizeSmall;
+    min-width: 150px;
+    min-height: 30px;
   }
 }

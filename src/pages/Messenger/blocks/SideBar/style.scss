@@ -1,0 +1,24 @@
+@import '../../../../scss/variables';
+
+.sidebar {
+  background-color: $colorWhite;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  top: 0;
+  width: $widthAside;
+  height: calc(100vh - #{$heightHeader});
+  z-index: 200;
+  flex-grow: 0;
+
+  &_header {
+    display: flex;
+    min-height: $heightHeader;
+  }
+
+  &_body {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+}

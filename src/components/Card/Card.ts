@@ -3,7 +3,7 @@ import { joinClassName } from '../../utils/elementAttr'
 import { ICardProps, ICard } from './types'
 import _template from './template.tpl'
 
-const template = new Template<ICardProps>(_template)
+const template = new Template(_template)
 
 export class Card extends Block<ICardProps> {
     constructor(data: ICard) {

@@ -1,7 +1,7 @@
 import { EventBus } from '../EventBus'
 import { IBlock, EVENTS } from './type'
 
-export abstract class Block<T extends object> {
+export abstract class Block<T extends object = {}> {
     static EVENTS = EVENTS;
 
     props: T;
@@ -39,6 +39,7 @@ export abstract class Block<T extends object> {
             this._componentDidUpdate.bind(this),
         )
         this.eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
+        this.eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this))
     }
 
     private _createResources() {
@@ -96,12 +97,31 @@ export abstract class Block<T extends object> {
     }
     /* eslint-enable */
 
-    setProps = (nextProps: Partial<T>) => {
+    _componentWillUnmount() {
+        Object.values(this.props).forEach((prop: Block | any) => {
+            if (Array.isArray(prop)) {
+                prop.forEach((item: Block | any) => {
+                    if (item?.leave) {
+                        item?.leave()
+                    }
+                })
+            } else if (prop?.leave) {
+                prop?.leave()
+            }
+        })
+        this.componentWillUnmount()
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    protected componentWillUnmount() {
+    }
+
+    setProps(nextProps: Partial<T>) {
         if (!nextProps) {
             return
         }
         Object.assign(this.props, nextProps)
-    };
+    }
 
     get element() {
         return this._element
@@ -159,10 +179,15 @@ export abstract class Block<T extends object> {
     }
 
     show() {
-        this._element!.classList.add('hidden')
+        this._element!.classList.remove('hidden')
     }
 
     hide() {
-        this._element!.classList.remove('hidden')
+        this._element!.classList.add('hidden')
+    }
+
+    leave() {
+        this.eventBus.emit(Block.EVENTS.FLOW_CWU)
+        this._element?.remove()
     }
 }

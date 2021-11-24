@@ -1,8 +1,8 @@
-type callbackType = (...args: any) => void;
+export type callbackType = (...args: any) => void;
 
 export class EventBus {
     listeners: {
-        [event: string]: callbackType[];
+        [event: string]: callbackType[]
     };
 
     constructor() {
@@ -33,5 +33,11 @@ export class EventBus {
         }
 
         this.listeners[event].forEach((listener) => listener(...args))
+    }
+
+    emitIsExist<T>(event: string, ...args: T[]) {
+        if (this.listeners[event]) {
+            this.listeners[event].forEach((listener) => listener(...args))
+        }
     }
 }
