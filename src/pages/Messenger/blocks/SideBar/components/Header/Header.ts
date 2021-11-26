@@ -10,6 +10,7 @@ const template = new Template<ISideBarHeaderProps>(_template)
 
 export class SideBarHeader extends Block<ISideBarHeaderProps> {
     constructor() {
+        console.log('!Q!!!! iconPlus 2',iconPlus);
         const search = new InputWithIcon({
             props: {
                 icon: iconSearch,
@@ -25,7 +26,7 @@ export class SideBarHeader extends Block<ISideBarHeaderProps> {
                 icon: iconPlus,
             },
             attributes: {
-                class: 'button-circle__secondary',
+                class: 'button-circle__secondarysdfsdfs',
             },
             events: {
                 click: MessengerAddChat.open,
