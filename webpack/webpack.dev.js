@@ -12,15 +12,6 @@ module.exports = merge(common, {
         historyApiFallback: true,
         hot: true,
         compress: true,
-        port: 3000,
-        client: {
-            reconnect: true,
-            progress: true,
-            overlay: {
-                errors: true,
-                warnings: false,
-            },
-            logging: 'verbose',
-        },
+        port: 3000
     },
 });

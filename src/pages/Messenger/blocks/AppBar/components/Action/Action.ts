@@ -1,5 +1,5 @@
 import { ButtonCircle } from '../../../../../../components'
-import iconDots from '../../../../../../assets/icons/dots.svg'
+import * as iconDots from '../../../../../../assets/icons/dots.svg'
 import { selectActiveIdChat } from '../../../../../../modules/Store/selectors/chats'
 import { Store } from '../../../../../../modules'
 import { MessengerChatSetting } from '../../../ChatSetting'

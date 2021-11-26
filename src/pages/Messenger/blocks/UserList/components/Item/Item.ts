@@ -3,7 +3,7 @@ import _template from './template.tpl'
 import { IUserListItem, IUserListItemProps } from './types'
 import { Avatar, ButtonCircle } from '../../../../../../components'
 import { joinClassName } from '../../../../../../utils/elementAttr'
-import deleteIcon from '../../../../../../assets/icons/delete.svg'
+import * as deleteIcon from '../../../../../../assets/icons/delete.svg'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 
 const template = new Template(_template)

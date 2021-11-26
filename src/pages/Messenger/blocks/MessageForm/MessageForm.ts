@@ -3,7 +3,7 @@ import { getFormData } from '../../../../utils/getFormData'
 import { Input, ButtonCircle } from '../../../../components'
 import { IMessageFormProps } from './types'
 import _template from './template.tpl'
-import iconSend from '../../../../assets/icons/send.svg'
+import * as iconSend from '../../../../assets/icons/send.svg'
 import { REGEXP } from '../../../../utils/REGEXP'
 import { MessageController } from '../../../../controllers/message'
 
