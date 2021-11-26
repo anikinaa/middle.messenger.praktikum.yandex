@@ -1,4 +1,5 @@
-import { Block, Template } from '../../modules'
+import { Block } from '../../modules/Block'
+import { Template } from '../../modules/Template'
 import { getDefaultType, joinClassName } from '../../utils/elementAttr'
 import { IButton, IButtonProps } from './types'
 import _template from './template'

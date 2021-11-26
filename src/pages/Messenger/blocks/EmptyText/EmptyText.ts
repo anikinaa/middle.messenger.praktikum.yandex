@@ -1,4 +1,5 @@
-import { Block, Template } from '../../../../modules'
+import { Block } from '../../../../modules/Block'
+import { Template } from '../../../../modules/Template'
 import _template from './teimplate.tpl'
 import { IEmptyText, IEmptyTextProps } from './types'
 

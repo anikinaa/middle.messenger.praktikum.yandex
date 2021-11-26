@@ -1,4 +1,4 @@
-import { IBlock } from '../../modules'
+import { IBlock } from '../../modules/Block'
 
 export interface IButtonProps {
     name: string

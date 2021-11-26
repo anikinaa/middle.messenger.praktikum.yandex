@@ -1,4 +1,4 @@
-import { Block, IBlock } from '../../modules'
+import { Block, IBlock } from '../../modules/Block'
 
 export interface ICardProps {
     header: string

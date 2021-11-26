@@ -1,12 +1,15 @@
 import { Form } from '../../../../blocks/Form'
-import { Button, InputForm, Link } from '../../../../components'
+import { Link } from '../../../../components/Link'
+import { Button } from '../../../../components/Button'
+import { InputForm } from '../../../../components/InputForm'
 import { getFormData } from '../../../../utils/getFormData'
 import { REGEXP } from '../../../../utils/REGEXP'
-import { IAsyncStoreState, IStore, Store } from '../../../../modules'
+import { IStore, Store } from '../../../../modules/Store'
+import { IAsyncStoreState } from '../../../../modules/AsyncStore'
 import { selectUser } from '../../../../modules/Store/selectors/user'
 import { UserController } from '../../../../controllers/user'
 import { IUserUpdate } from '../../../../models/user'
-import { SettingPassword } from '../Password'
+import {Router} from "../../../../modules/Router";
 
 export class SettingForm extends Form {
     controller: UserController | undefined
@@ -113,7 +116,7 @@ export class SettingForm extends Form {
                     new Link({
                         props: {
                             text: 'Сменить пароль',
-                            href: SettingPassword.pathname,
+                            href: '/settings/password',
                         },
                         attributes: {
                             class: 'link__block',
@@ -121,7 +124,7 @@ export class SettingForm extends Form {
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                SettingPassword.open()
+                                Router.go('/settings/password')
                             },
                         },
                     }),

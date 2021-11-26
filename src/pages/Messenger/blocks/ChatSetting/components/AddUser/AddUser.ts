@@ -1,7 +1,9 @@
 import { Modal } from '../../../../../../blocks/Modal'
-import { MessengerChatSetting } from '../../ChatSetting'
-import { IAsyncStoreState, Router, Store } from '../../../../../../modules'
-import { InputForm, Link } from '../../../../../../components'
+import { Store } from '../../../../../../modules/Store'
+import { Router } from '../../../../../../modules/Router'
+import { IAsyncStoreState } from '../../../../../../modules/AsyncStore'
+import { InputForm } from '../../../../../../components/InputForm'
+import { Link } from '../../../../../../components/Link'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 import { UserList } from '../../../UserList'
 import { selectResultSearchUser } from '../../../../../../modules/Store/selectors/chatUsers'
@@ -62,12 +64,12 @@ export class MessengerChatAddUser extends Modal {
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: MessengerChatSetting.pathname,
+                            href: '/messenger/chat-setting',
                         },
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                MessengerChatSetting.open()
+                                Router.go('/messenger/chat-setting')
                             },
                         },
                     }),
@@ -76,7 +78,9 @@ export class MessengerChatAddUser extends Modal {
             attributes: {
                 class: 'center',
             },
-            onClose: MessengerChatSetting.open,
+            onClose: () => {
+                Router.go('/messenger/chat-setting')
+            }
         })
 
         Store.addListenerForProps('searchUsersChat', this.updateStore.bind(this))

@@ -1,5 +1,5 @@
-import { Router } from '../../modules'
-import { Card } from '../../components'
+import { Router } from '../../modules/Router'
+import { Card } from '../../components/Card'
 import { SignInForm } from './blocks/Form'
 
 export class SignInPage extends Card {

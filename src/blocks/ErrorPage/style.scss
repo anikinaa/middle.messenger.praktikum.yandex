@@ -1,0 +1,15 @@
+@import '../../scss/variables';
+
+.error-page {
+  text-align: center;
+  color: $colorWhite;
+
+  &_code {
+    font-size: 8rem;
+  }
+
+  &_msg {
+    font-size: 2rem;
+    margin-bottom: $space;
+  }
+}

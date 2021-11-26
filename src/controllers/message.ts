@@ -1,5 +1,7 @@
 import { selectActiveIdChat } from '../modules/Store/selectors/chats'
-import { callbackType, errorCatch, Store } from '../modules'
+import { Store } from '../modules/Store'
+import { callbackType } from '../modules/EventBus'
+import { errorCatch } from '../utils/decorators'
 import { MessageSocket } from '../api/messageSocket'
 import { ChatsApi } from '../api/chats'
 import { IMessage } from '../models/message'

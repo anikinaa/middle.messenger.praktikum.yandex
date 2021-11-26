@@ -1,5 +1,4 @@
-// @ts-ignore
-import { AsyncStore } from '../../modules'
+import { AsyncStore } from '../../modules/AsyncStore'
 
 // @ts-ignore
 export function loading(t, p, descriptor: TypedPropertyDescriptor<any>):

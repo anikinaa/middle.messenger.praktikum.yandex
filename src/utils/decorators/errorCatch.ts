@@ -1,3 +1,5 @@
+import {Router} from "../../modules/Router";
+
 // @ts-ignore
 export function errorCatch(target, propertyKey, descriptor: TypedPropertyDescriptor<any>):
     TypedPropertyDescriptor<any> {
@@ -6,8 +8,10 @@ export function errorCatch(target, propertyKey, descriptor: TypedPropertyDescrip
     // eslint-disable-next-line no-param-reassign
     descriptor.value = function fn(this: any) {
         // eslint-disable-next-line prefer-rest-params
-        originalMethod.apply(this, arguments).catch(() => {
-            throw new Error('Ошибка!')
+        originalMethod.apply(this, arguments).catch((e: Error) => {
+            // eslint-disable-next-line no-console
+            console.error(e)
+            Router.go('/500')
         })
     }
     return descriptor

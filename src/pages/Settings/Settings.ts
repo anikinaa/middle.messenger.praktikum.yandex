@@ -1,7 +1,7 @@
-import { Router } from '../../modules'
+import { Router } from '../../modules/Router'
 import { SettingForm } from './blocks/Form'
 import { SettingAvatar } from './blocks/Avatar'
-import { Card } from '../../components'
+import { Card } from '../../components/Card'
 
 export class SettingsPage extends Card {
     static exact: boolean = false

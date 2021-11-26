@@ -1,5 +1,5 @@
-import { Router } from '../../modules'
-import { Card } from '../../components'
+import { Router } from '../../modules/Router'
+import { Card } from '../../components/Card'
 import { SignUpForm } from './blocks/Form'
 
 export class SignUpPage extends Card {

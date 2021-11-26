@@ -1,4 +1,4 @@
-import { Block } from '../../modules'
+import { Block } from '../../modules/Block'
 import { getDefaultType, joinClassName } from '../../utils/elementAttr'
 import { IButtonCircle, ButtonCircleProps } from './types'
 

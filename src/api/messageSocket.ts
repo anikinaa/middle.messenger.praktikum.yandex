@@ -1,5 +1,6 @@
 import { selectActiveIdChat, selectTokenChat } from '../modules/Store/selectors/chats'
-import { callbackType, EventBus, Store } from '../modules'
+import { EventBus, callbackType } from '../modules/EventBus'
+import { Store } from '../modules/Store'
 import { selectUserId } from '../modules/Store/selectors/user'
 import { selectLastMessage } from '../modules/Store/selectors/messages'
 

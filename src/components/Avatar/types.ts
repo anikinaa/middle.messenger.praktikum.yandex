@@ -1,4 +1,4 @@
-import { IBlock } from '../../modules'
+import { IBlock } from '../../modules/Block'
 
 export interface IAvatarProps {
     src?: string | null

@@ -1,5 +1,6 @@
-import { Block, Template } from '../../modules'
-import { Avatar } from '../../components'
+import { Block } from '../../modules/Block'
+import { Template } from '../../modules/Template'
+import { Avatar } from '../../components/Avatar'
 import { ImageUploadInput } from './components/Input'
 import { IImageUploadProps, IImageUpload } from './types'
 import _template from './template.tpl'

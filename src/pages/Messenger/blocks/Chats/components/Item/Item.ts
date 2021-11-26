@@ -1,6 +1,6 @@
-import {
-    Block, IStore, Store, Template,
-} from '../../../../../../modules'
+import { Block } from '../../../../../../modules/Block'
+import { IStore, Store } from '../../../../../../modules/Store'
+import { Template } from '../../../../../../modules/Template'
 import { joinClassName } from '../../../../../../utils/elementAttr'
 import { IChatsItemProps, IChatsItem } from './types'
 import _template from './template.tpl'

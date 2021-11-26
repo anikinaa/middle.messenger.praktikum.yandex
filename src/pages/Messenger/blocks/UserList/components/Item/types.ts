@@ -1,6 +1,7 @@
 import { IUser, IUserChat } from '../../../../../../models/user'
-import { Avatar, ButtonCircle } from '../../../../../../components'
-import { IBlock } from '../../../../../../modules'
+import { Avatar } from '../../../../../../components/Avatar'
+import { ButtonCircle } from '../../../../../../components/ButtonCircle'
+import { IBlock } from '../../../../../../modules/Block'
 
 export type IUserListItem = Pick<IBlock<IUser | IUserChat>, 'props' | 'attributes' | 'events'> & {
     props: IUser | IUserChat

@@ -1,11 +1,10 @@
 import { AuthApi } from '../api/auth'
 import { ISignInFormModel } from '../models/signIn'
-import {
-    AsyncStore, loading, errorStateCatch, Store, errorCatch,
-} from '../modules'
+import { AsyncStore } from '../modules/AsyncStore'
+import { Store } from '../modules/Store'
+import { loading, errorStateCatch, errorCatch } from '../utils/decorators'
 import { ISignUpFormModel, ISignUpRequestModel } from '../models/signUp'
-import { MessengerPage } from '../pages/Messenger'
-import { SignInPage } from '../pages/SignIn'
+import {Router} from "../modules/Router";
 import { setAuthOff, setAuthOn } from '../utils/localStorage'
 
 const authApi = new AuthApi()
@@ -17,7 +16,7 @@ export class AuthController extends AsyncStore {
     async signIn(data: ISignInFormModel) {
         await authApi.request(data)
         localStorage.setItem('isAuth', 'true')
-        MessengerPage.open()
+        Router.go('/messenger')
     }
 
     @errorStateCatch
@@ -34,7 +33,7 @@ export class AuthController extends AsyncStore {
             userId: id as number,
         })
         setAuthOn()
-        MessengerPage.open()
+        Router.go('/messenger')
     }
 
     @errorCatch
@@ -42,6 +41,6 @@ export class AuthController extends AsyncStore {
     async logout() {
         await authApi.delete()
         setAuthOff()
-        SignInPage.open()
+        Router.go('/')
     }
 }

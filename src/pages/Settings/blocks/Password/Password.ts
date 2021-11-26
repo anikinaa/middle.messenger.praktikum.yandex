@@ -1,8 +1,10 @@
-import { IAsyncStoreState, Router } from '../../../../modules'
-import { Form } from '../../../../blocks'
+import { Router } from '../../../../modules/Router'
+import { IAsyncStoreState } from '../../../../modules/AsyncStore'
+import { Form } from '../../../../blocks/Form'
 import { Modal } from '../../../../blocks/Modal'
-import { Button, InputForm, Link } from '../../../../components'
-import { SettingsPage } from '../../Settings'
+import { Button } from '../../../../components/Button'
+import { InputForm } from '../../../../components/InputForm'
+import { Link } from '../../../../components/Link'
 import { REGEXP } from '../../../../utils/REGEXP'
 import { UserPasswordController } from '../../../../controllers/userPassword'
 import { UserController } from '../../../../controllers/user'
@@ -75,7 +77,7 @@ export class SettingPassword extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: SettingsPage.pathname,
+                href: '/settings',
             },
             attributes: {
                 class: 'link__block',
@@ -83,7 +85,7 @@ export class SettingPassword extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    SettingsPage.open()
+                    Router.go('/settings')
                 },
             },
         })
@@ -109,7 +111,9 @@ export class SettingPassword extends Modal {
                 header: 'Смена пароля',
                 body: form,
             },
-            onClose: SettingsPage.open,
+            onClose: () => {
+                Router.go('/settings')
+            }
         })
 
         this.controller = new UserPasswordController()

@@ -1,4 +1,4 @@
-import { AsyncStore } from '../../modules'
+import { AsyncStore } from '../../modules/AsyncStore'
 
 // @ts-ignore
 export function errorStateCatch(t, p, descriptor: TypedPropertyDescriptor<any>):
@@ -9,7 +9,9 @@ export function errorStateCatch(t, p, descriptor: TypedPropertyDescriptor<any>):
         this.resetError()
         // eslint-disable-next-line prefer-rest-params
         originalMethod.apply(this, arguments)
-            .catch((error: unknown) => {
+            .catch((error: Error) => {
+                // eslint-disable-next-line no-console
+                console.error(error)
                 this.setError(error)
             })
     }

@@ -1,4 +1,5 @@
-import { IAsyncStoreState, Store } from '../../../../../../modules'
+import { Store } from '../../../../../../modules/Store'
+import { IAsyncStoreState } from '../../../../../../modules/AsyncStore'
 import { selectUsersChat } from '../../../../../../modules/Store/selectors/chatUsers'
 import { ChatUsersController } from '../../../../../../controllers/chatUsers'
 import { UserList } from '../../../UserList'

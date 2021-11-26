@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const srcPath = path.resolve(__dirname, '..', 'src')
 const distPath = path.resolve(__dirname, '..', 'dist')
@@ -9,6 +10,7 @@ module.exports = {
     output: {
         path: distPath,
         filename: 'app.js',
+        publicPath: '/',
         assetModuleFilename: 'images/[hash][ext][query]'
     },
     resolve: {
@@ -44,6 +46,7 @@ module.exports = {
        ]
     },
     plugins: [
+        new CircularDependencyPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(srcPath, 'index.html'),
             filename: path.resolve(distPath, 'index.html')

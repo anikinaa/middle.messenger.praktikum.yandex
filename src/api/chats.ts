@@ -1,4 +1,4 @@
-import { Fetch } from '../modules'
+import { Fetch } from '../modules/Fetch'
 import { BaseAPI } from '../modules/BaseAPI'
 import { IChat, IChatRequest, IChatTitle } from '../models/chat'
 import { IRequestAddDelUser, IRequestUsersChat, IUserChat } from '../models/user'

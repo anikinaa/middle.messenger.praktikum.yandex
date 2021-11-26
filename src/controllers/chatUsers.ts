@@ -1,6 +1,8 @@
+import { AsyncStore } from '../modules/AsyncStore'
+import { Store } from '../modules/Store'
 import {
-    AsyncStore, debounce, errorCatch, errorStateCatch, loading, Store,
-} from '../modules'
+    debounce, errorCatch, errorStateCatch, loading,
+} from '../utils/decorators'
 import { selectActiveIdChat } from '../modules/Store/selectors/chats'
 import { selectNewUser, selectUsersChatData } from '../modules/Store/selectors/chatUsers'
 import { IUserChat, UserRule } from '../models/user'

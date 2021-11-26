@@ -1,5 +1,5 @@
-import { Avatar } from '../../../../../../components'
-import { IBlock } from '../../../../../../modules'
+import { Avatar } from '../../../../../../components/Avatar'
+import { IBlock } from '../../../../../../modules/Block'
 
 export type IChatsItemProps = {
     id: number

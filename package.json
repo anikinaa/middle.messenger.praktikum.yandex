@@ -9,7 +9,7 @@
     "start": "npm run build && npm run serve",
     "lint": "eslint src --ext .js,.ts && npx stylelint \"**/*.scss\"",
     "fix": "eslint src --ext .js,.ts --fix && npx stylelint \"**/*.scss\" --fix",
-    "test": "mocha -r ts-node/register -r ignore-styles -r mock-local-storage -r jsdom-global/register src/**/*.spec.ts --timeout 10000"
+    "test": "mochapack --webpack-config webpack/webpack.test.js -r ts-node/register -r mock-local-storage --require test.js src/**/*.spec.ts"
   },
   "author": "a.anikin",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
     "chai": "^4.3.4",
+    "circular-dependency-plugin": "^5.2.2",
     "css-loader": "^6.5.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -38,9 +39,11 @@
     "jsdom": "18.1.0",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "^2.4.5",
-    "mocha": "^9.1.3",
+    "mocha": "^8.4.0",
+    "mochapack": "^2.1.2",
     "mock-local-storage": "^1.1.17",
     "mock-xmlhttprequest": "^7.0.4",
+    "null-loader": "^4.0.1",
     "sass": "^1.43.5",
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",
@@ -49,10 +52,11 @@
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
-    "webpack": "^5.64.3",
+    "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
     "express": "^4.17.1",

@@ -1,4 +1,5 @@
-import { Block, Template } from '../../modules'
+import { Block } from '../../modules/Block'
+import { Template } from '../../modules/Template'
 import { joinClassName } from '../../utils/elementAttr'
 import { Input } from '../Input'
 import { IInputWithIconProps, IInputWithIcon, IInputWithIconMainProps } from './types'

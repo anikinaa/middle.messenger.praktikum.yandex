@@ -1,6 +1,6 @@
 import { DialogDay } from './components/Day'
 import { MessageForm } from '../MessageForm'
-import { Button } from '../../../../components'
+import { Button } from '../../../../components/Button'
 import { EmptyText } from '../EmptyText'
 
 export type IDialogProps = {

@@ -1,4 +1,4 @@
-import { Fetch } from '../modules'
+import { Fetch } from '../modules/Fetch'
 import { BaseAPI } from '../modules/BaseAPI'
 import {
     IRequestUserSearch, IUser, IUserPassword, IUserUpdate,

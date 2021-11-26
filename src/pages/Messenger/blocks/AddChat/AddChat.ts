@@ -1,9 +1,11 @@
-import { IAsyncStoreState, Router } from '../../../../modules'
-import { Form } from '../../../../blocks'
+import { Router } from '../../../../modules/Router'
+import { IAsyncStoreState } from '../../../../modules/AsyncStore'
+import { Form } from '../../../../blocks/Form'
 import { Modal } from '../../../../blocks/Modal'
-import { Button, InputForm, Link } from '../../../../components'
+import { Button } from '../../../../components/Button'
+import { InputForm } from '../../../../components/InputForm'
+import { Link } from '../../../../components/Link'
 import { getFormData } from '../../../../utils/getFormData'
-import { MessengerPage } from '../../Messenger'
 import { ChatsController } from '../../../../controllers/chats'
 import { IChatTitle } from '../../../../models/chat'
 
@@ -45,7 +47,7 @@ export class MessengerAddChat extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: MessengerPage.pathname,
+                href: '/messenger',
             },
             attributes: {
                 class: 'link__block',
@@ -53,7 +55,7 @@ export class MessengerAddChat extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    MessengerPage.open()
+                    Router.go('/messenger')
                 },
             },
         })
@@ -79,7 +81,9 @@ export class MessengerAddChat extends Modal {
                 header: 'Добавление чата',
                 body: form,
             },
-            onClose: MessengerPage.open,
+            onClose: () => {
+                Router.go('/messenger')
+            }
         })
 
         this.controller = new ChatsController()

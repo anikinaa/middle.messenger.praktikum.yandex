@@ -1,7 +1,8 @@
 import { ImageUpload } from '../../../../blocks/ImageUpload'
 import { UserAvatarController } from '../../../../controllers/userAvatar'
 import { selectUser } from '../../../../modules/Store/selectors/user'
-import { IAsyncStoreState, Store } from '../../../../modules'
+import { Store } from '../../../../modules/Store'
+import { IAsyncStoreState } from '../../../../modules/AsyncStore'
 import { AuthController } from '../../../../controllers/auth'
 
 export class SettingAvatar extends ImageUpload {

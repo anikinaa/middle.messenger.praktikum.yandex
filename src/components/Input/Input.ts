@@ -1,4 +1,4 @@
-import { Block } from '../../modules'
+import { Block } from '../../modules/Block'
 import { joinClassName, getDefaultType } from '../../utils/elementAttr'
 import { IInput, IInputProps } from './types'
 

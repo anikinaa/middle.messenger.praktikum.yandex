@@ -1,11 +1,13 @@
-import { Form } from '../../../../blocks/Form/Form'
+import { Form } from '../../../../blocks/Form'
 import { AuthController } from '../../../../controllers/auth'
-import { Button, InputForm, Link } from '../../../../components'
+import { Button } from '../../../../components/Button'
+import { InputForm } from '../../../../components/InputForm'
+import { Link } from '../../../../components/Link'
 import { REGEXP } from '../../../../utils/REGEXP'
-import { IAsyncStoreState } from '../../../../modules'
-import { SignInPage } from '../../../SignIn'
+import { IAsyncStoreState } from '../../../../modules/AsyncStore'
 import { getFormData } from '../../../../utils/getFormData'
 import { ISignUpFormModel } from '../../../../models/signUp'
+import {Router} from "../../../../modules/Router";
 
 export class SignUpForm extends Form {
     controller: AuthController
@@ -124,11 +126,11 @@ export class SignUpForm extends Form {
         const signIn = new Link({
             props: {
                 text: 'Войти',
-                href: SignInPage.pathname,
+                href: '/',
             },
             events: {
                 click: (e) => {
-                    SignInPage.open()
+                    Router.go('/')
                     e.preventDefault()
                 },
             },

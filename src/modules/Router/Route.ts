@@ -17,6 +17,10 @@ export class Route {
         this._props = props
     }
 
+    get pathname() {
+        return this._pathname
+    }
+
     get redirect() {
         return this._props!.redirect
     }

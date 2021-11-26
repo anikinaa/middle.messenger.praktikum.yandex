@@ -1,9 +1,10 @@
-import {
-    Block, IStore, Router, Store, Template,
-} from '../../modules'
-import {
-    AppBar, SideBar, Dialog,
-} from '../../blocks'
+import { Block } from '../../modules/Block'
+import { Store, IStore } from '../../modules/Store'
+import { Router } from '../../modules/Router'
+import { Template } from '../../modules/Template'
+import { AppBar } from './blocks/AppBar'
+import { SideBar } from './blocks/SideBar'
+import { Dialog } from './blocks/Dialog'
 import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
 import { selectActiveIdChat } from '../../modules/Store/selectors/chats'

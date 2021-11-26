@@ -1,4 +1,5 @@
-import { Block, Template } from '../../../../../../modules'
+import { Block } from '../../../../../../modules/Block'
+import { Template } from '../../../../../../modules/Template'
 import { DialogMsgBlock } from '../MsgBlock'
 import { IDialogDay, IDialogDayProps } from './types'
 import _template from './template.tpl'
