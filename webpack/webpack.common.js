@@ -18,7 +18,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tpl?$/,
+                test: /\.tpl$/,
                 use: path.resolve(__dirname, 'tpl-loader.js')
             },
             // {
@@ -33,17 +33,29 @@ module.exports = {
             //     ],
             // },
             {
-                test: /\.tsx?$/,
+                test: /\.ts$/,
                 use: 'ts-loader',
             },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
-                ]
-            },
+            // {
+            //     test: /\.svg$/,
+            //     loader: 'svg-inline-loader'
+            // },
+            // {
+            //     test: /\.svg$/,
+            //     use: ['file-loader']
+            // },
+            // {
+            //     test: /.(jpg|jpeg|png|svg)$/,
+            //     use: ['file-loader'],
+            // },
+            // {
+            //     test: /\.scss$/i,
+            //     use: [
+            //         "style-loader",
+            //         "css-loader",
+            //         "sass-loader",
+            //     ]
+            // },
             {
                 test:/\.(svg|png|jpg|gif)$/i,
                 type: 'asset/resource',
@@ -51,7 +63,6 @@ module.exports = {
                     filename: () => 'img/[name][ext]'
                 }
             },
-
         ]
     },
     plugins: [

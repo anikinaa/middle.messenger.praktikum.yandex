@@ -8,7 +8,7 @@ module.exports = merge(common, {
     mode: 'development',
     devServer: {
         static: {
-            // directory: distPath,
+            directory: distPath,
         },
         historyApiFallback: true,
         hot: true,
