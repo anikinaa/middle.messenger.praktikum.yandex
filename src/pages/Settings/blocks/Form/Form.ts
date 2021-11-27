@@ -1,15 +1,11 @@
-import { Form } from '../../../../blocks/Form'
-import { Link } from '../../../../components/Link'
-import { Button } from '../../../../components/Button'
-import { InputForm } from '../../../../components/InputForm'
-import { getFormData } from '../../../../utils/getFormData'
-import { REGEXP } from '../../../../utils/REGEXP'
-import { IStore, Store } from '../../../../modules/Store'
-import { IAsyncStoreState } from '../../../../modules/AsyncStore'
-import { selectUser } from '../../../../modules/Store/selectors/user'
-import { UserController } from '../../../../controllers/user'
-import { IUserUpdate } from '../../../../models/user'
-import {Router} from "../../../../modules/Router";
+import { IStore, Store, IAsyncStoreState, Router, routes } from '@modules'
+import { Form } from '@blocks'
+import { Button, InputForm, Link } from '@components'
+import { getFormData } from '@utils/getFormData'
+import { REGEXP } from '@utils/REGEXP'
+import { selectUser } from '@modules/Store/selectors/user'
+import { UserController } from '@controllers/user'
+import { IUserUpdate } from '@models/user'
 
 export class SettingForm extends Form {
     controller: UserController | undefined
@@ -116,7 +112,7 @@ export class SettingForm extends Form {
                     new Link({
                         props: {
                             text: 'Сменить пароль',
-                            href: '/settings/password',
+                            href: routes.settingPassword,
                         },
                         attributes: {
                             class: 'link__block',
@@ -124,14 +120,14 @@ export class SettingForm extends Form {
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                Router.go('/settings/password')
+                                Router.go(routes.settingPassword)
                             },
                         },
                     }),
                     new Link({
                         props: {
                             text: 'Выйти',
-                            href: '/',
+                            href: routes.signIn,
                         },
                         attributes: {
                             class: 'link__block link__danger',

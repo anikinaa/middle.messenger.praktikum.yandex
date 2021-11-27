@@ -1,10 +1,10 @@
-import { Router } from '../../modules/Router'
-import { ErrorPage } from '../../blocks/ErrorPage'
+import {routes} from "@modules";
+import { ErrorPage } from '@blocks'
 
 export class InternalServerErrorPage extends ErrorPage {
     static exact: boolean = true
 
-    static pathname: string = '/500'
+    static pathname: string = routes.internalServerError
 
     static title: string = 'Мы уже фиксим'
 
@@ -15,9 +15,5 @@ export class InternalServerErrorPage extends ErrorPage {
                 msg: 'Мы уже фиксим',
             },
         })
-    }
-
-    static open() {
-        Router.go(InternalServerErrorPage.pathname)
     }
 }

@@ -1,19 +1,16 @@
-import { Modal } from '../../../../../../blocks/Modal'
-import { Store } from '../../../../../../modules/Store'
-import { Router } from '../../../../../../modules/Router'
-import { IAsyncStoreState } from '../../../../../../modules/AsyncStore'
-import { InputForm } from '../../../../../../components/InputForm'
-import { Link } from '../../../../../../components/Link'
-import { ChatUsersController } from '../../../../../../controllers/chatUsers'
+import { Store, Router, IAsyncStoreState, routes } from '@modules'
+import { selectResultSearchUser } from '@modules/Store/selectors/chatUsers'
+import { Modal } from '@blocks'
+import { InputForm, Link } from '@components'
+import { ChatUsersController } from '@controllers/chatUsers'
 import { UserList } from '../../../UserList'
-import { selectResultSearchUser } from '../../../../../../modules/Store/selectors/chatUsers'
 
 export class MessengerChatAddUser extends Modal {
     static exact: boolean = false
 
-    static pathname: string = '/messenger/chat-setting/add-user'
+    static pathname: string = routes.messengerChatAddUser
 
-    static redirect: string = '/messenger'
+    static redirect: string = routes.messenger
 
     static title: string = 'Добавить пользователя в чат'
 
@@ -64,12 +61,12 @@ export class MessengerChatAddUser extends Modal {
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: '/messenger/chat-setting',
+                            href: routes.messengerChatSetting,
                         },
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                Router.go('/messenger/chat-setting')
+                                Router.go(routes.messengerChatSetting)
                             },
                         },
                     }),
@@ -79,7 +76,7 @@ export class MessengerChatAddUser extends Modal {
                 class: 'center',
             },
             onClose: () => {
-                Router.go('/messenger/chat-setting')
+                Router.go(routes.messengerChatSetting)
             }
         })
 
@@ -104,9 +101,5 @@ export class MessengerChatAddUser extends Modal {
         this.controller.eventBus!.off(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
         this.controller.resetSearchUser()
         Store.removeListenerForProps('searchUsersChat', this.updateStore.bind(this))
-    }
-
-    static open() {
-        Router.go(MessengerChatAddUser.pathname)
     }
 }

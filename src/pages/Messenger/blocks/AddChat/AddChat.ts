@@ -1,18 +1,14 @@
-import { Router } from '../../../../modules/Router'
-import { IAsyncStoreState } from '../../../../modules/AsyncStore'
-import { Form } from '../../../../blocks/Form'
-import { Modal } from '../../../../blocks/Modal'
-import { Button } from '../../../../components/Button'
-import { InputForm } from '../../../../components/InputForm'
-import { Link } from '../../../../components/Link'
-import { getFormData } from '../../../../utils/getFormData'
-import { ChatsController } from '../../../../controllers/chats'
-import { IChatTitle } from '../../../../models/chat'
+import { IAsyncStoreState, Router, routes } from '@modules'
+import { Form, Modal } from '@blocks'
+import { Button, InputForm, Link } from '@components'
+import { getFormData } from '@utils/getFormData'
+import { ChatsController } from '@controllers/chats'
+import { IChatTitle } from '@models/chat'
 
 export class MessengerAddChat extends Modal {
     static exact: boolean = false
 
-    static pathname: string = '/messenger/add-chat'
+    static pathname: string = routes.messengerAddChat
 
     static title: string = 'Добавление чата'
 
@@ -47,7 +43,7 @@ export class MessengerAddChat extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: '/messenger',
+                href: routes.messenger,
             },
             attributes: {
                 class: 'link__block',
@@ -55,7 +51,7 @@ export class MessengerAddChat extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    Router.go('/messenger')
+                    Router.go(routes.messenger)
                 },
             },
         })
@@ -82,7 +78,7 @@ export class MessengerAddChat extends Modal {
                 body: form,
             },
             onClose: () => {
-                Router.go('/messenger')
+                Router.go(routes.messenger)
             }
         })
 
@@ -99,9 +95,5 @@ export class MessengerAddChat extends Modal {
 
     protected componentWillUnmount() {
         this.controller!.eventBus!.off(ChatsController.EVENT, this.updateLocalStore.bind(this))
-    }
-
-    static open() {
-        Router.go(MessengerAddChat.pathname)
     }
 }

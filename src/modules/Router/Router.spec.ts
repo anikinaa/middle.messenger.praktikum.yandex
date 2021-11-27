@@ -17,10 +17,6 @@ class PageStart extends Block {
     constructor() {
         super()
     }
-
-    static open() {
-        Router.go(Page2.pathname)
-    }
 }
 
 class Page1 extends Block {
@@ -35,10 +31,6 @@ class Page1 extends Block {
     constructor() {
         super()
     }
-
-    static open() {
-        Router.go(Page2.pathname)
-    }
 }
 
 class Page2 extends Block {
@@ -52,10 +44,6 @@ class Page2 extends Block {
 
     constructor() {
         super()
-    }
-
-    static open() {
-        Router.go(Page1.pathname)
     }
 }
 /* eslint-enable no-useless-constructor,no-use-before-define */

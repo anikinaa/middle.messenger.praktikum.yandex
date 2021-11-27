@@ -1,12 +1,9 @@
-import { Form } from '../../../../blocks/Form'
-import { IAsyncStoreState } from '../../../../modules/AsyncStore'
-import { Button } from '../../../../components/Button'
-import { InputForm } from '../../../../components/InputForm'
-import { Link } from '../../../../components/Link'
-import { getFormData } from '../../../../utils/getFormData'
-import { AuthController } from '../../../../controllers/auth'
-import { ISignInFormModel } from '../../../../models/signIn'
-import {Router} from "../../../../modules/Router";
+import { IAsyncStoreState, Router, routes } from '@modules'
+import { Form } from '@blocks'
+import { Button, InputForm, Link } from '@components'
+import { getFormData } from '@utils/getFormData'
+import { AuthController } from '@controllers/auth'
+import { ISignInFormModel } from '@models/signIn'
 
 export class SignInForm extends Form {
     controller: AuthController
@@ -58,12 +55,12 @@ export class SignInForm extends Form {
                 action: [
                     new Link({
                         props: {
-                            href: '/sign-up',
+                            href: routes.signUp,
                             text: 'Зарегистрироваться',
                         },
                         events: {
                             click: (e: Event) => {
-                                Router.go('/sign-up')
+                                Router.go(routes.signUp)
                                 e.preventDefault()
                             },
                         },

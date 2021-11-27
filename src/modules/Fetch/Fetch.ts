@@ -1,7 +1,7 @@
+import { Router, routes } from '../Router'
+import { setAuthOff } from '@utils/localStorage'
 import { queryStringify } from './utils'
 import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
-import { Router } from '../Router'
-import { setAuthOff } from '../../utils/localStorage'
 
 export class Fetch {
     baseApi: string
@@ -82,7 +82,7 @@ export class Fetch {
                 } else {
                     if (status === 401) {
                         setAuthOff()
-                        Router.go('/')
+                        Router.go(routes.signIn)
                     }
                     reject(responseData)
                 }

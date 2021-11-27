@@ -5,6 +5,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 const srcPath = path.resolve(__dirname, '..', 'src')
 const distPath = path.resolve(__dirname, '..', 'dist')
 
+console.log('+++++++++',path.resolve(srcPath, 'modules/'))
 module.exports = {
     entry: path.resolve(srcPath, 'index.ts'),
     output: {
@@ -14,7 +15,17 @@ module.exports = {
         assetModuleFilename: 'images/[hash][ext][query]'
     },
     resolve: {
-        extensions: ['.ts', '...']
+        extensions: ['.ts', '...'],
+        alias: {
+            '@api': path.resolve(srcPath, 'api/'),
+            '@assets': path.resolve(srcPath, 'assets/'),
+            '@blocks': path.resolve(srcPath, 'blocks'),
+            '@components': path.resolve(srcPath, 'components'),
+            '@controllers': path.resolve(srcPath, 'controllers/'),
+            '@models': path.resolve(srcPath, 'models/'),
+            '@modules': [path.resolve(srcPath, 'modules/'), path.resolve(srcPath, 'modules')],
+            '@utils': path.resolve(srcPath, 'utils/'),
+        },
     },
     module: {
         rules: [

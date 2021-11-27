@@ -1,6 +1,6 @@
 import { callbackType, EventBus } from '../EventBus'
-import { cloneDeep } from '../../utils/cloneDeep'
-import { memoize } from '../../utils/memoize'
+import { cloneDeep } from '@utils/cloneDeep'
+import { memoize } from '@utils/memoize'
 import { IStore } from './types'
 
 const _initialState: IStore = {

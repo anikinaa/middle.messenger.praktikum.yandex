@@ -1,14 +1,12 @@
-import { Block } from '../../../../modules/Block'
-import { Store } from '../../../../modules/Store'
-import { Template } from '../../../../modules/Template'
+import { Block, Store, Template } from '@modules'
 import { IDialogProps } from './types'
 import _template from './template.tpl'
-import { MessageController } from '../../../../controllers/message'
+import { MessageController } from '@controllers/message'
 import { DialogDay } from './components/Day'
-import { selectMessages } from '../../../../modules/Store/selectors/messages'
+import { selectMessages } from '@modules/Store/selectors/messages'
 import { MessageForm } from '../MessageForm'
-import { Button } from '../../../../components/Button'
-import { MessageSocket } from '../../../../api/messageSocket'
+import { Button } from '@components'
+import { MessageSocket } from '@api/messageSocket'
 
 const template = new Template<IDialogProps>(_template)
 

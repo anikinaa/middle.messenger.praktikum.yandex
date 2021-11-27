@@ -1,6 +1,6 @@
-import { IUser, IUserChat } from '../../models/user'
-import { IChat } from '../../models/chat'
-import { IMessage } from '../../models/message'
+import { IUser, IUserChat } from '@models/user'
+import { IChat } from '@models/chat'
+import { IMessage } from '@models/message'
 
 export type IStore = {
     userId: number | null

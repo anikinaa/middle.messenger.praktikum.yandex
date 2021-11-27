@@ -1,9 +1,8 @@
-import { Block } from '../../modules/Block'
-import { Template } from '../../modules/Template'
-import { getDefaultType, joinClassName } from '../../utils/elementAttr'
+import { Block, Template } from '@modules'
+import { getDefaultType, joinClassName } from '@utils/elementAttr'
 import { IButton, IButtonProps } from './types'
 import _template from './template'
-import { classNames } from '../../utils/classnames'
+import { classNames } from '@utils/classnames'
 
 const template = new Template(_template)
 

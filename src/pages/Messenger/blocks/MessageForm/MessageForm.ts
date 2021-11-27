@@ -1,13 +1,11 @@
-import { Block } from '../../../../modules/Block'
-import { Template } from '../../../../modules/Template'
-import { getFormData } from '../../../../utils/getFormData'
-import { ButtonCircle } from '../../../../components/ButtonCircle'
-import { Input } from '../../../../components/Input'
+import { Block, Template } from '@modules'
+import { getFormData } from '@utils/getFormData'
+import { Input, ButtonCircle } from '@components'
 import { IMessageFormProps } from './types'
 import _template from './template.tpl'
 import * as iconSend from '../../../../assets/icons/send.svg'
-import { REGEXP } from '../../../../utils/REGEXP'
-import { MessageController } from '../../../../controllers/message'
+import { REGEXP } from '@utils/REGEXP'
+import { MessageController } from '@controllers/message'
 
 const template = new Template<IMessageFormProps>(_template)
 

@@ -1,5 +1,4 @@
-import { Block } from '../../../../../../modules/Block'
-import { Template } from '../../../../../../modules/Template'
+import { Block, Template } from '@modules'
 import { IMsgItemProps } from './types'
 import _template from './template.tpl'
 

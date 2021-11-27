@@ -1,7 +1,6 @@
-import { Fetch } from '../modules/Fetch'
-import { BaseAPI } from '../modules/BaseAPI'
-import { IChat, IChatRequest, IChatTitle } from '../models/chat'
-import { IRequestAddDelUser, IRequestUsersChat, IUserChat } from '../models/user'
+import { Fetch, BaseAPI } from '@modules'
+import { IChat, IChatRequest, IChatTitle } from '@models/chat'
+import { IRequestAddDelUser, IRequestUsersChat, IUserChat } from '@models/user'
 
 const chatAPIInstance = new Fetch('/chats')
 

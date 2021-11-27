@@ -1,7 +1,6 @@
-import { Store } from '../../../../../../modules/Store'
-import { IAsyncStoreState } from '../../../../../../modules/AsyncStore'
-import { selectUsersChat } from '../../../../../../modules/Store/selectors/chatUsers'
-import { ChatUsersController } from '../../../../../../controllers/chatUsers'
+import { Store, IAsyncStoreState } from '@modules'
+import { selectUsersChat } from '@modules/Store/selectors/chatUsers'
+import { ChatUsersController } from '@controllers/chatUsers'
 import { UserList } from '../../../UserList'
 
 export class ChatSettingUserList extends UserList {

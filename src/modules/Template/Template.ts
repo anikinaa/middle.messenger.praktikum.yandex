@@ -1,4 +1,4 @@
-import { getObjectVal } from '../../utils/getObjectVal'
+import { getObjectVal } from '@utils/getObjectVal'
 import { Block } from '../Block'
 
 type IContext = Record<string, HTMLElement | string | number>;

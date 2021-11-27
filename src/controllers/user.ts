@@ -1,10 +1,9 @@
-import { UserApi } from '../api/user'
-import { Store } from '../modules/Store'
-import { errorStateCatch, loading } from '../utils/decorators'
+import { Store, Router, routes } from '@modules'
+import { errorStateCatch, loading } from '@utils/decorators'
 import { AuthController } from './auth'
-import { AuthApi } from '../api/auth'
-import { IUserUpdate } from '../models/user'
-import {Router} from "../modules/Router";
+import { UserApi } from '@api/user'
+import { AuthApi } from '@api/auth'
+import { IUserUpdate } from '@models/user'
 
 const authApi = new AuthApi()
 export const userApi = new UserApi()
@@ -24,6 +23,6 @@ export class UserController extends AuthController {
     async update(data: IUserUpdate) {
         const user = await userApi.update(data)
         Store.setState({ user })
-        Router.go('/messenger')
+        Router.go(routes.messenger)
     }
 }

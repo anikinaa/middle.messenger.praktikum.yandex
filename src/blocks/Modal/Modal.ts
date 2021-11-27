@@ -1,10 +1,8 @@
-import { Router } from '../../modules/Router'
-import { Block } from '../../modules/Block'
-import { Template } from '../../modules/Template'
-import { Card, ICardProps } from '../../components/Card'
+import { Router, Block, Template } from '@modules'
+import { Card, ICardProps } from '@components'
 import _template from './template.tpl'
 import { IModal, IModalProps } from './types'
-import { joinClassName } from '../../utils/elementAttr'
+import { joinClassName } from '@utils/elementAttr'
 
 const template = new Template(_template)
 

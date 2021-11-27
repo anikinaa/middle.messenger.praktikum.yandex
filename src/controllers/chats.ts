@@ -1,9 +1,7 @@
-import { ChatsApi } from '../api/chats'
-import { AsyncStore } from '../modules/AsyncStore'
-import { Store } from '../modules/Store'
-import { errorStateCatch, errorCatch, loading } from '../utils/decorators'
-import {Router} from "../modules/Router";
-import { IChatTitle } from '../models/chat'
+import { ChatsApi } from '@api/chats'
+import { AsyncStore, Store, Router, routes } from '@modules'
+import { errorStateCatch, errorCatch, loading } from '@utils/decorators'
+import { IChatTitle } from '@models/chat'
 
 const chatsApi = new ChatsApi()
 
@@ -19,7 +17,7 @@ export class ChatsController extends AsyncStore {
     @loading
     async addChat(data: IChatTitle) {
         await chatsApi.create(data)
-        Router.go('/messenger')
+        Router.go(routes.messenger)
         await this.fetchChats()
     }
 

@@ -1,7 +1,7 @@
 import { EventBus } from '../EventBus'
-import { cloneDeep } from '../../utils/cloneDeep'
+import { cloneDeep } from '@utils/cloneDeep'
 import { IAsyncStoreState } from './types'
-import { isPlainObject } from '../../utils/isPlainObject'
+import { isPlainObject } from '@utils/isPlainObject'
 
 export abstract class AsyncStore {
     static EVENT:string = 'CHANGE_STORE'

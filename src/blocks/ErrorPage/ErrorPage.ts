@@ -1,9 +1,8 @@
-import { Block } from '../../modules/Block'
-import { Router } from '../../modules/Router'
-import { Template } from '../../modules/Template'
-import { Link } from '../../components/Link'
+import { Block, Router, Template, routes } from '@modules'
+import { Link } from '@components'
 import { IErrorPageProps, IErrorPage } from './types'
 import _template from './template.tpl'
+
 
 const template = new Template(_template)
 
@@ -11,7 +10,7 @@ export class ErrorPage extends Block<IErrorPageProps> {
     constructor({ props }: IErrorPage) {
         const { code, msg } = props
 
-        const backLink = Router.isAuth ? '/messenger' : '/'
+        const backLink = Router.isAuth ? routes.messenger : routes.signIn
         const backText = `Назад к ${Router.isAuth ? 'чатам' : 'авторизации'}`
 
         super({

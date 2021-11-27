@@ -1,4 +1,4 @@
-import { IBlock } from '../../modules/Block'
+import { IBlock } from '@modules'
 
 export type ILinkProps = {
     text: string

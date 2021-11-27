@@ -1,5 +1,4 @@
-import { Block } from '../../modules/Block'
-import { Template } from '../../modules/Template'
+import { Template, Block } from '@modules'
 import { IAvatarProps, IAvatar } from './types'
 import _template from './template.tpl'
 

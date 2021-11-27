@@ -1,10 +1,9 @@
-import { Block } from '../../../../../../modules/Block'
-import { Template } from '../../../../../../modules/Template'
-import { Avatar } from '../../../../../../components/Avatar'
+import { Block, Template } from '@modules'
+import { IUserMessages } from '@modules/Store/selectors/messages'
+import { Avatar } from '@components'
 import { DialogMsgItem } from '../MsgItem'
 import { IDialogMsgBlockProps } from './types'
 import _template from './template.tpl'
-import { IUserMessages } from '../../../../../../modules/Store/selectors/messages'
 
 const template = new Template<IDialogMsgBlockProps>(_template)
 

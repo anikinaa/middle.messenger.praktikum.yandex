@@ -1,10 +1,8 @@
-import { Store } from '../../../../../../modules/Store'
-import { Template } from '../../../../../../modules/Template'
-import { Block } from '../../../../../../modules/Block'
-import { Avatar } from '../../../../../../components/Avatar'
+import { Store, Template, Block } from '@modules'
+import { selectActiveChat } from '@modules/Store/selectors/chats'
+import { Avatar } from '@components'
 import { IAppBarHeaderProps } from './types'
 import _template from './template.tpl'
-import { selectActiveChat } from '../../../../../../modules/Store/selectors/chats'
 
 const template = new Template<IAppBarHeaderProps>(_template)
 

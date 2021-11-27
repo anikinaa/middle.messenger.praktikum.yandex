@@ -1,6 +1,5 @@
-import { Block } from '../../modules/Block'
-import { Template } from '../../modules/Template'
-import { joinClassName } from '../../utils/elementAttr'
+import { Block, Template } from '@modules'
+import { joinClassName } from '@utils/elementAttr'
 import { ILink, ILinkMainProps, ILinkProps } from './types'
 import _template from './template.tpl'
 

@@ -1,10 +1,9 @@
-import { Block } from '../../modules/Block'
-import { Template } from '../../modules/Template'
-import { Avatar } from '../../components/Avatar'
+import { Template, Block } from '@modules'
+import { Avatar } from '@components'
 import { ImageUploadInput } from './components/Input'
 import { IImageUploadProps, IImageUpload } from './types'
 import _template from './template.tpl'
-import { classNames } from '../../utils/classnames'
+import { classNames } from '@utils/classnames'
 
 const template = new Template<IImageUploadProps>(_template)
 

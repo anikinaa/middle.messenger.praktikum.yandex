@@ -1,6 +1,7 @@
 import { Route } from './Route'
 import { IPageClass } from './types'
-import { arrayLast } from '../../utils/arrayLast'
+import { arrayLast } from '@utils/arrayLast'
+import {routes} from "./routes";
 
 export class Router {
     static __instance: Router | null = null
@@ -39,7 +40,7 @@ export class Router {
     start() {
         const pages = this.getRoutes(window.location.pathname)
         if (pages.length === 0) {
-            this.go('/404')
+            this.go(routes.notFound)
             return
         }
         pages.forEach((page) => {
@@ -56,33 +57,33 @@ export class Router {
     }
 
     _onRoute(pathname: string) {
-        const routes = this.getRoutes(pathname)
+        const matchRoutes = this.getRoutes(pathname)
 
-        if (routes.length === 0) {
+        if (matchRoutes.length === 0) {
             return
         }
 
         // eslint-disable-next-line no-restricted-syntax
-        for (const route of routes) {
+        for (const route of matchRoutes) {
             if (route.privatePage !== undefined) {
                 if (route.privatePage && !Router.isAuth) {
-                    this.go('/')
+                    this.go(routes.signIn)
                     return
                 }
                 if (!route.privatePage && Router.isAuth) {
-                    this.go('/messenger')
+                    this.go(routes.messenger)
                     return
                 }
             }
         }
 
-        const leaveRoutes = this._currentRoute.filter((r) => !routes.includes(r))
+        const leaveRoutes = this._currentRoute.filter((r) => !matchRoutes.includes(r))
         leaveRoutes.forEach((route) => route.leave())
         this._currentRoute = leaveRoutes
-        routes.forEach((route) => {
+        matchRoutes.forEach((route) => {
             route.render()
         })
-        this._currentRoute = routes
+        this._currentRoute = matchRoutes
     }
 
     static go(pathname: string) {

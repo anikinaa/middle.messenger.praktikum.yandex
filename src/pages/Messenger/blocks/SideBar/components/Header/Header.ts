@@ -1,12 +1,9 @@
-import { Block } from '../../../../../../modules/Block'
-import { Template } from '../../../../../../modules/Template'
-import { InputWithIcon } from '../../../../../../components/InputWithIcon'
-import { ButtonCircle } from '../../../../../../components/ButtonCircle'
+import { Block, Template, Router, routes } from '@modules'
+import { InputWithIcon, ButtonCircle } from '@components'
 import { ISideBarHeaderProps } from './types'
 import _template from './template.tpl'
-import * as iconSearch from '../../../../../../assets/icons/search.svg'
-import * as iconPlus from '../../../../../../assets/icons/plus.svg'
-import { MessengerAddChat } from '../../../AddChat'
+import * as iconSearch from '@assets/icons/search.svg'
+import * as iconPlus from '@assets/icons/plus.svg'
 
 const template = new Template<ISideBarHeaderProps>(_template)
 
@@ -30,7 +27,9 @@ export class SideBarHeader extends Block<ISideBarHeaderProps> {
                 class: 'button-circle__secondary',
             },
             events: {
-                click: MessengerAddChat.open,
+                click: () => {
+                    Router.go(routes.messengerAddChat)
+                }
             },
         })
 

@@ -1,5 +1,4 @@
-import { ButtonCircle } from '../../../../components/ButtonCircle'
-import { Input } from '../../../../components/Input'
+import { Input, ButtonCircle } from '@components'
 
 export interface IMessageFormProps {
     message: Input

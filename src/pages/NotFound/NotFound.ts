@@ -1,10 +1,10 @@
-import { Router } from '../../modules/Router'
-import { ErrorPage } from '../../blocks/ErrorPage'
+import {routes} from "@modules";
+import { ErrorPage } from '@blocks'
 
 export class NotFoundPage extends ErrorPage {
     static exact: boolean = true
 
-    static pathname: string = '/404'
+    static pathname: string = routes.notFound
 
     static title: string = 'Упс, вы не туда попали'
 
@@ -15,9 +15,5 @@ export class NotFoundPage extends ErrorPage {
                 msg: 'Упс, вы не туда попали',
             },
         })
-    }
-
-    static open() {
-        Router.go(NotFoundPage.pathname)
     }
 }

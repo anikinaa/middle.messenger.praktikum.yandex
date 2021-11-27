@@ -1,7 +1,6 @@
-import { UserApi } from '../api/user'
-import { AsyncStore } from '../modules/AsyncStore'
-import { errorStateCatch, loading } from '../utils/decorators'
-import { Store } from '../modules/Store'
+import { UserApi } from '@api/user'
+import { AsyncStore, Store } from '@modules'
+import { errorStateCatch, loading } from '@utils/decorators'
 
 export const userApi = new UserApi()
 

@@ -1,8 +1,7 @@
-import { selectActiveIdChat, selectTokenChat } from '../modules/Store/selectors/chats'
-import { EventBus, callbackType } from '../modules/EventBus'
-import { Store } from '../modules/Store'
-import { selectUserId } from '../modules/Store/selectors/user'
-import { selectLastMessage } from '../modules/Store/selectors/messages'
+import { Store, EventBus, callbackType } from '@modules'
+import { selectActiveIdChat, selectTokenChat } from '@modules/Store/selectors/chats'
+import { selectUserId } from '@modules/Store/selectors/user'
+import { selectLastMessage } from '@modules/Store/selectors/messages'
 
 enum EVENTS {
     pong= 'pong',

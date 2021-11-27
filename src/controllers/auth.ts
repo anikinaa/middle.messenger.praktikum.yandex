@@ -1,11 +1,9 @@
-import { AuthApi } from '../api/auth'
-import { ISignInFormModel } from '../models/signIn'
-import { AsyncStore } from '../modules/AsyncStore'
-import { Store } from '../modules/Store'
-import { loading, errorStateCatch, errorCatch } from '../utils/decorators'
-import { ISignUpFormModel, ISignUpRequestModel } from '../models/signUp'
-import {Router} from "../modules/Router";
-import { setAuthOff, setAuthOn } from '../utils/localStorage'
+import { AuthApi } from '@api/auth'
+import { ISignInFormModel } from '@models/signIn'
+import { AsyncStore, Store, Router, routes } from '@modules'
+import { loading, errorStateCatch, errorCatch } from '@utils/decorators'
+import { ISignUpFormModel, ISignUpRequestModel } from '@models/signUp'
+import { setAuthOff, setAuthOn } from '@utils/localStorage'
 
 const authApi = new AuthApi()
 
@@ -16,7 +14,7 @@ export class AuthController extends AsyncStore {
     async signIn(data: ISignInFormModel) {
         await authApi.request(data)
         localStorage.setItem('isAuth', 'true')
-        Router.go('/messenger')
+        Router.go(routes.messenger)
     }
 
     @errorStateCatch
@@ -33,7 +31,7 @@ export class AuthController extends AsyncStore {
             userId: id as number,
         })
         setAuthOn()
-        Router.go('/messenger')
+        Router.go(routes.messenger)
     }
 
     @errorCatch
@@ -41,6 +39,6 @@ export class AuthController extends AsyncStore {
     async logout() {
         await authApi.delete()
         setAuthOff()
-        Router.go('/')
+        Router.go(routes.signIn)
     }
 }

@@ -1,20 +1,16 @@
-import { Router } from '../../../../modules/Router'
-import { IAsyncStoreState } from '../../../../modules/AsyncStore'
-import { Form } from '../../../../blocks/Form'
-import { Modal } from '../../../../blocks/Modal'
-import { Button } from '../../../../components/Button'
-import { InputForm } from '../../../../components/InputForm'
-import { Link } from '../../../../components/Link'
-import { REGEXP } from '../../../../utils/REGEXP'
-import { UserPasswordController } from '../../../../controllers/userPassword'
-import { UserController } from '../../../../controllers/user'
-import { getFormData } from '../../../../utils/getFormData'
-import { IUserPasswordForm } from '../../../../models/user'
+import { Router, IAsyncStoreState, routes } from '@modules'
+import { Form, Modal } from '@blocks'
+import { Button, InputForm, Link } from '@components'
+import { REGEXP } from '@utils/REGEXP'
+import { UserPasswordController } from '@controllers/userPassword'
+import { UserController } from '@controllers/user'
+import { getFormData } from '@utils/getFormData'
+import { IUserPasswordForm } from '@models/user'
 
 export class SettingPassword extends Modal {
     static exact: boolean = false
 
-    static pathname: string = '/settings/password'
+    static pathname: string = routes.settingPassword
 
     static title: string = 'Смена пароля'
 
@@ -77,7 +73,7 @@ export class SettingPassword extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: '/settings',
+                href: routes.settings,
             },
             attributes: {
                 class: 'link__block',
@@ -85,7 +81,7 @@ export class SettingPassword extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    Router.go('/settings')
+                    Router.go(routes.settings)
                 },
             },
         })
@@ -112,7 +108,7 @@ export class SettingPassword extends Modal {
                 body: form,
             },
             onClose: () => {
-                Router.go('/settings')
+                Router.go(routes.settings)
             }
         })
 
@@ -129,9 +125,5 @@ export class SettingPassword extends Modal {
 
     protected componentWillUnmount() {
         this.controller.eventBus!.off(UserController.EVENT, this.updateLocalStore.bind(this))
-    }
-
-    static open() {
-        Router.go(SettingPassword.pathname)
     }
 }
