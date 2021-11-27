@@ -1,4 +1,4 @@
-import { Store, Router, routes } from '@modules'
+import { Store, Router, pathRoutes } from '@modules'
 import * as pages from './pages'
 import { MessengerAddChat } from './pages/Messenger/blocks/AddChat'
 import { MessengerChatSetting } from './pages/Messenger/blocks/ChatSetting'
@@ -27,5 +27,5 @@ try {
 } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e)
-    Router.go(routes.internalServerError)
+    Router.go(pathRoutes.internalServerError)
 }

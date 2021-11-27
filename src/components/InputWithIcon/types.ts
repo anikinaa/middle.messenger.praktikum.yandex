@@ -1,7 +1,6 @@
 import { IBlock } from '@modules'
 import { IInputProps, Input } from '../Input'
 
-
 export interface IInputWithIconProps {
     input: Input
     icon: string

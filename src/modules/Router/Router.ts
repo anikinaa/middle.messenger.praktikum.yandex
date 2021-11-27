@@ -1,7 +1,7 @@
+import { arrayLast } from '@utils/arrayLast'
 import { Route } from './Route'
 import { IPageClass } from './types'
-import { arrayLast } from '@utils/arrayLast'
-import {routes} from "./routes";
+import { pathRoutes } from './pathRoutes'
 
 export class Router {
     static __instance: Router | null = null
@@ -40,7 +40,7 @@ export class Router {
     start() {
         const pages = this.getRoutes(window.location.pathname)
         if (pages.length === 0) {
-            this.go(routes.notFound)
+            this.go(pathRoutes.notFound)
             return
         }
         pages.forEach((page) => {
@@ -67,11 +67,11 @@ export class Router {
         for (const route of matchRoutes) {
             if (route.privatePage !== undefined) {
                 if (route.privatePage && !Router.isAuth) {
-                    this.go(routes.signIn)
+                    this.go(pathRoutes.signIn)
                     return
                 }
                 if (!route.privatePage && Router.isAuth) {
-                    this.go(routes.messenger)
+                    this.go(pathRoutes.messenger)
                     return
                 }
             }

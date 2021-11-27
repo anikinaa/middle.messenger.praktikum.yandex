@@ -1,4 +1,4 @@
-import { IAsyncStoreState, Router, routes } from '@modules'
+import { IAsyncStoreState, Router, pathRoutes } from '@modules'
 import { Form, Modal } from '@blocks'
 import { Button, InputForm, Link } from '@components'
 import { getFormData } from '@utils/getFormData'
@@ -8,7 +8,7 @@ import { IChatTitle } from '@models/chat'
 export class MessengerAddChat extends Modal {
     static exact: boolean = false
 
-    static pathname: string = routes.messengerAddChat
+    static pathname: string = pathRoutes.messengerAddChat
 
     static title: string = 'Добавление чата'
 
@@ -43,7 +43,7 @@ export class MessengerAddChat extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: routes.messenger,
+                href: pathRoutes.messenger,
             },
             attributes: {
                 class: 'link__block',
@@ -51,7 +51,7 @@ export class MessengerAddChat extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    Router.go(routes.messenger)
+                    Router.go(pathRoutes.messenger)
                 },
             },
         })
@@ -78,8 +78,8 @@ export class MessengerAddChat extends Modal {
                 body: form,
             },
             onClose: () => {
-                Router.go(routes.messenger)
-            }
+                Router.go(pathRoutes.messenger)
+            },
         })
 
         this.controller = new ChatsController()

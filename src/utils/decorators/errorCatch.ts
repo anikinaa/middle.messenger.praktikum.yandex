@@ -1,4 +1,4 @@
-import {Router, routes} from "@modules";
+import { Router, pathRoutes } from '@modules'
 
 // @ts-ignore
 export function errorCatch(target, propertyKey, descriptor: TypedPropertyDescriptor<any>):
@@ -11,7 +11,7 @@ export function errorCatch(target, propertyKey, descriptor: TypedPropertyDescrip
         originalMethod.apply(this, arguments).catch((e: Error) => {
             // eslint-disable-next-line no-console
             console.error(e)
-            Router.go(routes.internalServerError)
+            Router.go(pathRoutes.internalServerError)
         })
     }
     return descriptor

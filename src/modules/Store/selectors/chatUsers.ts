@@ -1,7 +1,7 @@
-import { Store } from '../Store'
-import { IStore } from '../types'
 import { IUser, IUserChat } from '@models/user'
 import { getUrlImage } from '@utils/urlImages'
+import { Store } from '../Store'
+import { IStore } from '../types'
 
 export const selectUsersChatData = Store.makeSelector<IUserChat[]>(
     (state: IStore) => state.usersChat.data,

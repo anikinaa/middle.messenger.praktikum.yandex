@@ -5,7 +5,6 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 const srcPath = path.resolve(__dirname, '..', 'src')
 const distPath = path.resolve(__dirname, '..', 'dist')
 
-console.log('+++++++++',path.resolve(srcPath, 'modules/'))
 module.exports = {
     entry: path.resolve(srcPath, 'index.ts'),
     output: {

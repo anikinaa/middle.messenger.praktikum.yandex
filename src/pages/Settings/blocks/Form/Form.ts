@@ -1,4 +1,6 @@
-import { IStore, Store, IAsyncStoreState, Router, routes } from '@modules'
+import {
+    IStore, Store, IAsyncStoreState, Router, pathRoutes,
+} from '@modules'
 import { Form } from '@blocks'
 import { Button, InputForm, Link } from '@components'
 import { getFormData } from '@utils/getFormData'
@@ -112,7 +114,7 @@ export class SettingForm extends Form {
                     new Link({
                         props: {
                             text: 'Сменить пароль',
-                            href: routes.settingPassword,
+                            href: pathRoutes.settingPassword,
                         },
                         attributes: {
                             class: 'link__block',
@@ -120,14 +122,14 @@ export class SettingForm extends Form {
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                Router.go(routes.settingPassword)
+                                Router.go(pathRoutes.settingPassword)
                             },
                         },
                     }),
                     new Link({
                         props: {
                             text: 'Выйти',
-                            href: routes.signIn,
+                            href: pathRoutes.signIn,
                         },
                         attributes: {
                             class: 'link__block link__danger',

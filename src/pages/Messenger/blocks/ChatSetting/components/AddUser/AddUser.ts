@@ -1,4 +1,6 @@
-import { Store, Router, IAsyncStoreState, routes } from '@modules'
+import {
+    Store, Router, IAsyncStoreState, pathRoutes,
+} from '@modules'
 import { selectResultSearchUser } from '@modules/Store/selectors/chatUsers'
 import { Modal } from '@blocks'
 import { InputForm, Link } from '@components'
@@ -8,9 +10,9 @@ import { UserList } from '../../../UserList'
 export class MessengerChatAddUser extends Modal {
     static exact: boolean = false
 
-    static pathname: string = routes.messengerChatAddUser
+    static pathname: string = pathRoutes.messengerChatAddUser
 
-    static redirect: string = routes.messenger
+    static redirect: string = pathRoutes.messenger
 
     static title: string = 'Добавить пользователя в чат'
 
@@ -61,12 +63,12 @@ export class MessengerChatAddUser extends Modal {
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: routes.messengerChatSetting,
+                            href: pathRoutes.messengerChatSetting,
                         },
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                Router.go(routes.messengerChatSetting)
+                                Router.go(pathRoutes.messengerChatSetting)
                             },
                         },
                     }),
@@ -76,8 +78,8 @@ export class MessengerChatAddUser extends Modal {
                 class: 'center',
             },
             onClose: () => {
-                Router.go(routes.messengerChatSetting)
-            }
+                Router.go(pathRoutes.messengerChatSetting)
+            },
         })
 
         Store.addListenerForProps('searchUsersChat', this.updateStore.bind(this))

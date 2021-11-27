@@ -1,11 +1,11 @@
-import {routes} from "@modules";
-import { SignUpForm } from './blocks/Form'
+import { pathRoutes } from '@modules'
 import { Card } from '@components'
+import { SignUpForm } from './blocks/Form'
 
 export class SignUpPage extends Card {
     static exact: boolean = true
 
-    static pathname: string = routes.signUp
+    static pathname: string = pathRoutes.signUp
 
     static title: string = 'Регистрация'
 

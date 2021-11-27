@@ -1,6 +1,8 @@
 import { AuthApi } from '@api/auth'
 import { ISignInFormModel } from '@models/signIn'
-import { AsyncStore, Store, Router, routes } from '@modules'
+import {
+    AsyncStore, Store, Router, pathRoutes,
+} from '@modules'
 import { loading, errorStateCatch, errorCatch } from '@utils/decorators'
 import { ISignUpFormModel, ISignUpRequestModel } from '@models/signUp'
 import { setAuthOff, setAuthOn } from '@utils/localStorage'
@@ -14,7 +16,7 @@ export class AuthController extends AsyncStore {
     async signIn(data: ISignInFormModel) {
         await authApi.request(data)
         localStorage.setItem('isAuth', 'true')
-        Router.go(routes.messenger)
+        Router.go(pathRoutes.messenger)
     }
 
     @errorStateCatch
@@ -31,7 +33,7 @@ export class AuthController extends AsyncStore {
             userId: id as number,
         })
         setAuthOn()
-        Router.go(routes.messenger)
+        Router.go(pathRoutes.messenger)
     }
 
     @errorCatch
@@ -39,6 +41,6 @@ export class AuthController extends AsyncStore {
     async logout() {
         await authApi.delete()
         setAuthOff()
-        Router.go(routes.signIn)
+        Router.go(pathRoutes.signIn)
     }
 }

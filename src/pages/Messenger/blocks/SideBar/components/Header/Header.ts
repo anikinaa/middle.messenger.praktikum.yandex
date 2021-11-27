@@ -1,9 +1,11 @@
-import { Block, Template, Router, routes } from '@modules'
+import {
+    Block, Template, Router, pathRoutes,
+} from '@modules'
 import { InputWithIcon, ButtonCircle } from '@components'
-import { ISideBarHeaderProps } from './types'
-import _template from './template.tpl'
 import * as iconSearch from '@assets/icons/search.svg'
 import * as iconPlus from '@assets/icons/plus.svg'
+import { ISideBarHeaderProps } from './types'
+import _template from './template.tpl'
 
 const template = new Template<ISideBarHeaderProps>(_template)
 
@@ -28,8 +30,8 @@ export class SideBarHeader extends Block<ISideBarHeaderProps> {
             },
             events: {
                 click: () => {
-                    Router.go(routes.messengerAddChat)
-                }
+                    Router.go(pathRoutes.messengerAddChat)
+                },
             },
         })
 

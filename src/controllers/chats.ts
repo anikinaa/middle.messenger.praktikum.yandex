@@ -1,5 +1,7 @@
 import { ChatsApi } from '@api/chats'
-import { AsyncStore, Store, Router, routes } from '@modules'
+import {
+    AsyncStore, Store, Router, pathRoutes,
+} from '@modules'
 import { errorStateCatch, errorCatch, loading } from '@utils/decorators'
 import { IChatTitle } from '@models/chat'
 
@@ -17,7 +19,7 @@ export class ChatsController extends AsyncStore {
     @loading
     async addChat(data: IChatTitle) {
         await chatsApi.create(data)
-        Router.go(routes.messenger)
+        Router.go(pathRoutes.messenger)
         await this.fetchChats()
     }
 

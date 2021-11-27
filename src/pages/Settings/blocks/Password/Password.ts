@@ -1,4 +1,4 @@
-import { Router, IAsyncStoreState, routes } from '@modules'
+import { Router, IAsyncStoreState, pathRoutes } from '@modules'
 import { Form, Modal } from '@blocks'
 import { Button, InputForm, Link } from '@components'
 import { REGEXP } from '@utils/REGEXP'
@@ -10,7 +10,7 @@ import { IUserPasswordForm } from '@models/user'
 export class SettingPassword extends Modal {
     static exact: boolean = false
 
-    static pathname: string = routes.settingPassword
+    static pathname: string = pathRoutes.settingPassword
 
     static title: string = 'Смена пароля'
 
@@ -73,7 +73,7 @@ export class SettingPassword extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: routes.settings,
+                href: pathRoutes.settings,
             },
             attributes: {
                 class: 'link__block',
@@ -81,7 +81,7 @@ export class SettingPassword extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    Router.go(routes.settings)
+                    Router.go(pathRoutes.settings)
                 },
             },
         })
@@ -108,8 +108,8 @@ export class SettingPassword extends Modal {
                 body: form,
             },
             onClose: () => {
-                Router.go(routes.settings)
-            }
+                Router.go(pathRoutes.settings)
+            },
         })
 
         this.controller = new UserPasswordController()

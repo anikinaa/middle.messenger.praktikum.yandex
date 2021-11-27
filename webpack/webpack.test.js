@@ -1,25 +1,17 @@
+const common = require('./webpack.common.js');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals')
 
-const srcPath = path.resolve(__dirname, '..', 'src')
-const distPath = path.resolve(__dirname, '..', 'dist')
+const alias = common.resolve.alias
 
 module.exports = {
     mode: 'development',
-    // entry: path.resolve(srcPath, 'index.ts'),
     devtool: 'inline-cheap-module-source-map',
     externals: [nodeExternals()],
-    output: {
-        // path: distPath,
-        // filename: 'app.js',
-        // publicPath: '/',
-        // assetModuleFilename: 'images/[hash][ext][query]',
-        // devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-        // devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
-    },
     resolve: {
         extensions: ['.ts', '...'],
         alias: {
+            ...alias,
             xyz$: false
         },
     },
@@ -30,20 +22,12 @@ module.exports = {
                 use: path.resolve(__dirname, 'tpl-loader.js')
             },
             {
-                test: /\.(png|jpg|jpeg|gif)$/i,
-                type: 'asset',
-            },
-            {
-                test: /\.svg$/i,
-                type: 'asset',
-            },
-            {
                 test: /\.ts$/,
                 use: 'ts-loader',
             },
             {
-                test: /\.scss$/i,
-                use: 'null-loader'
+                test: /\.(png|jpg|jpeg|gif|svg|scss)$/i,
+                type: 'null-loader',
             },
 
         ]

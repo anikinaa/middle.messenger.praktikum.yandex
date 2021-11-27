@@ -1,5 +1,5 @@
-import { Router, routes } from '../Router'
 import { setAuthOff } from '@utils/localStorage'
+import { Router, pathRoutes } from '../Router'
 import { queryStringify } from './utils'
 import { IFetchOptions, IFetchMethodsOptions, METHODS_FETCH } from './types'
 
@@ -82,7 +82,7 @@ export class Fetch {
                 } else {
                     if (status === 401) {
                         setAuthOff()
-                        Router.go(routes.signIn)
+                        Router.go(pathRoutes.signIn)
                     }
                     reject(responseData)
                 }

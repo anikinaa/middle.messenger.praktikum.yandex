@@ -1,4 +1,4 @@
-import {routes} from "@modules";
+import { pathRoutes } from '@modules'
 import { Card } from '@components'
 import { SettingForm } from './blocks/Form'
 import { SettingAvatar } from './blocks/Avatar'
@@ -6,7 +6,7 @@ import { SettingAvatar } from './blocks/Avatar'
 export class SettingsPage extends Card {
     static exact: boolean = false
 
-    static pathname: string = routes.settings
+    static pathname: string = pathRoutes.settings
 
     static title: string = 'Настройка пользователя'
 

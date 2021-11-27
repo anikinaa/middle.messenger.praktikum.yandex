@@ -1,15 +1,15 @@
-import { Router, routes } from '@modules'
+import { Router, pathRoutes } from '@modules'
 import { Modal } from '@blocks'
 import { Link, Button } from '@components'
 import { ChatUsersController } from '@controllers/chatUsers'
-import {ChatSettingUserList} from "./components/UserList";
+import { ChatSettingUserList } from './components/UserList'
 
 export class MessengerChatSetting extends Modal {
     static exact: boolean = false
 
-    static pathname: string = routes.messengerChatSetting
+    static pathname: string = pathRoutes.messengerChatSetting
 
-    static redirect: string = routes.messenger
+    static redirect: string = pathRoutes.messenger
 
     static title: string = 'Пользователи чата'
 
@@ -32,14 +32,14 @@ export class MessengerChatSetting extends Modal {
                         },
                         events: {
                             click: () => {
-                                Router.go(routes.messengerChatAddUser)
-                            }
+                                Router.go(pathRoutes.messengerChatAddUser)
+                            },
                         },
                     }),
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: routes.messenger,
+                            href: pathRoutes.messenger,
                         },
                         attributes: {
                             class: 'link__block-top',
@@ -47,7 +47,7 @@ export class MessengerChatSetting extends Modal {
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                Router.go(routes.messenger)
+                                Router.go(pathRoutes.messenger)
                             },
                         },
                     }),
@@ -57,13 +57,12 @@ export class MessengerChatSetting extends Modal {
                 class: 'center',
             },
             onClose: () => {
-                Router.go(routes.messenger)
+                Router.go(pathRoutes.messenger)
             },
         })
 
         this.controller = new ChatUsersController()
     }
-
 
     componentWillUnmount() {
         this.controller.resetUser()

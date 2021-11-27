@@ -1,4 +1,4 @@
-import { Store, Router, routes } from '@modules'
+import { Store, Router, pathRoutes } from '@modules'
 import { selectActiveIdChat } from '@modules/Store/selectors/chats'
 import { ButtonCircle } from '@components'
 import * as iconDots from '@assets/icons/dots.svg'
@@ -16,7 +16,7 @@ export class AppBarAction extends ButtonCircle {
             },
             events: {
                 click: () => {
-                    Router.go(routes.messengerChatSetting)
+                    Router.go(pathRoutes.messengerChatSetting)
                 },
             },
         })

@@ -1,4 +1,4 @@
-import { IAsyncStoreState, Router, routes } from '@modules'
+import { IAsyncStoreState, Router, pathRoutes } from '@modules'
 import { Form } from '@blocks'
 import { Button, InputForm, Link } from '@components'
 import { getFormData } from '@utils/getFormData'
@@ -55,12 +55,12 @@ export class SignInForm extends Form {
                 action: [
                     new Link({
                         props: {
-                            href: routes.signUp,
+                            href: pathRoutes.signUp,
                             text: 'Зарегистрироваться',
                         },
                         events: {
                             click: (e: Event) => {
-                                Router.go(routes.signUp)
+                                Router.go(pathRoutes.signUp)
                                 e.preventDefault()
                             },
                         },

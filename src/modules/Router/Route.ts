@@ -1,5 +1,5 @@
-import { Block, IBlockClass } from '../Block'
 import { renderDOM } from '@utils/renderDOM'
+import { Block, IBlockClass } from '../Block'
 import { IRouterProps } from './types'
 
 export class Route {

@@ -1,10 +1,10 @@
-import {routes} from "@modules";
+import { pathRoutes } from '@modules'
 import { ErrorPage } from '@blocks'
 
 export class InternalServerErrorPage extends ErrorPage {
     static exact: boolean = true
 
-    static pathname: string = routes.internalServerError
+    static pathname: string = pathRoutes.internalServerError
 
     static title: string = 'Мы уже фиксим'
 
