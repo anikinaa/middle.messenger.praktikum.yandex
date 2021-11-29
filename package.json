@@ -36,7 +36,7 @@
     "eslint-plugin-import": "2.25.3",
     "html-entities": "2.3.2",
     "html-webpack-plugin": "5.5.0",
-    "husky": "^7.0.4",
+    "husky": "^4.3.8",
     "ignore-styles": "5.0.1",
     "jsdom": "18.1.1",
     "jsdom-global": "3.0.2",
@@ -67,7 +67,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-lint",
+      "pre-commit": "npm run lint",
       "pre-push": "npm run test"
     }
   }
