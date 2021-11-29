@@ -7,7 +7,7 @@ WORKDIR ${APP_DIR}
 
 # Установка зависимостей
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 # Для использования в продакшне
 # RUN npm install --production
 
@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Уведомление о порте, который будет прослушивать работающее приложение
-EXPOSE 3000
+EXPOSE $PORT
 
 # Запуск проекта
 CMD ["npm", "start"]
