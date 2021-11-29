@@ -3,13 +3,13 @@ import { Block, IBlockClass } from '../Block'
 import { IRouterProps } from './types'
 
 export class Route {
-    private _pathname: string;
+    private _pathname: string
 
-    private readonly _blockClass: IBlockClass;
+    private readonly _blockClass: IBlockClass
 
-    private _block: Block | null = null;
+    private _block: Block | null = null
 
-    private _props: IRouterProps | null = null;
+    private _props: IRouterProps | null = null
 
     constructor(pathname: string, view: IBlockClass, props: IRouterProps) {
         this._pathname = pathname

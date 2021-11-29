@@ -26,8 +26,11 @@ export class Fetch {
         return this.requestFabric<T, U>(url, METHODS_FETCH.DELETE, options)
     }
 
-    private requestFabric<T, U>(url:string, method: METHODS_FETCH,
-        options: IFetchMethodsOptions<T>) {
+    private requestFabric<T, U>(
+        url:string,
+        method: METHODS_FETCH,
+        options: IFetchMethodsOptions<T>,
+    ) {
         const {
             data, headers, timeout, formData,
         } = options

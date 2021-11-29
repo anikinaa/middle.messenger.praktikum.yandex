@@ -6,7 +6,7 @@ import { IAsyncStoreState } from './types'
 export abstract class AsyncStore {
     static EVENT:string = 'CHANGE_STORE'
 
-    eventBus: EventBus | undefined;
+    eventBus: EventBus | undefined
 
     initialState:IAsyncStoreState = {
         error: null,
@@ -31,7 +31,7 @@ export abstract class AsyncStore {
         deleteProperty() {
             throw new Error('нет доступа')
         },
-    });
+    })
 
     private _setState(state: Partial<IAsyncStoreState>) {
         Object.assign(this.state, state)

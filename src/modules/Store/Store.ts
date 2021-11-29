@@ -29,7 +29,7 @@ export class Store {
 
     state: IStore | undefined
 
-    eventBus: EventBus | undefined;
+    eventBus: EventBus | undefined
 
     constructor(initialState = _initialState) {
         this.state = this._makePropsProxy(initialState)
@@ -79,7 +79,7 @@ export class Store {
         Store.__instance?.eventBus?.off(key, callback)
     }
 
-    private _makePropsProxy = (state: IStore) => new Proxy(state, this.proxyHandler);
+    private _makePropsProxy = (state: IStore) => new Proxy(state, this.proxyHandler)
 
     static getState() {
         return cloneDeep(Store.__instance?.state || {})

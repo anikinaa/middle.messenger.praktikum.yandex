@@ -2,15 +2,15 @@ import { EventBus } from '../EventBus'
 import { IBlock, EVENTS } from './type'
 
 export abstract class Block<T extends object = {}> {
-    static EVENTS = EVENTS;
+    static EVENTS = EVENTS
 
-    props: T;
+    props: T
 
-    eventBus: EventBus;
+    eventBus: EventBus
 
-    _meta: Required<IBlock<T>>;
+    _meta: Required<IBlock<T>>
 
-    _element: HTMLElement | null = null;
+    _element: HTMLElement | null = null
 
     protected constructor(data: IBlock<T> = {}) {
         const {
@@ -172,7 +172,7 @@ export abstract class Block<T extends object = {}> {
         deleteProperty() {
             throw new Error('нет доступа')
         },
-    });
+    })
 
     toggleClass(className: string, add: boolean) {
         this._element!.classList.toggle(className, add)
