@@ -17,8 +17,6 @@ module.exports = merge(common, {
         ],
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            linkType: "text/css",
-        }),
+        new MiniCssExtractPlugin(),
     ],
 });

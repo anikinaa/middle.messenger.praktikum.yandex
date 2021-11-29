@@ -45,10 +45,6 @@ export abstract class Block<T extends object = {}> {
     private _createResources() {
         const { tagName } = this._meta
         this._element = document.createElement(tagName)
-        this._element.setAttribute(
-            'data-element',
-            this.constructor.name.toLowerCase(),
-        )
     }
 
     private _clearElement() {
