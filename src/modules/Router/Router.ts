@@ -1,7 +1,7 @@
 import { arrayLast } from '@utils/arrayLast'
 import { Route } from './Route'
 import { IPageClass } from './types'
-import { pathRoutes } from './pathRoutes'
+import { pathRoutes } from '../../pathRoutes'
 
 export class Router {
     static __instance: Router | null = null

@@ -1,3 +1,3 @@
 export * from './Router'
 export * from './types'
-export * from './pathRoutes'
+export * from '../../pathRoutes'

@@ -1,8 +1,10 @@
 <p align="center">
     <img src="https://img.shields.io/badge/express-4.17.1-green" />
     <img src="https://img.shields.io/badge/node-16.0.0-blue" />
-    <img src="https://img.shields.io/badge/parcelBundler-1.4.1-orange" />
     <img src="https://img.shields.io/badge/sass-1.42.1-ff96b4" />
+    <img src="https://img.shields.io/badge/typescript-4-blue" />
+    <img src="https://img.shields.io/badge/mocha-8-8d6748" />
+    <img src="https://img.shields.io/badge/webpack-5-5199c8" />
 </p>
 
 # Чат
@@ -11,11 +13,11 @@
 
 Для сбоки компонентов используется собственные шаблонизатор, который генерирует DOMElement. 
 
-Сборщик - Parcel
-
-Шаблонизатор - статика handlebars, компоненты - собственный
+Сборщик - Webpack (используется собственный лоадер для шаблонизатора)
 
 Препроцессор - sass
+
+Тесты - mocha
 
 ## Реализованный функционал
 * добавление чатов
@@ -24,29 +26,34 @@
 * обмен сообщениями в чате
 
 ## Установка пакетов
-```npn instal```
+```npn instal``` - установка пакетов
+
+```npn ci``` - установка пакетов с использованием `package-lock.json` (актуальное и безопасное состояние)
 
 ## Запуск приложения
 
-```npn start``` - запускается сборка приложения с помощью Parcel, после чего статические файлы раздаются через express
+```npn dev``` - запуск dev сервера на http://localhost:3000
 
-```npn build``` - сборка приложения
+```npn start``` - запускается сборка приложения с помощью Webpack, после чего статические файлы раздаются через express на http://localhost:3000
 
-```npn lint``` - проверка синтаксиса
+```npn build``` - сборка приложения в папку `/dist`
 
-```npn fix``` - исправление ошибок синтаксиса
+```npn lint``` - проверка синтаксиса (eslint, stylelint)
 
-```npn test``` - запуск тестов для шаблонизатора, роутера, компонента (Кнопка), модуля отправки запросов 
+```npn fix``` - исправление ошибок синтаксиса (eslint, stylelint)
 
-Приложение доступно по адресу [http://localhost:3000/](http://localhost:3000/)
+```npn test``` - запуск тестов для шаблонизатора, роутера, компонента (Кнопка), модуля отправки запросов, утилиты getObjectVal
 
 ## Автодеплой
-Проект выложен на Netlify, настроен автодеплой из ветки ``deploy``
+Проект выложен на Heroku, настроен автодеплой Docker-сборки из ветки ``deploy``
 
-Адрес приложения [https://musing-pare-chat.netlify.app/](https://musing-pare-chat.netlify.app/)
+Адрес приложения [https://mesenger-app.herokuapp.com/](https://mesenger-app.herokuapp.com/)
+
+## Прекоммит
+Настроен прекоммит husky (lint $$ test)
 
 ## Макет приложения
 [figma](https://www.figma.com/file/ygSAtfKL50oDjm50mvXeXx/my-chat)
 
 ## Pull requests
-- [Sprint 3](https://github.com/anikinaa/middle.messenger.praktikum.yandex/pull/4)
+- [Sprint 4](https://github.com/anikinaa/middle.messenger.praktikum.yandex/pull/5)
