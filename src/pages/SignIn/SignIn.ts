@@ -14,7 +14,7 @@ export class SignInPage extends Card {
     constructor() {
         super({
             props: {
-                header: 'Авторизация 2 ',
+                header: 'Авторизация',
                 body: new SignInForm(),
             },
         })
