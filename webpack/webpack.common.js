@@ -58,6 +58,7 @@ module.exports = {
     plugins: [
         new CircularDependencyPlugin(),
         new HtmlWebpackPlugin({
+            favicon: path.resolve(__dirname, '..', 'favicon.ico'),
             template: path.resolve(srcPath, 'index.html'),
             filename: path.resolve(distPath, 'index.html')
         })
