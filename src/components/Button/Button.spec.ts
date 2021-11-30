@@ -21,7 +21,7 @@ describe('Button - компонент кнопки', () => {
 
     it('Создание элемента', async () => {
         const btn = createBtn()
-        expect(btn.element?.outerHTML).to.equal('<button data-element="button" '
+        expect(btn.element?.outerHTML).to.equal('<button '
             + 'class="button" type="button"><span>btn</span></button>')
     })
 
@@ -30,7 +30,7 @@ describe('Button - компонент кнопки', () => {
         btn.setProps({
             name: 'name',
         })
-        expect(btn.element?.outerHTML).to.equal('<button data-element="button" '
+        expect(btn.element?.outerHTML).to.equal('<button '
             + 'class="button" type="button"><span>name</span></button>')
     })
 
@@ -40,14 +40,14 @@ describe('Button - компонент кнопки', () => {
                 class: 'test-attr',
             },
         })
-        expect(btn.element?.outerHTML).to.equal('<button data-element="button" '
+        expect(btn.element?.outerHTML).to.equal('<button '
             + 'class="button test-attr" type="button"><span>btn</span></button>')
     })
 
     it('hide', async () => {
         const btn = createBtn()
         btn.hide()
-        expect(btn.element?.outerHTML).to.equal('<button data-element="button" '
+        expect(btn.element?.outerHTML).to.equal('<button '
             + 'class="button hidden" type="button"><span>btn</span></button>')
     })
 
@@ -55,7 +55,7 @@ describe('Button - компонент кнопки', () => {
         const btn = createBtn()
         btn.hide()
         btn.show()
-        expect(btn.element?.outerHTML).to.equal('<button data-element="button" '
+        expect(btn.element?.outerHTML).to.equal('<button '
             + 'class="button" type="button"><span>btn</span></button>')
     })
 

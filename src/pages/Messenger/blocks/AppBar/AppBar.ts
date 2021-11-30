@@ -1,4 +1,4 @@
-import { Block, Template } from '../../../../modules'
+import { Block, Template } from '@modules'
 import { AppBarProfile } from './components/Profile'
 import { AppBarHeader } from './components/Header'
 import { AppBarAction } from './components/Action'

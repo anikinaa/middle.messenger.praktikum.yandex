@@ -1,11 +1,11 @@
-import { Router } from '../../modules'
-import { Card } from '../../components'
+import { pathRoutes } from '@modules'
+import { Card } from '@components'
 import { SignInForm } from './blocks/Form'
 
 export class SignInPage extends Card {
     static exact: boolean = true
 
-    static pathname: string = '/'
+    static pathname: string = pathRoutes.signIn
 
     static title: string = 'Авторизация'
 
@@ -18,9 +18,5 @@ export class SignInPage extends Card {
                 body: new SignInForm(),
             },
         })
-    }
-
-    static open() {
-        Router.go(SignInPage.pathname)
     }
 }

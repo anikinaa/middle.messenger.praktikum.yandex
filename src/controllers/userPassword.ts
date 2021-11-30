@@ -1,7 +1,7 @@
-import { UserApi } from '../api/user'
-import { AsyncStore, errorStateCatch, loading } from '../modules'
-import { IUserPasswordForm } from '../models/user'
-import { SettingsPage } from '../pages/Settings'
+import { UserApi } from '@api/user'
+import { AsyncStore, Router, pathRoutes } from '@modules'
+import { errorStateCatch, loading } from '@utils/decorators'
+import { IUserPasswordForm } from '@models/user'
 
 export const userApi = new UserApi()
 
@@ -15,6 +15,6 @@ export class UserPasswordController extends AsyncStore {
             return
         }
         await userApi.password({ oldPassword, newPassword })
-        SettingsPage.open()
+        Router.go(pathRoutes.messenger)
     }
 }

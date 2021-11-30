@@ -1,12 +1,12 @@
 import {
-    Block, IStore, Router, Store, Template,
-} from '../../modules'
-import {
-    AppBar, SideBar, Dialog,
-} from '../../blocks'
+    Block, Store, IStore, Template, pathRoutes,
+} from '@modules'
+import { selectActiveIdChat } from '@modules/Store/selectors/chats'
+import { AppBar } from './blocks/AppBar'
+import { SideBar } from './blocks/SideBar'
+import { Dialog } from './blocks/Dialog'
 import { IMessengerPageProps } from './types'
 import _template from './template.tpl'
-import { selectActiveIdChat } from '../../modules/Store/selectors/chats'
 import { EmptyText } from './blocks/EmptyText'
 
 const template = new Template<IMessengerPageProps>(_template)
@@ -20,7 +20,7 @@ const getContent = (activeId: number | null) => (activeId === null ? new EmptyTe
 export class MessengerPage extends Block<IMessengerPageProps> {
     static exact: boolean = false
 
-    static pathname: string = '/messenger'
+    static pathname: string = pathRoutes.messenger
 
     static title: string = 'Мессенджер'
 
@@ -47,10 +47,6 @@ export class MessengerPage extends Block<IMessengerPageProps> {
         this.setProps({
             dialog: getContent(activeChat),
         })
-    }
-
-    static open() {
-        Router.go(MessengerPage.pathname)
     }
 
     componentWillUnmount() {

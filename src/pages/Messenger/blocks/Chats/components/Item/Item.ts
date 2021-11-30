@@ -1,11 +1,11 @@
 import {
     Block, IStore, Store, Template,
-} from '../../../../../../modules'
-import { joinClassName } from '../../../../../../utils/elementAttr'
+} from '@modules'
+import { selectActiveIdChat } from '@modules/Store/selectors/chats'
+import { joinClassName } from '@utils/elementAttr'
+import { ChatsController } from '@controllers/chats'
 import { IChatsItemProps, IChatsItem } from './types'
 import _template from './template.tpl'
-import { selectActiveIdChat } from '../../../../../../modules/Store/selectors/chats'
-import { ChatsController } from '../../../../../../controllers/chats'
 
 const template = new Template<IChatsItemProps>(_template)
 

@@ -1,10 +1,10 @@
-import { Block, Store, Template } from '../../../../modules'
-import { Avatar } from '../../../../components'
+import { Block, Store, Template } from '@modules'
+import { selectChats } from '@modules/Store/selectors/chats'
+import { Avatar } from '@components'
+import { ChatsController } from '@controllers/chats'
 import { ChatsItem } from './components/Item'
 import { IChats } from './types'
 import _template from './template.tpl'
-import { ChatsController } from '../../../../controllers/chats'
-import { selectChats } from '../../../../modules/Store/selectors/chats'
 
 const template = new Template<IChats>(_template)
 

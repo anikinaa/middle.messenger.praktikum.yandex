@@ -1,18 +1,16 @@
-import { IAsyncStoreState, Router } from '../../../../modules'
-import { Form } from '../../../../blocks'
-import { Modal } from '../../../../blocks/Modal'
-import { Button, InputForm, Link } from '../../../../components'
-import { SettingsPage } from '../../Settings'
-import { REGEXP } from '../../../../utils/REGEXP'
-import { UserPasswordController } from '../../../../controllers/userPassword'
-import { UserController } from '../../../../controllers/user'
-import { getFormData } from '../../../../utils/getFormData'
-import { IUserPasswordForm } from '../../../../models/user'
+import { Router, IAsyncStoreState, pathRoutes } from '@modules'
+import { Form, Modal } from '@blocks'
+import { Button, InputForm, Link } from '@components'
+import { REGEXP } from '@utils/REGEXP'
+import { UserPasswordController } from '@controllers/userPassword'
+import { UserController } from '@controllers/user'
+import { getFormData } from '@utils/getFormData'
+import { IUserPasswordForm } from '@models/user'
 
 export class SettingPassword extends Modal {
     static exact: boolean = false
 
-    static pathname: string = '/settings/password'
+    static pathname: string = pathRoutes.settingPassword
 
     static title: string = 'Смена пароля'
 
@@ -75,7 +73,7 @@ export class SettingPassword extends Modal {
         const cancel = new Link({
             props: {
                 text: 'Отменить',
-                href: SettingsPage.pathname,
+                href: pathRoutes.settings,
             },
             attributes: {
                 class: 'link__block',
@@ -83,7 +81,7 @@ export class SettingPassword extends Modal {
             events: {
                 click: (e) => {
                     e.preventDefault()
-                    SettingsPage.open()
+                    Router.go(pathRoutes.settings)
                 },
             },
         })
@@ -109,7 +107,9 @@ export class SettingPassword extends Modal {
                 header: 'Смена пароля',
                 body: form,
             },
-            onClose: SettingsPage.open,
+            onClose: () => {
+                Router.go(pathRoutes.settings)
+            },
         })
 
         this.controller = new UserPasswordController()
@@ -125,9 +125,5 @@ export class SettingPassword extends Modal {
 
     protected componentWillUnmount() {
         this.controller.eventBus!.off(UserController.EVENT, this.updateLocalStore.bind(this))
-    }
-
-    static open() {
-        Router.go(SettingPassword.pathname)
     }
 }

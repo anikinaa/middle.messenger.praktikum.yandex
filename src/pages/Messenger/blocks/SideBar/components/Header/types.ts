@@ -1,4 +1,4 @@
-import { InputWithIcon, ButtonCircle } from '../../../../../../components'
+import { ButtonCircle, InputWithIcon } from '@components'
 
 export interface ISideBarHeaderProps {
     search: InputWithIcon

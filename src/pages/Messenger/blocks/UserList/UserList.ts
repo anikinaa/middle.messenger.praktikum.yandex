@@ -1,7 +1,7 @@
-import { Block, IBlock, Template } from '../../../../modules'
+import { Block, IBlock, Template } from '@modules'
+import { IUser, IUserChat } from '@models/user'
 import { IUserListItemBlock, UserListItem } from './components/Item'
 import _template from './template.tpl'
-import { IUser, IUserChat } from '../../../../models/user'
 
 const template = new Template(_template)
 

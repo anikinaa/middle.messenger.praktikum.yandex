@@ -1,20 +1,24 @@
+import { renderDOM } from '@utils/renderDOM'
 import { Block, IBlockClass } from '../Block'
-import { renderDOM } from '../../utils/renderDOM'
 import { IRouterProps } from './types'
 
 export class Route {
-    private _pathname: string;
+    private _pathname: string
 
-    private readonly _blockClass: IBlockClass;
+    private readonly _blockClass: IBlockClass
 
-    private _block: Block | null = null;
+    private _block: Block | null = null
 
-    private _props: IRouterProps | null = null;
+    private _props: IRouterProps | null = null
 
     constructor(pathname: string, view: IBlockClass, props: IRouterProps) {
         this._pathname = pathname
         this._blockClass = view
         this._props = props
+    }
+
+    get pathname() {
+        return this._pathname
     }
 
     get redirect() {

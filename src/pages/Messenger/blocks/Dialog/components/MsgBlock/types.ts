@@ -1,4 +1,4 @@
-import { Avatar } from '../../../../../../components'
+import { Avatar } from '@components'
 import { DialogMsgItem } from '../MsgItem'
 
 type message = {

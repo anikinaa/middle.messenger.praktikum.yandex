@@ -1,8 +1,7 @@
-import { ButtonCircle } from '../../../../../../components'
-import iconDots from '../../../../../../assets/icons/dots.svg'
-import { selectActiveIdChat } from '../../../../../../modules/Store/selectors/chats'
-import { Store } from '../../../../../../modules'
-import { MessengerChatSetting } from '../../../ChatSetting'
+import { Store, Router, pathRoutes } from '@modules'
+import { selectActiveIdChat } from '@modules/Store/selectors/chats'
+import { ButtonCircle } from '@components'
+import * as iconDots from '@assets/icons/dots.svg'
 
 export class AppBarAction extends ButtonCircle {
     constructor() {
@@ -16,7 +15,9 @@ export class AppBarAction extends ButtonCircle {
                 class: `button-circle__gray ${activeId !== null ? '' : 'hidden'}`,
             },
             events: {
-                click: MessengerChatSetting.open,
+                click: () => {
+                    Router.go(pathRoutes.messengerChatSetting)
+                },
             },
         })
 

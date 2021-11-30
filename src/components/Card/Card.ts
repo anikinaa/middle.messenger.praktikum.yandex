@@ -1,5 +1,5 @@
-import { Block, Template } from '../../modules'
-import { joinClassName } from '../../utils/elementAttr'
+import { Block, Template } from '@modules'
+import { joinClassName } from '@utils/elementAttr'
 import { ICardProps, ICard } from './types'
 import _template from './template.tpl'
 

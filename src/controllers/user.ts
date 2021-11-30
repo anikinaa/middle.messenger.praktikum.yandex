@@ -1,9 +1,9 @@
-import { UserApi } from '../api/user'
-import { errorStateCatch, loading, Store } from '../modules'
+import { Store, Router, pathRoutes } from '@modules'
+import { errorStateCatch, loading } from '@utils/decorators'
+import { UserApi } from '@api/user'
+import { AuthApi } from '@api/auth'
+import { IUserUpdate } from '@models/user'
 import { AuthController } from './auth'
-import { AuthApi } from '../api/auth'
-import { IUserUpdate } from '../models/user'
-import { MessengerPage } from '../pages/Messenger'
 
 const authApi = new AuthApi()
 export const userApi = new UserApi()
@@ -23,6 +23,6 @@ export class UserController extends AuthController {
     async update(data: IUserUpdate) {
         const user = await userApi.update(data)
         Store.setState({ user })
-        MessengerPage.open()
+        Router.go(pathRoutes.messenger)
     }
 }

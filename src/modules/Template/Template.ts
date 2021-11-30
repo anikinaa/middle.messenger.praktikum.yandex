@@ -1,14 +1,14 @@
-import { getObjectVal } from '../../utils/getObjectVal'
+import { getObjectVal } from '@utils/getObjectVal'
 import { Block } from '../Block'
 
 type IContext = Record<string, HTMLElement | string | number>;
 
 export class Template<T extends object> {
-    _template: string;
+    _template: string
 
-    TEMPLATE_REGEXP: RegExp = /{{(.*?)}}/gi;
+    TEMPLATE_REGEXP: RegExp = /{{(.*?)}}/gi
 
-    TEMPLATE_REGEXP_IF: RegExp = /{{@if\s(.*?)}}(.*){{\/if}}/gi;
+    TEMPLATE_REGEXP_IF: RegExp = /{{@if\s(.*?)}}(.*){{\/if}}/gi
 
     constructor(template: string) {
         this._template = template

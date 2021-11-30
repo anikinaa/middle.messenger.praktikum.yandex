@@ -1,4 +1,4 @@
-import { IBlock } from '../../modules'
+import { IBlock } from '@modules'
 
 export type ButtonCircleProps = {
     icon: string

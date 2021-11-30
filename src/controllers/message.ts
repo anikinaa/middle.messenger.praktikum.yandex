@@ -1,8 +1,9 @@
-import { selectActiveIdChat } from '../modules/Store/selectors/chats'
-import { callbackType, errorCatch, Store } from '../modules'
-import { MessageSocket } from '../api/messageSocket'
-import { ChatsApi } from '../api/chats'
-import { IMessage } from '../models/message'
+import { selectActiveIdChat } from '@modules/Store/selectors/chats'
+import { Store, callbackType } from '@modules'
+import { errorCatch } from '@utils/decorators'
+import { MessageSocket } from '@api/messageSocket'
+import { ChatsApi } from '@api/chats'
+import { IMessage } from '@models/message'
 import { ChatUsersController } from './chatUsers'
 
 const chatsApi = new ChatsApi()

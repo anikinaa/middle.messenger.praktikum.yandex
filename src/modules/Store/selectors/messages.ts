@@ -1,10 +1,10 @@
-import { Store } from '../Store'
+import { getDate, getTime } from '@utils/dateTime'
+import { IUserChat } from '@models/user'
+import { getUrlImage } from '@utils/urlImages'
+import { memoize } from '@utils/memoize'
+import { arrayLast } from '@utils/arrayLast'
 import { IStore } from '../types'
-import { getDate, getTime } from '../../../utils/dateTime'
-import { IUserChat } from '../../../models/user'
-import { getUrlImage } from '../../../utils/urlImages'
-import { memoize } from '../../../utils/memoize'
-import { arrayLast } from '../../../utils/arrayLast'
+import { Store } from '../Store'
 
 export type IUserMessages = {
     user: {

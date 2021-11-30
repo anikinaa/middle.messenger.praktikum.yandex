@@ -33,4 +33,16 @@
       color: $colorDanger200;
     }
   }
+
+  &__secondary {
+    color: $colorSecondary;
+
+    &:hover {
+      color: $colorSecondary100;
+    }
+
+    &:active {
+      color: $colorSecondary200;
+    }
+  }
 }

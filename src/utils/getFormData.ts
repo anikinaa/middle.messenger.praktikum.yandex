@@ -11,12 +11,3 @@ export function getFormData(e: Event): IFormData {
     })
     return data
 }
-
-export function consoleFormData(e: Event): void {
-    /* eslint-disable-next-line no-undef */
-    const el = e.target as HTMLFormElement
-    const data = getFormData(el)
-    /* eslint-disable-next-line  no-console */
-    console.log(data)
-    e.preventDefault()
-}

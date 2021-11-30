@@ -1,17 +1,15 @@
-import { Modal } from '../../../../blocks/Modal'
-import { MessengerPage } from '../../Messenger'
-import { Router } from '../../../../modules'
+import { Router, pathRoutes } from '@modules'
+import { Modal } from '@blocks'
+import { Link, Button } from '@components'
+import { ChatUsersController } from '@controllers/chatUsers'
 import { ChatSettingUserList } from './components/UserList'
-import { Button, Link } from '../../../../components'
-import { MessengerChatAddUser } from './components/AddUser'
-import { ChatUsersController } from '../../../../controllers/chatUsers'
 
 export class MessengerChatSetting extends Modal {
     static exact: boolean = false
 
-    static pathname: string = '/messenger/chat-setting'
+    static pathname: string = pathRoutes.messengerChatSetting
 
-    static redirect: string = '/messenger'
+    static redirect: string = pathRoutes.messenger
 
     static title: string = 'Пользователи чата'
 
@@ -33,13 +31,15 @@ export class MessengerChatSetting extends Modal {
                             class: 'button__primary',
                         },
                         events: {
-                            click: MessengerChatAddUser.open,
+                            click: () => {
+                                Router.go(pathRoutes.messengerChatAddUser)
+                            },
                         },
                     }),
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: MessengerPage.pathname,
+                            href: pathRoutes.messenger,
                         },
                         attributes: {
                             class: 'link__block-top',
@@ -47,7 +47,7 @@ export class MessengerChatSetting extends Modal {
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                MessengerPage.open()
+                                Router.go(pathRoutes.messenger)
                             },
                         },
                     }),
@@ -56,14 +56,12 @@ export class MessengerChatSetting extends Modal {
             attributes: {
                 class: 'center',
             },
-            onClose: MessengerPage.open,
+            onClose: () => {
+                Router.go(pathRoutes.messenger)
+            },
         })
 
         this.controller = new ChatUsersController()
-    }
-
-    static open() {
-        Router.go(MessengerChatSetting.pathname)
     }
 
     componentWillUnmount() {

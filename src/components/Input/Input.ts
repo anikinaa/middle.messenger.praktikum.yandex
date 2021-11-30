@@ -1,5 +1,5 @@
-import { Block } from '../../modules'
-import { joinClassName, getDefaultType } from '../../utils/elementAttr'
+import { Block } from '@modules'
+import { joinClassName, getDefaultType } from '@utils/elementAttr'
 import { IInput, IInputProps } from './types'
 
 export class Input extends Block<IInputProps> {

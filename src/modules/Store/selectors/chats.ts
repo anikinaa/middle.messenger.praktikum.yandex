@@ -1,8 +1,8 @@
-import { Store } from '../Store'
+import { IChat } from '@models/chat'
+import { getDateTime } from '@utils/dateTime'
+import { getUrlImage } from '@utils/urlImages'
 import { IStore } from '../types'
-import { IChat } from '../../../models/chat'
-import { getDateTime } from '../../../utils/dateTime'
-import { getUrlImage } from '../../../utils/urlImages'
+import { Store } from '../Store'
 
 export const selectChats = Store.makeSelector<IChat[]>(
     (state: IStore) => state.chats,

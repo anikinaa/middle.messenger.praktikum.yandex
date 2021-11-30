@@ -1,12 +1,13 @@
-import { Form } from '../../../../blocks/Form'
-import { Button, InputForm, Link } from '../../../../components'
-import { getFormData } from '../../../../utils/getFormData'
-import { REGEXP } from '../../../../utils/REGEXP'
-import { IAsyncStoreState, IStore, Store } from '../../../../modules'
-import { selectUser } from '../../../../modules/Store/selectors/user'
-import { UserController } from '../../../../controllers/user'
-import { IUserUpdate } from '../../../../models/user'
-import { SettingPassword } from '../Password'
+import {
+    IStore, Store, IAsyncStoreState, Router, pathRoutes,
+} from '@modules'
+import { Form } from '@blocks'
+import { Button, InputForm, Link } from '@components'
+import { getFormData } from '@utils/getFormData'
+import { REGEXP } from '@utils/REGEXP'
+import { selectUser } from '@modules/Store/selectors/user'
+import { UserController } from '@controllers/user'
+import { IUserUpdate } from '@models/user'
 
 export class SettingForm extends Form {
     controller: UserController | undefined
@@ -113,7 +114,7 @@ export class SettingForm extends Form {
                     new Link({
                         props: {
                             text: 'Сменить пароль',
-                            href: SettingPassword.pathname,
+                            href: pathRoutes.settingPassword,
                         },
                         attributes: {
                             class: 'link__block',
@@ -121,14 +122,14 @@ export class SettingForm extends Form {
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                SettingPassword.open()
+                                Router.go(pathRoutes.settingPassword)
                             },
                         },
                     }),
                     new Link({
                         props: {
                             text: 'Выйти',
-                            href: '/',
+                            href: pathRoutes.signIn,
                         },
                         attributes: {
                             class: 'link__block link__danger',

@@ -1,5 +1,7 @@
+import { arrayLast } from '@utils/arrayLast'
 import { Route } from './Route'
 import { IPageClass } from './types'
+import { pathRoutes } from '../../pathRoutes'
 
 export class Router {
     static __instance: Router | null = null
@@ -21,17 +23,10 @@ export class Router {
     }
 
     use(block: IPageClass) {
-        const { pathname } = block
-        const { title } = block
-        const { privatePage } = block
-        const { exact } = block
-        const { redirect } = block
+        const { pathname, ...props } = block
         const route = new Route(pathname, block, {
             rootQuery: this._rootQuery!,
-            title,
-            privatePage,
-            exact,
-            redirect,
+            ...props,
         })
         this.routes!.push(route)
         return this
@@ -45,14 +40,15 @@ export class Router {
     start() {
         const pages = this.getRoutes(window.location.pathname)
         if (pages.length === 0) {
-            window.location.pathname = '/404'
-        } else {
-            pages.forEach((page) => {
-                if (page.redirect) {
-                    window.location.pathname = page.redirect
-                }
-            })
+            this.go(pathRoutes.notFound)
+            return
         }
+        pages.forEach((page) => {
+            if (page.redirect) {
+                window.location.pathname = page.redirect
+            }
+        })
+
         window.onpopstate = (event: PopStateEvent) => {
             // @ts-ignore
             this._onRoute(event.currentTarget.location.pathname)
@@ -61,30 +57,33 @@ export class Router {
     }
 
     _onRoute(pathname: string) {
-        const routes = this.getRoutes(pathname)
+        const matchRoutes = this.getRoutes(pathname)
 
-        if (routes.length === 0) {
+        if (matchRoutes.length === 0) {
             return
         }
 
         // eslint-disable-next-line no-restricted-syntax
-        for (const route of routes) {
-            if (route.privatePage && !Router.isAuth) {
-                this.go('/')
-                return
-            } if (!route.privatePage && Router.isAuth) {
-                this.go('/messenger')
-                return
+        for (const route of matchRoutes) {
+            if (route.privatePage !== undefined) {
+                if (route.privatePage && !Router.isAuth) {
+                    this.go(pathRoutes.signIn)
+                    return
+                }
+                if (!route.privatePage && Router.isAuth) {
+                    this.go(pathRoutes.messenger)
+                    return
+                }
             }
         }
 
-        const leaveRoutes = this._currentRoute.filter((r) => !routes.includes(r))
+        const leaveRoutes = this._currentRoute.filter((r) => !matchRoutes.includes(r))
         leaveRoutes.forEach((route) => route.leave())
         this._currentRoute = leaveRoutes
-        routes.forEach((route) => {
+        matchRoutes.forEach((route) => {
             route.render()
         })
-        this._currentRoute = routes
+        this._currentRoute = matchRoutes
     }
 
     static go(pathname: string) {
@@ -115,6 +114,11 @@ export class Router {
             if (!route.exact && route.match(pathname)) {
                 routes.push(route)
             }
+        }
+
+        const targetRoute = arrayLast(routes)
+        if (targetRoute?.pathname !== pathname) {
+            return []
         }
         return routes
     }

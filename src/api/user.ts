@@ -1,8 +1,7 @@
-import { Fetch } from '../modules'
-import { BaseAPI } from '../modules/BaseAPI'
+import { Fetch, BaseAPI } from '@modules'
 import {
     IRequestUserSearch, IUser, IUserPassword, IUserUpdate,
-} from '../models/user'
+} from '@models/user'
 
 const chatAPIInstance = new Fetch('/user')
 

@@ -1,12 +1,12 @@
+import { cloneDeep } from '@utils/cloneDeep'
+import { isPlainObject } from '@utils/isPlainObject'
 import { EventBus } from '../EventBus'
-import { cloneDeep } from '../../utils/cloneDeep'
 import { IAsyncStoreState } from './types'
-import { isPlainObject } from '../../utils/isPlainObject'
 
 export abstract class AsyncStore {
     static EVENT:string = 'CHANGE_STORE'
 
-    eventBus: EventBus | undefined;
+    eventBus: EventBus | undefined
 
     initialState:IAsyncStoreState = {
         error: null,
@@ -31,7 +31,7 @@ export abstract class AsyncStore {
         deleteProperty() {
             throw new Error('нет доступа')
         },
-    });
+    })
 
     private _setState(state: Partial<IAsyncStoreState>) {
         Object.assign(this.state, state)

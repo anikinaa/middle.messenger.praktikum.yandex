@@ -1,5 +1,5 @@
-import { Block } from '../../modules'
-import { getDefaultType, joinClassName } from '../../utils/elementAttr'
+import { Block } from '@modules'
+import { getDefaultType, joinClassName } from '@utils/elementAttr'
 import { IButtonCircle, ButtonCircleProps } from './types'
 
 export class ButtonCircle extends Block<ButtonCircleProps> {

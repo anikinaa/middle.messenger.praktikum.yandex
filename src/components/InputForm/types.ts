@@ -1,4 +1,4 @@
-import { IBlock } from '../../modules'
+import { IBlock } from '@modules'
 import { IInputProps, Input } from '../Input'
 
 export type IInputFormProps = {

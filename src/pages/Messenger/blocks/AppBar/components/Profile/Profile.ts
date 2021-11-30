@@ -1,10 +1,11 @@
-import { Block, Store, Template } from '../../../../../../modules'
-import { selectUser } from '../../../../../../modules/Store/selectors/user'
-import { Avatar } from '../../../../../../components'
+import {
+    Block, Store, Template, Router, pathRoutes,
+} from '@modules'
+import { selectUser } from '@modules/Store/selectors/user'
+import { Avatar } from '@components'
+import { UserController } from '@controllers/user'
 import { IAppBarProfileProps } from './types'
 import _template from './template.tpl'
-import { UserController } from '../../../../../../controllers/user'
-import { SettingsPage } from '../../../../../Settings'
 
 const template = new Template(_template)
 
@@ -21,7 +22,7 @@ export class AppBarProfile extends Block<IAppBarProfileProps> {
         super({
             props: {
                 avatar,
-                linkProfile: SettingsPage.pathname,
+                linkProfile: pathRoutes.settings,
                 name: display_name || first_name,
             },
             attributes: {
@@ -34,7 +35,7 @@ export class AppBarProfile extends Block<IAppBarProfileProps> {
                     if (el.classList.contains('my-profile_logout')) {
                         await this.controller!.logout()
                     } else {
-                        SettingsPage.open()
+                        Router.go(pathRoutes.settings)
                     }
                     e.preventDefault()
                 },

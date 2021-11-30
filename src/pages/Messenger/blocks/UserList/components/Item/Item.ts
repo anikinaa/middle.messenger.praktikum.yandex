@@ -1,10 +1,10 @@
-import { Block, IAsyncStoreState, Template } from '../../../../../../modules'
-import _template from './template.tpl'
+import { Block, IAsyncStoreState, Template } from '@modules'
+import { Avatar, ButtonCircle } from '@components'
+import { joinClassName } from '@utils/elementAttr'
+import * as deleteIcon from '@assets/icons/delete.svg'
+import { ChatUsersController } from '@controllers/chatUsers'
 import { IUserListItem, IUserListItemProps } from './types'
-import { Avatar, ButtonCircle } from '../../../../../../components'
-import { joinClassName } from '../../../../../../utils/elementAttr'
-import deleteIcon from '../../../../../../assets/icons/delete.svg'
-import { ChatUsersController } from '../../../../../../controllers/chatUsers'
+import _template from './template.tpl'
 
 const template = new Template(_template)
 

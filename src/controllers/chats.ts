@@ -1,9 +1,9 @@
-import { ChatsApi } from '../api/chats'
+import { ChatsApi } from '@api/chats'
 import {
-    AsyncStore, errorCatch, errorStateCatch, loading, Store,
-} from '../modules'
-import { MessengerPage } from '../pages/Messenger'
-import { IChatTitle } from '../models/chat'
+    AsyncStore, Store, Router, pathRoutes,
+} from '@modules'
+import { errorStateCatch, errorCatch, loading } from '@utils/decorators'
+import { IChatTitle } from '@models/chat'
 
 const chatsApi = new ChatsApi()
 
@@ -19,7 +19,7 @@ export class ChatsController extends AsyncStore {
     @loading
     async addChat(data: IChatTitle) {
         await chatsApi.create(data)
-        MessengerPage.open()
+        Router.go(pathRoutes.messenger)
         await this.fetchChats()
     }
 

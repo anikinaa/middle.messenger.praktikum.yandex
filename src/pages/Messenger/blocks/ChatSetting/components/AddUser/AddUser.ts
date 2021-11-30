@@ -1,17 +1,18 @@
-import { Modal } from '../../../../../../blocks/Modal'
-import { MessengerChatSetting } from '../../ChatSetting'
-import { IAsyncStoreState, Router, Store } from '../../../../../../modules'
-import { InputForm, Link } from '../../../../../../components'
-import { ChatUsersController } from '../../../../../../controllers/chatUsers'
+import {
+    Store, Router, IAsyncStoreState, pathRoutes,
+} from '@modules'
+import { selectResultSearchUser } from '@modules/Store/selectors/chatUsers'
+import { Modal } from '@blocks'
+import { InputForm, Link } from '@components'
+import { ChatUsersController } from '@controllers/chatUsers'
 import { UserList } from '../../../UserList'
-import { selectResultSearchUser } from '../../../../../../modules/Store/selectors/chatUsers'
 
 export class MessengerChatAddUser extends Modal {
     static exact: boolean = false
 
-    static pathname: string = '/messenger/chat-setting/add-user'
+    static pathname: string = pathRoutes.messengerChatAddUser
 
-    static redirect: string = '/messenger'
+    static redirect: string = pathRoutes.messenger
 
     static title: string = 'Добавить пользователя в чат'
 
@@ -62,12 +63,12 @@ export class MessengerChatAddUser extends Modal {
                     new Link({
                         props: {
                             text: 'Назад',
-                            href: MessengerChatSetting.pathname,
+                            href: pathRoutes.messengerChatSetting,
                         },
                         events: {
                             click: (e) => {
                                 e.preventDefault()
-                                MessengerChatSetting.open()
+                                Router.go(pathRoutes.messengerChatSetting)
                             },
                         },
                     }),
@@ -76,7 +77,9 @@ export class MessengerChatAddUser extends Modal {
             attributes: {
                 class: 'center',
             },
-            onClose: MessengerChatSetting.open,
+            onClose: () => {
+                Router.go(pathRoutes.messengerChatSetting)
+            },
         })
 
         Store.addListenerForProps('searchUsersChat', this.updateStore.bind(this))
@@ -100,9 +103,5 @@ export class MessengerChatAddUser extends Modal {
         this.controller.eventBus!.off(ChatUsersController.EVENT, this.updateLocalStore.bind(this))
         this.controller.resetSearchUser()
         Store.removeListenerForProps('searchUsersChat', this.updateStore.bind(this))
-    }
-
-    static open() {
-        Router.go(MessengerChatAddUser.pathname)
     }
 }

@@ -1,11 +1,10 @@
-import { Fetch } from '../modules'
-import { BaseAPI } from '../modules/BaseAPI'
-import { ISignInFormModel } from '../models/signIn'
+import { Fetch, BaseAPI } from '@modules'
+import { ISignInFormModel } from '@models/signIn'
 import {
     ISignUpRequestModel,
     ISignUpResponseModel,
-} from '../models/signUp'
-import { IUser } from '../models/user'
+} from '@models/signUp'
+import { IUser } from '@models/user'
 
 const chatAPIInstance = new Fetch('/auth')
 

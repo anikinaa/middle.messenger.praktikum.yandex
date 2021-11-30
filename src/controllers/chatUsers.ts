@@ -1,12 +1,13 @@
+import { AsyncStore, Store } from '@modules'
 import {
-    AsyncStore, debounce, errorCatch, errorStateCatch, loading, Store,
-} from '../modules'
-import { selectActiveIdChat } from '../modules/Store/selectors/chats'
-import { selectNewUser, selectUsersChatData } from '../modules/Store/selectors/chatUsers'
-import { IUserChat, UserRule } from '../models/user'
-import { ChatsApi } from '../api/chats'
-import { UserApi } from '../api/user'
-import { getNameImage } from '../utils/urlImages'
+    debounce, errorCatch, errorStateCatch, loading,
+} from '@utils/decorators'
+import { selectActiveIdChat } from '@modules/Store/selectors/chats'
+import { selectNewUser, selectUsersChatData } from '@modules/Store/selectors/chatUsers'
+import { IUserChat, UserRule } from '@models/user'
+import { ChatsApi } from '@api/chats'
+import { UserApi } from '@api/user'
+import { getNameImage } from '@utils/urlImages'
 
 const chatsApi = new ChatsApi()
 const userApi = new UserApi()

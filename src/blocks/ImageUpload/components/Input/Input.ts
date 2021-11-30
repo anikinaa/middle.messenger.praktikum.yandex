@@ -1,4 +1,4 @@
-import { Block, Template } from '../../../../modules'
+import { Block, Template } from '@modules'
 import { IImageUploadInputProps, IImageUploadInput } from './types'
 import _template from './template.tpl'
 

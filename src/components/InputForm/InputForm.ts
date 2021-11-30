@@ -1,8 +1,8 @@
-import { Block, Template } from '../../modules'
+import { Block, Template } from '@modules'
+import { joinClassName } from '@utils/elementAttr'
 import { Input } from '../Input'
 import { IInputForm, IInputFormMainProps, IInputFormProps } from './types'
 import _template from './template.tpl'
-import { joinClassName } from '../../utils/elementAttr'
 
 const template = new Template<IInputFormProps>(_template)
 

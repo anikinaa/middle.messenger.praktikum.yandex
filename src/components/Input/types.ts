@@ -1,4 +1,4 @@
-import { IBlock } from '../../modules'
+import { IBlock } from '@modules'
 
 export type IInputProps = {
     value?: string | null

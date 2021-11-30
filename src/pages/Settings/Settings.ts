@@ -1,12 +1,12 @@
-import { Router } from '../../modules'
+import { pathRoutes } from '@modules'
+import { Card } from '@components'
 import { SettingForm } from './blocks/Form'
 import { SettingAvatar } from './blocks/Avatar'
-import { Card } from '../../components'
 
 export class SettingsPage extends Card {
     static exact: boolean = false
 
-    static pathname: string = '/settings'
+    static pathname: string = pathRoutes.settings
 
     static title: string = 'Настройка пользователя'
 
@@ -22,9 +22,5 @@ export class SettingsPage extends Card {
                 ],
             },
         })
-    }
-
-    static open() {
-        Router.go(SettingsPage.pathname)
     }
 }

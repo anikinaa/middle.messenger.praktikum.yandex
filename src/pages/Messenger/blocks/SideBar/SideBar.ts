@@ -1,4 +1,4 @@
-import { Block, Template } from '../../../../modules'
+import { Block, Template } from '@modules'
 import { Chats } from '../Chats'
 import { SideBarHeader } from './components/Header'
 import { ISideBarProps } from './types'

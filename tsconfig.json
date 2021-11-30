@@ -24,6 +24,18 @@
       "es5",
       "dom.iterable",
       "dom"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@api/*": ["./api/*"],
+      "@assets/*": ["./assets/*"],
+      "@blocks": ["./blocks/index.ts"],
+      "@components": ["./components/index.ts"],
+      "@controllers/*": ["./controllers/*"],
+      "@models/*": ["./models/*"],
+      "@modules/*": ["./modules/*"],
+      "@modules": ["./modules/index.ts"],
+      "@utils/*": ["./utils/*"]
+    },
   }
 }

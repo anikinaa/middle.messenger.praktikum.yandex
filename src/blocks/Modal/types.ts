@@ -1,5 +1,5 @@
-import { Card, ICardProps } from '../../components'
-import { IBlock } from '../../modules'
+import { Card, ICardProps } from '@components'
+import { IBlock } from '@modules'
 
 export type IModalProps = {
     card: Card
